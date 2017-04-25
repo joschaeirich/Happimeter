@@ -1,0 +1,39 @@
+
+.page-Statistics {
+
+background: color($colors, statistics);
+}
+
+.toolbar-background-ios-statistics .toolbar-background-ios {
+    background: #3F51B5;
+}
+
+.card-header {
+  width: 150px !important;
+  height: 30px !important;
+}
+
+.grid-basic-page {
+
+  ion-col div {
+    background-color: transparentize(rgba(0, 0, 0, 0.5), 1);
+    padding: 6px;
+    font-size: 4;
+    border: 0px solid #fff;
+    border-radius: 2px;
+    text-align: center;
+  }
+}
+
+
+.headersize_mooddiagram {
+    font-size: 1.0rem;
+    line-height: 1.4;
+}
+
+
+
+.text-center {
+  text-align: center;
+}
+

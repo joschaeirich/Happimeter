@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 200 200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.5;">
+    <g transform="matrix(1,0,0,1,0,-4)">
+        <rect x="-4" y="0" width="213" height="204" style="fill:rgb(76,175,80);"/>
+    </g>
+    <g transform="matrix(0.299561,0,0,0.299561,24.6972,11.8384)">
+        <path d="M278,401L278,359L343,359L309,304L334,304L299,246L318,246L286,195L306,195L252,109L252,401L278,401Z" style="fill:white;"/>
+        <g transform="matrix(-1,0,0,1,504,0)">
+            <path d="M278,401L278,359L343,359L309,304L334,304L299,246L318,246L286,195L306,195L252,109L252,401L278,401Z" style="fill:white;"/>
+        </g>
+    </g>
+    <g transform="matrix(0.299561,0,0,0.299561,24.6972,11.8384)">
+        <path d="M356,183L321,241L332,241L321,266L349,312L325,312L356,368L338,368L338,393L375,393L375,363L421,363L400,325L416,325L391,282L403,282L380,244L395,244L356,183Z" style="fill:white;"/>
+    </g>
+    <g transform="matrix(-0.299561,0,0,0.299561,175.976,11.8384)">
+        <path d="M356,183L321,241L332,241L321,266L349,312L325,312L356,368L338,368L338,393L375,393L375,363L421,363L400,325L416,325L391,282L403,282L380,244L395,244L356,183Z" style="fill:white;"/>
+    </g>
+    <g transform="matrix(1,0,0,1,-14.7392,11)">
+        <text x="31.406px" y="158.159px" style="font-family:'WaywardSans-Regular', 'Wayward Sans';font-size:22.222px;fill:white;">Achi<tspan x="90.073px " y="158.159px ">e</tspan>vement</text>
+    </g>
+    <g transform="matrix(0.99999,0.00457675,-0.0043136,0.942494,0.38272,5.13052)">
+        <path d="M100,45L100,131.963" style="fill:none;stroke:white;stroke-width:3.72px;"/>
+    </g>
+</svg>

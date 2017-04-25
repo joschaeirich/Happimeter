@@ -1,0 +1,307 @@
+<ion-header class="toolbar-background-ios-statistics">
+
+  <ion-navbar>
+    <ion-title>Diagrams</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+
+
+
+
+<ion-content class="page-Statistics">
+
+  <ion-card>
+    <ion-card-content>
+      <img class="card-header" src='./assets/Statistics/activity_icon.svg' />
+      <div id="highcharts-8c5y4z0-0" class="highcharts-container " style="position: relative; overflow: hidden; width: 120%; height: 100%; 
+      text-align: left; line-height: normal; z-index: 0; font-family: Wayward Sans; left: -25px; top: 0px;">
+        <chart [options]="chartOptions" (load)="saveInstance($event.context)" style="display: block" tpye="chart"> </chart>
+      </div>
+
+      <br>
+
+        <div class="row">
+        <div class="col">
+          <div class="text-center">
+              Mean activity: High
+          </div>
+        </div>
+      </div>
+
+    </ion-card-content>
+  </ion-card>
+
+  <br>
+
+  <ion-card>
+    <ion-card-content>
+      <img class="card-header" src='./assets/Statistics/bpm_icon.svg' />
+      <div id="highcharts-jkvc64n-4" class="highcharts-container " style="position: relative; overflow: hidden; width: 120%; height: 100%; 
+      text-align: left; line-height: normal; z-index: 0; font-family: Wayward Sans; left: -25px; top: 0px;">
+        <chart [options]="chartOptions1" (load)="saveInstance($event.context)" style="display: block" tpye="chart"> </chart>
+      </div>
+  
+      <br>
+  
+      <div class="row">
+        <div class="col">
+          <div class="text-center">
+              Mean heart rate: xx 
+          </div>
+        </div>
+      </div>
+
+    </ion-card-content>
+  </ion-card>
+
+  <br>
+
+  <ion-card>
+    <ion-card-content>
+      <img class="card-header" src='./assets/Statistics/moodhistory_icon.svg' />
+      <br>
+      <div class="grid-basic-page">
+        <ion-row>
+          <ion-col width-40>
+            <div>Time</div>
+          </ion-col>
+          <ion-col>
+            <div>M</div>
+          </ion-col>
+          <ion-col>
+            <div>T</div>
+          </ion-col>
+          <ion-col>
+            <div>W</div>
+          </ion-col>
+          <ion-col>
+            <div>T</div>
+          </ion-col>
+          <ion-col>
+            <div>F</div>
+          </ion-col>
+          <ion-col>
+            <div>S</div>
+          </ion-col>
+          <ion-col>
+            <div>S</div>
+          </ion-col>
+        </ion-row>
+
+        <ion-row align-items-center>
+          <ion-col width-40>
+            <div>08:00</div>
+          </ion-col>
+          <ion-col>
+            <div><img src="assets/TransparentSmileys/smiley1.svg"></div>
+          </ion-col>
+          <ion-col>
+            <div><img src="assets/TransparentSmileys/smiley2.svg"></div>
+          </ion-col>
+          <ion-col>
+            <div><img src="assets/TransparentSmileys/smiley3.svg"></div>
+          </ion-col>
+          <ion-col>
+            <div><img src="assets/TransparentSmileys/smiley1.svg"></div>
+          </ion-col>
+          <ion-col>
+            <div><img src="assets/TransparentSmileys/smiley2.svg"></div>
+          </ion-col>
+          <ion-col>
+            <div><img src="assets/TransparentSmileys/smiley2.svg"></div>
+          </ion-col>
+          <ion-col>
+            <div><img src="assets/TransparentSmileys/smiley4.svg"></div>
+          </ion-col>
+        </ion-row>
+        <ion-row align-items-center>
+          <ion-col width-40>
+            <div>10:00</div>
+          </ion-col>
+          <ion-col>
+            <div><img src="assets/TransparentSmileys/smiley1.svg"></div>
+          </ion-col>
+          <ion-col>
+            <div><img src="assets/TransparentSmileys/smiley2.svg"></div>
+          </ion-col>
+          <ion-col>
+            <div><img src="assets/TransparentSmileys/smiley3.svg"></div>
+          </ion-col>
+          <ion-col>
+            <div><img src="assets/TransparentSmileys/smiley1.svg"></div>
+          </ion-col>
+          <ion-col>
+            <div><img src="assets/TransparentSmileys/smiley2.svg"></div>
+          </ion-col>
+          <ion-col>
+            <div><img src="assets/TransparentSmileys/smiley2.svg"></div>
+          </ion-col>
+          <ion-col>
+            <div><img src="assets/TransparentSmileys/smiley4.svg"></div>
+          </ion-col>
+        </ion-row>
+        <ion-row align-items-center>
+          <ion-col width-40>
+            <div>12:00</div>
+          </ion-col>
+          <ion-col>
+            <div><img src="assets/TransparentSmileys/smiley1.svg"></div>
+          </ion-col>
+          <ion-col>
+            <div><img src="assets/TransparentSmileys/smiley2.svg"></div>
+          </ion-col>
+          <ion-col>
+            <div><img src="assets/TransparentSmileys/smiley3.svg"></div>
+          </ion-col>
+          <ion-col>
+            <div><img src="assets/TransparentSmileys/smiley1.svg"></div>
+          </ion-col>
+          <ion-col>
+            <div><img src="assets/TransparentSmileys/smiley2.svg"></div>
+          </ion-col>
+          <ion-col>
+            <div><img src="assets/TransparentSmileys/smiley2.svg"></div>
+          </ion-col>
+          <ion-col>
+            <div><img src="assets/TransparentSmileys/smiley4.svg"></div>
+          </ion-col>
+        </ion-row>
+        <ion-row align-items-center>
+          <ion-col width-40>
+            <div>14:00</div>
+          </ion-col>
+          <ion-col>
+            <div><img src="assets/TransparentSmileys/smiley1.svg"></div>
+          </ion-col>
+          <ion-col>
+            <div><img src="assets/TransparentSmileys/smiley2.svg"></div>
+          </ion-col>
+          <ion-col>
+            <div><img src="assets/TransparentSmileys/smiley3.svg"></div>
+          </ion-col>
+          <ion-col>
+            <div><img src="assets/TransparentSmileys/smiley1.svg"></div>
+          </ion-col>
+          <ion-col>
+            <div><img src="assets/TransparentSmileys/smiley2.svg"></div>
+          </ion-col>
+          <ion-col>
+            <div><img src="assets/TransparentSmileys/smiley2.svg"></div>
+          </ion-col>
+          <ion-col>
+            <div><img src="assets/TransparentSmileys/smiley4.svg"></div>
+          </ion-col>
+        </ion-row>
+        <ion-row align-items-center>
+          <ion-col width-40>
+            <div>16:00</div>
+          </ion-col>
+          <ion-col>
+            <div><img src="assets/TransparentSmileys/smiley1.svg"></div>
+          </ion-col>
+          <ion-col>
+            <div><img src="assets/TransparentSmileys/smiley2.svg"></div>
+          </ion-col>
+          <ion-col>
+            <div><img src="assets/TransparentSmileys/smiley3.svg"></div>
+          </ion-col>
+          <ion-col>
+            <div><img src="assets/TransparentSmileys/smiley1.svg"></div>
+          </ion-col>
+          <ion-col>
+            <div><img src="assets/TransparentSmileys/smiley2.svg"></div>
+          </ion-col>
+          <ion-col>
+            <div><img src="assets/TransparentSmileys/smiley2.svg"></div>
+          </ion-col>
+          <ion-col>
+            <div><img src="assets/TransparentSmileys/smiley4.svg"></div>
+          </ion-col>
+        </ion-row>
+        <ion-row align-items-center>
+          <ion-col width-40>
+            <div>18:00</div>
+          </ion-col>
+          <ion-col>
+            <div><img src="assets/TransparentSmileys/smiley1.svg"></div>
+          </ion-col>
+          <ion-col>
+            <div><img src="assets/TransparentSmileys/smiley2.svg"></div>
+          </ion-col>
+          <ion-col>
+            <div><img src="assets/TransparentSmileys/smiley3.svg"></div>
+          </ion-col>
+          <ion-col>
+            <div><img src="assets/TransparentSmileys/smiley1.svg"></div>
+          </ion-col>
+          <ion-col>
+            <div><img src="assets/TransparentSmileys/smiley2.svg"></div>
+          </ion-col>
+          <ion-col>
+            <div><img src="assets/TransparentSmileys/smiley2.svg"></div>
+          </ion-col>
+          <ion-col>
+            <div><img src="assets/TransparentSmileys/smiley4.svg"></div>
+          </ion-col>
+        </ion-row>
+        <ion-row align-items-center>
+          <ion-col width-40>
+            <div>20:00</div>
+          </ion-col>
+          <ion-col>
+            <div><img src="assets/TransparentSmileys/smiley1.svg"></div>
+          </ion-col>
+          <ion-col>
+            <div><img src="assets/TransparentSmileys/smiley2.svg"></div>
+          </ion-col>
+          <ion-col>
+            <div><img src="assets/TransparentSmileys/smiley3.svg"></div>
+          </ion-col>
+          <ion-col>
+            <div><img src="assets/TransparentSmileys/smiley1.svg"></div>
+          </ion-col>
+          <ion-col>
+            <div><img src="assets/TransparentSmileys/smiley2.svg"></div>
+          </ion-col>
+          <ion-col>
+            <div><img src="assets/TransparentSmileys/smiley2.svg"></div>
+          </ion-col>
+          <ion-col>
+            <div><img src="assets/TransparentSmileys/smiley4.svg"></div>
+          </ion-col>
+        </ion-row>
+        <ion-row align-items-center>
+          <ion-col width-40>
+            <div>22:00</div>
+          </ion-col>
+          <ion-col>
+            <div><img src="assets/TransparentSmileys/smiley1.svg"></div>
+          </ion-col>
+          <ion-col>
+            <div><img src="assets/TransparentSmileys/smiley2.svg"></div>
+          </ion-col>
+          <ion-col>
+            <div><img src="assets/TransparentSmileys/smiley3.svg"></div>
+          </ion-col>
+          <ion-col>
+            <div><img src="assets/TransparentSmileys/smiley1.svg"></div>
+          </ion-col>
+          <ion-col>
+            <div><img src="assets/TransparentSmileys/smiley2.svg"></div>
+          </ion-col>
+          <ion-col>
+            <div><img src="assets/TransparentSmileys/smiley2.svg"></div>
+          </ion-col>
+          <ion-col>
+            <div><img src="assets/TransparentSmileys/smiley4.svg"></div>
+          </ion-col>
+        </ion-row>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+
+</ion-content>

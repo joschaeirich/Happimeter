@@ -1,0 +1,24 @@
+.page-Friends {
+
+background: color($colors, friends);
+  ion-note {
+    font-size: 12px;
+    align-self: flex-start;
+    margin-top: 14px;
+  }
+}
+
+ion-searchbar.searchbar-ios {
+    background-color: color($colors, friends);
+}
+
+.list-background {
+    background-color: transparent;
+    
+}
+
+.item-ios {
+    font-size: 1.7rem;
+    background: transparent;
+    
+}

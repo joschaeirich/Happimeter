@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 200 200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+    <g transform="matrix(1,0,0,1,0,-4)">
+        <rect x="-4" y="0" width="213" height="204" style="fill:rgb(233,30,99);"/>
+    </g>
+    <g transform="matrix(1,0,0,1,2.26079,11)">
+        <text x="58.073px" y="158.159px" style="font-family:'WaywardSans-Regular', 'Wayward Sans';font-size:22.222px;fill:white;">Mood</text>
+    </g>
+    <g transform="matrix(0.76378,0,0,0.728481,-751.604,-674.143)">
+        <g transform="matrix(1.15455,0,0,1.15455,998.597,913.529)">
+            <circle cx="101" cy="111" r="55" style="fill:none;stroke:white;stroke-width:4.19px;"/>
+        </g>
+        <g transform="matrix(1,0,0,1,1002.71,929.183)">
+            <path d="M81,126L144,126C144,126 132.787,147.032 112.5,147C92.343,146.968 81,126 81,126Z" style="fill:white;"/>
+        </g>
+        <g transform="matrix(1,0,0,1,1002.71,929.183)">
+            <ellipse cx="90" cy="96.5" rx="9" ry="8.5" style="fill:white;"/>
+        </g>
+        <g transform="matrix(1,0,0,1,1047.71,929.183)">
+            <ellipse cx="90" cy="96.5" rx="9" ry="8.5" style="fill:white;"/>
+        </g>
+    </g>
+</svg>

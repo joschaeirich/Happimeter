@@ -1,0 +1,81 @@
+<!--
+  Generated template for the Friends page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+  "list-avatar-page"
+-->
+<ion-header class="toolbar-background-ios-friends">
+
+  <ion-navbar>
+    <ion-title>Friends</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+
+
+<ion-content class="page-Friends" >
+
+
+
+
+<ion-card>
+  <ion-card-content>
+
+  <ion-list class="list-background">
+
+    <ion-list-header>Your friends</ion-list-header>
+
+    <ion-item class="list-background">
+      <ion-avatar item-left>
+        <img src="assets/Friends/Pascal.png">
+      </ion-avatar>
+      <h2 secondary>Pascal</h2>
+      <ion-avatar item-right>
+        <img src="assets/TransparentSmileys/smiley1.svg">
+      </ion-avatar>
+    </ion-item>
+
+    <ion-item class="list-background">
+      <ion-avatar item-left>
+        <img src="assets/Friends/Peter.png">
+      </ion-avatar>
+      <h2>Peter</h2>
+      <ion-avatar item-right>
+        <img src="assets/TransparentSmileys/smiley2.svg">
+      </ion-avatar>
+    </ion-item>
+
+    <ion-item class="list-background">
+      <ion-avatar item-left>
+        <img src="assets/Friends/Joscha.png">
+      </ion-avatar>
+      <h2>Joscha</h2>
+      <ion-avatar item-right>
+        <img src="assets/TransparentSmileys/smiley3.svg">
+      </ion-avatar>
+    </ion-item>
+
+  </ion-list>
+  </ion-card-content>
+</ion-card>
+
+
+  <ion-grid>
+    <ion-row>
+      <ion-col width-50>
+        <ion-card>
+          <img class="ion-img" style="width:100%" src="assets/Friends/Icons/searchFriends.svg" (click)="SearchFriends()">
+        </ion-card>
+      </ion-col>
+      <ion-col width-50>
+        <ion-card>
+            <img class="scroll" src="assets/Friends/Icons/friendRequests.svg" (click)="FriendRequest()">
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+ 
+</ion-content>

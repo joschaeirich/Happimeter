@@ -1,0 +1,30 @@
+.page-Friends {
+
+background: color($colors, friends);
+  ion-note {
+    font-size: 12px;
+    align-self: flex-start;
+    margin-top: 14px;
+  }
+}
+
+.list-background {
+    background-color: transparent;
+    
+}
+
+.note-ios-color{
+   color: white !important;
+}
+
+.list-header-ios {
+    color: white !important;
+}
+
+.item, .item-divider {
+  border-color: white;
+}
+
+.toolbar-background-ios-friends .toolbar-background-ios {
+    background: #AFBD2B;
+}

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 200 200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+    <rect x="0" y="0" width="200" height="200" style="fill:rgb(233,30,99);"/>
+    <g transform="matrix(1.83046,0,0,1.83046,-680.191,-31.4397)">
+        <g transform="matrix(0.64375,0,0,0.64375,6.775,-19.5563)">
+            <circle cx="652" cy="143" r="80" style="fill:none;stroke:white;stroke-width:3.3px;"/>
+        </g>
+        <g transform="matrix(1.78173,0,0,1.78173,307.272,-183.724)">
+            <ellipse cx="67" cy="154" rx="9" ry="10" style="fill:white;"/>
+        </g>
+        <g transform="matrix(1.78173,0,0,1.78173,307.272,-183.724)">
+            <g transform="matrix(1.2,0,0,1.14286,-11.2,-20)">
+                <ellipse cx="58.5" cy="136.5" rx="2.5" ry="3.5" style="fill:white;"/>
+            </g>
+            <g transform="matrix(1.2261,0.833618,-0.562251,0.826967,60.985,-21.9537)">
+                <path d="M59,128.75C59,128.336 58.773,128 58.494,128L53.506,128C53.227,128 53,128.336 53,128.75L53,130.25C53,130.664 53.227,131 53.506,131L58.494,131C58.773,131 59,130.664 59,130.25L59,128.75Z" style="fill:white;"/>
+            </g>
+        </g>
+        <g transform="matrix(-1.78173,0,0,1.78173,547.805,-183.724)">
+            <g transform="matrix(1.2,0,0,1.14286,-11.2,-20)">
+                <ellipse cx="58.5" cy="136.5" rx="2.5" ry="3.5" style="fill:white;"/>
+            </g>
+            <g transform="matrix(1.2261,0.833618,-0.562251,0.826967,60.985,-21.9537)">
+                <path d="M59,128.75C59,128.336 58.773,128 58.494,128L53.506,128C53.227,128 53,128.336 53,128.75L53,130.25C53,130.664 53.227,131 53.506,131L58.494,131C58.773,131 59,130.664 59,130.25L59,128.75Z" style="fill:white;"/>
+            </g>
+        </g>
+    </g>
+</svg>

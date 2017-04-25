@@ -1,0 +1,87 @@
+import { NgModule, ErrorHandler } from '@angular/core';
+import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { MyApp } from './app.component';
+import { MoodPage } from '../pages/Mood/Mood';
+import { MoodmapPage } from '../pages/Moodmap/Moodmap';
+import { StatisticsPage } from '../pages/Statistics/Statistics';
+import { NetworkPage } from '../pages/Network/Network';
+import { SettingsPage } from '../pages/Settings/Settings';
+import { TabsPage } from '../pages/tabs/tabs';
+import { MoodInputPage} from '../pages/MoodInput/MoodInput';
+import { Tree1Page} from '../pages/Tree1/Tree1';
+import { Tree2Page} from '../pages/Tree2/Tree2';
+import { Tree3Page} from '../pages/Tree3/Tree3';
+import { Tree4Page} from '../pages/Tree4/Tree4';
+import { MainPage} from '../pages/Main/Main';
+import { AchievementPage} from '../pages/Achievement/Achievement';
+import { MoodTablePage} from '../pages/MoodTable/MoodTable';
+import { MoodDiagramsPage} from '../pages/MoodDiagrams/MoodDiagrams';
+import { FriendsPage} from '../pages/Friends/Friends';
+import { SearchFriendsPage} from '../pages/SearchFriends/SearchFriends';
+import { FriendRequestPage} from '../pages/FriendRequest/FriendRequest';
+
+
+import { StatusBar } from '@ionic-native/status-bar';
+import { SplashScreen } from '@ionic-native/splash-screen';
+import { Geolocation } from '@ionic-native/geolocation';
+import {ChartModule } from 'angular2-highcharts';
+import * as highcharts from 'Highcharts';
+
+
+
+
+@NgModule({
+  declarations: [
+    MyApp,
+    MoodPage,
+    MoodmapPage,
+    StatisticsPage,
+    NetworkPage,
+    SettingsPage,
+    TabsPage,
+    MoodInputPage,
+    Tree1Page,
+    Tree2Page,
+    Tree3Page,
+    Tree4Page,
+    MainPage,
+    AchievementPage,
+    MoodTablePage,
+    MoodDiagramsPage,
+    FriendsPage,
+    SearchFriendsPage,
+    FriendRequestPage
+  ],
+  imports: [
+    IonicModule.forRoot(MyApp), ChartModule.forRoot(highcharts), 
+  ],
+  bootstrap: [IonicApp],
+  entryComponents: [
+    MyApp,
+    MoodPage,
+    MoodmapPage,
+    StatisticsPage,
+    NetworkPage,
+    SettingsPage,
+    TabsPage,
+    MoodInputPage,
+    Tree1Page,
+    Tree2Page,
+    Tree3Page,
+    Tree4Page,
+    MainPage,
+    AchievementPage,
+    MoodTablePage,
+    MoodDiagramsPage,
+    FriendsPage,
+    SearchFriendsPage,
+    FriendRequestPage
+  ],
+  providers: [
+    StatusBar,
+    SplashScreen,
+    Geolocation,
+    {provide: ErrorHandler, useClass: IonicErrorHandler}
+  ]
+})
+export class AppModule {}

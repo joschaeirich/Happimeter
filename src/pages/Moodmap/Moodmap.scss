@@ -1,0 +1,34 @@
+.page-Moodmap {
+background: color($colors, moodmap);
+}
+
+.buttom_position {
+ position:absolute;
+ bottom: 10% !important;
+}
+
+
+.ios, .md {
+ 
+    .page-Moodmap {
+ 
+ 
+      #map {
+        width: 100%;
+        height: 100%;
+        overflow: visible !important;
+      }
+ 
+    }
+ 
+}
+
+
+.buttom_position {
+ position:absolute;
+ bottom: 20% !important;
+}
+
+.toolbar-background-ios-moodmap .toolbar-background-ios {
+    background: #E91E63;
+}

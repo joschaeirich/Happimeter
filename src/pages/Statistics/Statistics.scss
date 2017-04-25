@@ -1,0 +1,60 @@
+.page-Statistics {
+
+background: color($colors, statistics);
+}
+
+.canvas {
+    padding: 0;
+    margin: -10px;
+    display: block;
+    width: 800px;
+}
+
+.img-loaded_1{
+    width:130%;
+    margin-left: -15%;
+}
+
+.card-header-ios{
+  color:#fff;
+}
+
+.card-text{
+  text-align: center;
+}
+
+.card-ios{
+  background: #0CA7BB;
+  box-shadow: 1 1px 1px;
+}
+
+.img {
+    max-width: 80%;
+    border: 0;
+    margin-left: 5px;
+}
+
+.fullscreen-image {
+
+  max-width: 100%;
+  max-height: 100%;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  overflow: auto;
+  position: fixed;
+  right: 0;
+  top: 0;
+}
+
+.toolbar-background-ios-statistics .toolbar-background-ios {
+    background: #3F51B5;
+}
+
+
+.headersize-statistics {
+    font-size: 1.0rem;
+    line-height: 1.4;
+    text-align: center;
+}
+
