@@ -1,59 +1,60 @@
 <ion-header class="toolbar-background-ios-statistics">
-
   <ion-navbar>
     <ion-title> Statistics</ion-title>
   </ion-navbar>
-
 </ion-header>
-
 
 <ion-content padding class="page-Statistics">
 
   <ion-card>
-    <div class="card-text">
-      <ion-card-header class="headersize-statistics">
-        Mood Frequency
-      </ion-card-header>
-    </div>
+    <ion-card-header class="headersize-statistics">
+     <b> Mood Frequency </b>
+    </ion-card-header>
     <ion-card-content>
-
       <canvas class="canvas" #barCanvas></canvas>
       <br>
-
+      <br>
       <div class="row">
         <div class="col col-25">
-          <img class="img" src="assets/TransparentSmileys/smiley1.svg">
+          <img class="img-frequency-card" src="assets/TransparentSmileys/smiley1.svg">
         </div>
         <div class="col col-25">
-          <img class="img" src="assets/TransparentSmileys/smiley2.svg">
+          <img class="img-frequency-card" src="assets/TransparentSmileys/smiley2.svg">
         </div>
         <div class="col col-25">
-          <img class="img" src="assets/TransparentSmileys/smiley3.svg">
+          <img class="img-frequency-card" src="assets/TransparentSmileys/smiley3.svg">
         </div>
         <div class="col col-25">
-          <img class="img" src="assets/TransparentSmileys/smiley4.svg">
-
+          <img class="img-frequency-card" src="assets/TransparentSmileys/smiley4.svg">
         </div>
       </div>
     </ion-card-content>
   </ion-card>
 
-
-
   <ion-grid>
     <ion-row>
       <ion-col width-50>
+        
+        
         <ion-card>
-          <img class="ion-img" style="width:100%" src="assets/Statistics/MoodDiagrams.svg" (click)="MoodDiagrams()">
+          
+          <img class="img" src="assets/Statistics/MoodDiagrams.svg" (click)="MoodDiagrams()">
+          <ion-card-header class="card-text">
+           <b> Diagrams </b>
+          </ion-card-header>
         </ion-card>
       </ion-col>
+
       <ion-col width-50>
         <ion-card>
-            <img class="scroll" src="assets/Statistics/MoodTable.svg" (click)="MoodTable()">
+          <img class="img" src="assets/Statistics/MoodTable.svg" (click)="MoodTable()">
+          <ion-card-header class="card-text">
+          <b> Tables </b>
+          </ion-card-header>
         </ion-card>
+
       </ion-col>
     </ion-row>
   </ion-grid>
-
 
 </ion-content>

@@ -5,12 +5,13 @@ background: color($colors, statistics);
 }
 
 .toolbar-background-ios-statistics .toolbar-background-ios {
-    background: #3F51B5;
+    background: #1592A2;
 }
 
-.card-header {
+.card-header-diagramm {
   width: 150px !important;
   height: 30px !important;
+  margin-left: -60px;
 }
 
 .grid-basic-page {
@@ -29,6 +30,7 @@ background: color($colors, statistics);
 .headersize_mooddiagram {
     font-size: 1.0rem;
     line-height: 1.4;
+     font-weight: bold;
 }
 
 
@@ -37,3 +39,11 @@ background: color($colors, statistics);
   text-align: center;
 }
 
+.righttext{
+    margin-left: 35px;
+    margin-top: -25px;
+}
+
+.bottom-maring-activity{
+  margin-bottom:  -40px;
+}

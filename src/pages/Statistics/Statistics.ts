@@ -37,9 +37,9 @@ export class StatisticsPage {
                         ctx.fillStyle = 'rgb(3, 144, 156)';
 
                         var fontSize = 12;
-                        var fontStyle = 'normal';
-                        var fontFamily = 'Wayward Sans'; 
-                        ctx.font = Chart.helpers.fontString(fontSize, fontStyle, fontFamily);
+                        var fontStyle = 'bold';
+                        //var fontFamily = 'roboto'; 
+                        ctx.font = Chart.helpers.fontString(fontSize, fontStyle);
 
                         // Just naively convert to string for now
                         var dataString = dataset.data[index].toString();

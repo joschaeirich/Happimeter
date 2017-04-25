@@ -19,6 +19,7 @@ import { MoodDiagramsPage} from '../pages/MoodDiagrams/MoodDiagrams';
 import { FriendsPage} from '../pages/Friends/Friends';
 import { SearchFriendsPage} from '../pages/SearchFriends/SearchFriends';
 import { FriendRequestPage} from '../pages/FriendRequest/FriendRequest';
+import { LoginPage} from '../pages/Login/Login';
 
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -50,7 +51,8 @@ import * as highcharts from 'Highcharts';
     MoodDiagramsPage,
     FriendsPage,
     SearchFriendsPage,
-    FriendRequestPage
+    FriendRequestPage,
+    LoginPage
   ],
   imports: [
     IonicModule.forRoot(MyApp), ChartModule.forRoot(highcharts), 
@@ -75,7 +77,8 @@ import * as highcharts from 'Highcharts';
     MoodDiagramsPage,
     FriendsPage,
     SearchFriendsPage,
-    FriendRequestPage
+    FriendRequestPage,
+    LoginPage
   ],
   providers: [
     StatusBar,
