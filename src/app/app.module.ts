@@ -20,13 +20,16 @@ import { FriendsPage} from '../pages/Friends/Friends';
 import { SearchFriendsPage} from '../pages/SearchFriends/SearchFriends';
 import { FriendRequestPage} from '../pages/FriendRequest/FriendRequest';
 import { LoginPage} from '../pages/Login/Login';
+import { RegisterPage} from '../pages/Register/Register';
 
+import {Auth} from '../providers/auth';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Geolocation } from '@ionic-native/geolocation';
 import {ChartModule } from 'angular2-highcharts';
 import * as highcharts from 'Highcharts';
+import { BrowserModule } from '@angular/platform-browser';
 
 
 
@@ -52,9 +55,12 @@ import * as highcharts from 'Highcharts';
     FriendsPage,
     SearchFriendsPage,
     FriendRequestPage,
-    LoginPage
+    LoginPage,
+    RegisterPage
+
   ],
   imports: [
+    BrowserModule,
     IonicModule.forRoot(MyApp), ChartModule.forRoot(highcharts), 
   ],
   bootstrap: [IonicApp],
@@ -78,12 +84,14 @@ import * as highcharts from 'Highcharts';
     FriendsPage,
     SearchFriendsPage,
     FriendRequestPage,
-    LoginPage
+    LoginPage,
+    RegisterPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     Geolocation,
+    Auth,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

@@ -1,33 +1,9 @@
-.ios, .md {
- 
-    page-Login {
-            
-        p {
-            font-size: 0.8em;
-            color: white;
-        }
- 
-        .swiper-slide {
-            display: block;
-        }
- 
-        ion-label, .select-text {
-            margin-left: 10px;
-        }
- 
-        ion-input, ion-select, ion-textarea {
-            background-color: #CB3C0F;
-            padding: 5px 10px;
-        }
- 
-        .invalid {
-            border: 1px solid #CB3C0F;
-        }
-    }
- 
+.login-card-color {
+    background-color: #FF1800 !important;
+    
 }
 
-
-.swiper-pagination-bullet-active {
-    background: white;
+.submit-btn{
+    background-color: white;
+    color: gray;
 }

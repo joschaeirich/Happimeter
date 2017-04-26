@@ -1,54 +1,54 @@
-import { Component, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NavController } from 'ionic-angular';
-
-import { AgeValidator } from '../../validators/age';
-import { UsernameValidator } from '../../validators/username';
+import { Component } from '@angular/core';
+import { NavController, AlertController, LoadingController, Loading } from 'ionic-angular';
+import { Auth } from '../../providers/auth';
+import { RegisterPage} from '../Register/Register';
 
 @Component({
   selector: 'page-Login',
   templateUrl: 'Login.html'
 })
 export class LoginPage {
+  loading: Loading;
+  registerCredentials = { email: '', password: '' };
 
-  @ViewChild('signupSlider') signupSlider: any;
 
-  slideOneForm: FormGroup;
+  constructor(private navCtrl: NavController, private auth: Auth, private alertCtrl: AlertController, private loadingCtrl: LoadingController) { }
 
-  submitAttempt: boolean = false;
+  public createAccount() {
+    this.navCtrl.push(RegisterPage);
+  }
 
-  constructor(public navCtrl: NavController, public formBuilder: FormBuilder) {
 
-    this.slideOneForm = formBuilder.group({
-      firstName: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
-      lastName: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
-      age: ['', AgeValidator.isValid],
-      username: ['', Validators.compose([Validators.required, Validators.pattern('[a-zA-Z]*')]), UsernameValidator.checkUsername],
-      privacy: ['', Validators.required],
-      bio: ['']
+  public login() {
+    this.showLoading()
+    this.auth.login(this.registerCredentials).subscribe(allowed => {
+      if (allowed) {
+        this.navCtrl.setRoot('MainPage');
+      } else {
+        this.showError("Access Denied");
+      }
+    },
+      error => {
+        this.showError(error);
+      });
+  }
+
+  showLoading() {
+    this.loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      dismissOnPageChange: true
     });
-
+    this.loading.present();
   }
 
-  next() {
-    this.signupSlider.slideNext();
+  showError(text) {
+    this.loading.dismiss();
+
+    let alert = this.alertCtrl.create({
+      title: 'Fail',
+      subTitle: text,
+      buttons: ['OK']
+    });
+    alert.present(prompt);
   }
-
-  prev() {
-    this.signupSlider.slidePrev();
-  }
-
-  save() {
-
-    this.submitAttempt = true;
-
-    if (!this.slideOneForm.valid) {
-      this.signupSlider.slideTo(0);
-    } else {
-      console.log("success!")
-      console.log(this.slideOneForm.value);
-    }
-
-  }
-
-}  
+}
