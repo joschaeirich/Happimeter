@@ -13,8 +13,9 @@ export class RegisterPage {
   constructor(private nav: NavController, private auth: Auth, private alertCtrl: AlertController) { }
  
   public register() {
-    this.auth.register(this.registerCredentials).subscribe(success => {
-      if (success) {
+    this.auth.register(this.registerCredentials).subscribe(response => {
+      console.log(response)
+      if (response) {
         this.createSuccess = true;
         this.showPopup("Success", "Account created.");
       } else {

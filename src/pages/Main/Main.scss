@@ -1,7 +1,4 @@
 
-/*.col {
-    padding: 0;    
-}*/
 
 
 .main-page{
@@ -15,6 +12,15 @@
     border-color: white;
 }
 
+.header-md .toolbar-background-md, .footer-md .toolbar-background-md {
+    border-style: solid;
+    border-color: white;
+}
+
+.back-button{
+    color:white;
+}
+
 .toolbar-title-ios {
     font-size: 1.7rem;
     font-weight: 600;
@@ -22,6 +28,15 @@
     color: white;
     pointer-events: auto;
 }
+
+.toolbar-title-md {
+    font-size: 2rem;
+    font-weight: 600;
+    text-align: right;
+    color: white;
+    pointer-events: auto;
+}
+
 
 
 

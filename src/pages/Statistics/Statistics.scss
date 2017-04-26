@@ -20,12 +20,21 @@ background: color($colors, statistics);
   color:#fff;
 }
 
+.card-header-md{
+  color:#fff;
+}
+
 .card-text{
   text-align: center;
   font-size: 1.2rem;
 }
 
 .card-ios{
+  background: #1592A2;
+  box-shadow: 1 1px 1px;
+}
+
+.card-md{
   background: #1592A2;
   box-shadow: 1 1px 1px;
 }
@@ -46,5 +55,7 @@ background: color($colors, statistics);
     background: #1592A2;
 }
 
-
+.toolbar-background-md-statistics .toolbar-background-md {
+    background: #1592A2;
+}
 

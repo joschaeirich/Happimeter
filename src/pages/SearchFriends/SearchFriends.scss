@@ -12,12 +12,22 @@ ion-searchbar.searchbar-ios {
     background-color: color($colors, friends);
 }
 
+ion-searchbar.searchbar-md {
+    background-color: color($colors, friends);
+}
+
 .list-background {
     background-color: transparent;
     
 }
 
 .item-ios {
+    font-size: 1.7rem;
+    background: transparent;
+    
+}
+
+.item-md {
     font-size: 1.7rem;
     background: transparent;
     

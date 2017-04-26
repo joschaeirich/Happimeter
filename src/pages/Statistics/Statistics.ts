@@ -7,6 +7,7 @@ import { MoodTablePage} from '../MoodTable/MoodTable';
 
 import { Chart } from 'chart.js';
 
+
 @Component({
   selector: 'page-Statistics',
   templateUrl: 'Statistics.html'
@@ -24,6 +25,7 @@ export class StatisticsPage {
   constructor(public navCtrl: NavController) {}
 
    ionViewDidLoad() {
+
  Chart.plugins.register({
         afterDatasetsDraw: function(chartInstance, easing) {
             // To only draw at the end of animation, check for easing === 1
@@ -38,8 +40,8 @@ export class StatisticsPage {
 
                         var fontSize = 12;
                         var fontStyle = 'bold';
-                        //var fontFamily = 'roboto'; 
-                        ctx.font = Chart.helpers.fontString(fontSize, fontStyle);
+                        var fontFamily = 'roboto'; 
+                        ctx.font = Chart.helpers.fontString(fontSize, fontStyle, fontFamily);
 
                         // Just naively convert to string for now
                         var dataString = dataset.data[index].toString();
@@ -58,6 +60,8 @@ export class StatisticsPage {
     });
 
 this.barChart = new Chart(this.barCanvas.nativeElement, {
+
+    
       
       type: 'bar',
             data: {

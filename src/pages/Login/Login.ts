@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, AlertController, LoadingController, Loading } from 'ionic-angular';
 import { Auth } from '../../providers/auth';
 import { RegisterPage} from '../Register/Register';
+import { MainPage } from '../Main/Main';
 
 @Component({
   selector: 'page-Login',
@@ -21,9 +22,13 @@ export class LoginPage {
 
   public login() {
     this.showLoading()
-    this.auth.login(this.registerCredentials).subscribe(allowed => {
-      if (allowed) {
-        this.navCtrl.setRoot('MainPage');
+    this.auth.login(this.registerCredentials).map(res => res.json()).subscribe(response => {
+      console.log(response);
+      if (response.status==200) {
+        this.auth.token = response.token;
+        this.loading.dismiss().catch(x => {});
+        this.navCtrl.setRoot(MainPage);
+
       } else {
         this.showError("Access Denied");
       }
@@ -36,13 +41,12 @@ export class LoginPage {
   showLoading() {
     this.loading = this.loadingCtrl.create({
       content: 'Please wait...',
-      dismissOnPageChange: true
     });
     this.loading.present();
   }
 
   showError(text) {
-    this.loading.dismiss();
+    this.loading.dismiss().catch(x => {});
 
     let alert = this.alertCtrl.create({
       title: 'Fail',

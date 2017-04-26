@@ -23,6 +23,7 @@ import { LoginPage} from '../pages/Login/Login';
 import { RegisterPage} from '../pages/Register/Register';
 
 import {Auth} from '../providers/auth';
+import {GlobalVariables} from '../providers/globalVariables';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -92,6 +93,7 @@ import { BrowserModule } from '@angular/platform-browser';
     SplashScreen,
     Geolocation,
     Auth,
+    GlobalVariables,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

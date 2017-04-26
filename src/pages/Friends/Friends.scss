@@ -9,8 +9,7 @@ background: color($colors, friends);
 }
 
 .list-background {
-    background-color: transparent;
-    
+    background-color: transparent;   
 }
 
 .note-ios-color{
@@ -21,10 +20,29 @@ background: color($colors, friends);
     color: white !important;
 }
 
+.note-md-color{
+   color: white !important;
+}
+
+.list-header-md {
+    color: white !important;
+    background-color: transparent;
+}
+
+.item-md h2{
+    color:white;
+}
+
+
 .item, .item-divider {
   border-color: white;
+  border-block-start-color: transparent;
 }
 
 .toolbar-background-ios-friends .toolbar-background-ios {
+    background: #AFBD2B;
+}
+
+.toolbar-background-md-friends .toolbar-background-md {
     background: #AFBD2B;
 }
