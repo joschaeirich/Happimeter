@@ -42,17 +42,49 @@ export class MoodDiagramsPage {
 
             var activity_array = [];
 
-            for (var i = 0; i < res.entries.length; ++i) {
-                activity_array.push(res.entries[i].vmc);
+/*
+for (var i = 0; i < res.entries.length; ++i) {
+                 activity_array.push(res.entries[i].vmc);
             };
+*/
+         
 
+            for (var i = 0; i < res.entries.length; ++i) {
+                activity_array.push({
+                   // name:"",
+                    y: res.entries[i].vmc,
+                    color: '#00FF00',
+                });
+
+            };
+            var zones = [{
+                  value: 17,
+            color: '#f7a35c'
+        }, {
+            value: 11,
+            color: '#7cb5ec'
+        }, {
+            color: '#90ed7d'
+            }]
             var xaxisTime_array = [];
 
             for (var i = 0; i < res.entries.length; ++i) {
-                
-                xaxisTime_array.push(res.entries[i].timestamp.substring(11,13));
-                
+
+                xaxisTime_array.push(res.entries[i].timestamp.substring(11, 13));
+
             };
+
+            console.log(activity_array)
+
+
+
+
+
+
+
+
+
+
 
             var activity_array_1 = [];
 
@@ -60,10 +92,12 @@ export class MoodDiagramsPage {
                 activity_array_1 = [20, 10, 10, 5, 15, 20, 60, 70, 80, 40, 30, 60, 50, 80, 100, 120, 130, 110, 80, 70, 60, 40, 50, 30];
             } else {
                 for (var i = 0; i < activity_array.length; ++i) {
-                    activity_array_1[i] = activity_array[i] + 2;
+                    activity_array_1[i] = activity_array[i] + 20000;
+
                 }
             }
 
+            var maxYaxis = 140000;
 
 
             this.chartOptions = {
@@ -99,7 +133,8 @@ export class MoodDiagramsPage {
                     }
                 },
                 yAxis: {
-                    //max: 12,
+
+                    max: maxYaxis,
                     title: {
                         text: null
                     },
@@ -115,7 +150,7 @@ export class MoodDiagramsPage {
 
                     plotBands: [{
                         from: 0,
-                        to: 2,
+                        to: 10000,
                         color: 'transparent',
                         label: {
                             text: 'Low Acitvity',
@@ -126,8 +161,8 @@ export class MoodDiagramsPage {
                             }
                         }
                     }, {
-                        from: 2.05,
-                        to: 4,
+                        from: 10000,
+                        to: 40000,
                         color: 'transparent',
                         label: {
                             text: 'Moderate Acitvity',
@@ -138,8 +173,8 @@ export class MoodDiagramsPage {
                             }
                         }
                     }, {
-                        from: 4.05,
-                        to: 6,
+                        from: 40000,
+                        to: 80000,
                         color: 'transparent',
                         label: {
                             text: 'High Acitvity',
@@ -150,8 +185,8 @@ export class MoodDiagramsPage {
                             }
                         }
                     }, {
-                        from: 6.05,
-                        to: 8,
+                        from: 80000,
+                        to: maxYaxis - 20000,
                         color: 'transparent',
                         label: {
                             text: 'Very high Acitvity',
@@ -166,25 +201,25 @@ export class MoodDiagramsPage {
                         color: 'rgba(255, 255, 255, 0.5)',
                         width: 2,
                         dashStyle: 'ShortDot',
-                        value: 2,
+                        value: 10000,
                     },
                     {
                         color: 'rgba(255, 255, 255, 0.5)',
                         width: 2,
                         dashStyle: 'ShortDot',
-                        value: 4,
+                        value: 40000,
                     },
                     {
                         color: 'rgba(255, 255, 255, 0.5)',
                         width: 2,
                         dashStyle: 'ShortDot',
-                        value: 6,
+                        value: 80000,
                     },
                     {
                         color: 'rgba(255, 255, 255, 0.5)',
                         width: 2,
                         dashStyle: 'ShortDot',
-                        value: 8
+                        value: 120000
                     }]
                 },
 
@@ -193,18 +228,35 @@ export class MoodDiagramsPage {
                     shared: true
                 },
                 plotOptions: {
+                    	
                     spline: {
                         lineWidth: 3,
                         marker: {
-                            radius: 0,
-                            lineWidth: 0,
+                            radius: 2,
+                            lineWidth: 2,
                             //enabled: false,
 
                         }
                     }
                 },
                 series: [{
-                    color: '#FFFFFF',
+                    enableMouseTracking: false,
+                    showInLegend: false,
+
+                    marker: {
+                        enabled: false,
+                    },
+                     zoneAxis: 'x',
+                    zones: zones,
+                   data: activity_array},
+                    
+                   
+                   ],
+                   
+ /*
+                series: [{
+                                step: true,
+                  //  color: activity_array,
                     enableMouseTracking: false,
                     showInLegend: false,
 
@@ -212,17 +264,20 @@ export class MoodDiagramsPage {
                         enabled: false,
                     },
                     data: activity_array
+
                     //data:  (activity_array == []) ? [1,2,3,4] : activity_array
                 },
 
 
                 {
-                    lineWidth: 0,
+                    lineWidth: 2,
                     enableMouseTracking: false,
                     showInLegend: false,
+                    
 
+                    //    data: activity_array_1
 
-                    /*
+                   
                                         data: [activity_array_1[0], activity_array_1[1], activity_array_1[2], activity_array_1[3], activity_array_1[4], activity_array_1[5],
                                         activity_array_1[6], activity_array_1[7], activity_array_1[8],
                                         { y: activity_array_1[9], marker: { symbol: 'url(assets/Statistics/Smiley30x30/smiley2_30x30.png)' } },
@@ -237,8 +292,8 @@ export class MoodDiagramsPage {
                                         activity_array_1[22], activity_array_1[23],
                                         { y: activity_array_1[24], marker: { symbol: 'url(assets/Statistics/Smiley30x30/smiley3_30x30.png)' } },
                                         ]
-                    */
-                }],
+                    
+                }],*/
 
             };
 
@@ -266,12 +321,12 @@ export class MoodDiagramsPage {
                 }
             }
 
-             var xaxisTime_array = [];
+            var xaxisTime_array = [];
 
             for (var i = 0; i < res.entries.length; ++i) {
-                
-                xaxisTime_array.push(res.entries[i].timestamp.substring(11,13));
-                
+
+                xaxisTime_array.push(res.entries[i].timestamp.substring(11, 13));
+
             };
 
 
