@@ -49,14 +49,14 @@ export class MoodDiagramsPage {
                     for (var i = 0; i < hap.entries.length; ++i) {
                         happiness_array.push(hap.entries[i].happiness);
                     };
-                    console.log("happiness array" + happiness_array);
+                    //console.log("happiness array" + happiness_array);
 
                     var pleasance_array = [];
 
                     for (var i = 0; i < act.entries.length; ++i) {
                         pleasance_array.push(act.entries[i].activation);
                     };
-                    console.log("pleasance array" + pleasance_array);
+                    //console.log("pleasance array" + pleasance_array);
 
                     var mood_array = [];
 
@@ -72,8 +72,8 @@ export class MoodDiagramsPage {
                         }
 
                     }
-                    console.log("mood array");
-                    console.log(mood_array);
+                    //console.log("mood array");
+                    //console.log(mood_array);
 
 
                     var moodtimestamp_array = [];
@@ -83,8 +83,8 @@ export class MoodDiagramsPage {
                         moodtimestamp_array.push(act.entries[i].timestamp.substring(11, 13));
 
                     };
-                    console.log("timestamps mood");
-                    console.log(moodtimestamp_array);
+                    //console.log("timestamps mood");
+                    //console.log(moodtimestamp_array);
 
                     var zones = [];
                     for (var i = 0; i < moodtimestamp_array.length; ++i) {
@@ -114,8 +114,8 @@ export class MoodDiagramsPage {
                         zones.push(obj);
                     };
 
-                    console.log("zones");
-                    console.log(zones);
+                   //console.log("zones");
+                   //console.log(zones);
 
 
 
@@ -138,8 +138,8 @@ export class MoodDiagramsPage {
                         xaxisTime_array.push(res.entries[i].timestamp.substring(11, 13));
 
                     };
-                    console.log("Timestamp xAxis Chart")
-                    console.log(xaxisTime_array)
+                    //console.log("Timestamp xAxis Chart")
+                    //console.log(xaxisTime_array)
 
                     var activity_array_1 = [];
 
