@@ -23,6 +23,10 @@ export class StatisticsPage {
     @ViewChild('barCanvas') barCanvas;
 
     barChart: any;
+    moodOccurenceHappy: any;
+    moodOccurenceChill: any;
+    moodOccurenceAngry: any;
+    moodOccurenceSad: any;
 
     constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, public auth: Auth) { }
 
@@ -35,7 +39,7 @@ export class StatisticsPage {
         headers.append("Authorization", "Bearer " + this.auth.token);
 
 
-
+/*
         Chart.plugins.register({
             afterDatasetsDraw: function (chartInstance, easing) {
                 // To only draw at the end of animation, check for easing === 1
@@ -68,27 +72,29 @@ export class StatisticsPage {
                 });
             }
         });
-
+*/
 
         this.http.get(url + "/statistics/mood_distribution", { "headers": headers }).map(res => res.json()).subscribe(res => {
-            var moodChart = [];
-            
+            var moodChart = [0,0,0,0];
+
 
             for (var i = 0; i < res.mood_distribution.length; ++i) {
-                
-                
                 if (res.mood_distribution[i].activation == 1 && res.mood_distribution[i].happiness == 1) {
                     moodChart[0] = res.mood_distribution[i].count;
                 } else if (res.mood_distribution[i].activation == 0 && res.mood_distribution[i].happiness == 1) {
-                    moodChart [1] = res.mood_distribution[i].count;
+                    moodChart[1] = res.mood_distribution[i].count;
                 } else if (res.mood_distribution[i].activation == 1 && res.mood_distribution[i].happiness == 0) {
-                    moodChart [2] = res.mood_distribution[i].count;
+                    moodChart[2] = res.mood_distribution[i].count;
                 } else {
-                    moodChart [3] = res.mood_distribution[i].count;
+                    moodChart[3] = res.mood_distribution[i].count;
                 }
-
-              
             };
+
+    
+           this.moodOccurenceHappy = moodChart[0];
+           this.moodOccurenceChill = moodChart[1];
+           this.moodOccurenceAngry = moodChart[2];
+           this.moodOccurenceSad = moodChart[3];
 
             console.log("moodChart")
             console.log(moodChart)
