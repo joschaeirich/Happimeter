@@ -22,6 +22,8 @@ import { FriendRequestPage} from '../pages/FriendRequest/FriendRequest';
 import { LoginPage} from '../pages/Login/Login';
 import { RegisterPage} from '../pages/Register/Register';
 
+
+
 import {Auth} from '../providers/auth';
 import {GlobalVariables} from '../providers/globalVariables';
 

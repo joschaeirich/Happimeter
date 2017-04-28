@@ -1,40 +1,51 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams ,AlertController} from 'ionic-angular';
+import { Auth } from '../../providers/auth';
 
-/*
-  Generated class for the Searchfriends page.
+import { Http, Headers } from '@angular/http';
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-SearchFriends',
   templateUrl: 'SearchFriends.html'
 })
 export class SearchFriendsPage {
-  items = [];
+  items: any = [];
+  url: any = "http://www.pascalbudner.de:8080/v1";
+  headers: Headers = new Headers();
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.initializeItems();
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, public auth: Auth,private alertCtrl: AlertController) {
+    this.headers.append("Authorization", "Bearer " + this.auth.token);
+
   }
-  
+
+
   initializeItems() {
 
-    this.items = [
-      'Pascal',
-      'Peter',
-      'Joscha'
-    ];
   }
 
-   getItems(ev) {
+  getItems(ev) {
     // Reset items back to all of the items
     this.initializeItems();
-     
-
-
-    // set val to the value of the ev target
     var val = ev.target.value;
+
+
+
+    console.log(ev);
+
+    if (val.length < 3) {
+      return;
+    }
+
+    this.http.get(this.url + "/friends/search/" + ev.target.value, { "headers": this.headers }).map(fri => fri.json()).subscribe(fri => {
+
+      this.items = [];
+
+      for (var i = 0; i < fri.results.length; ++i) {
+        this.items.push(fri.results[i].user);
+      }
+      console.log(this.items);
+    });
 
     // if the value is an empty string don't filter the items
     if (val && val.trim() != '') {
@@ -42,13 +53,41 @@ export class SearchFriendsPage {
         return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
       })
     }
-    
+
+  }
+
+
+
+
+presentConfirm(addUser) {
+  let alert = this.alertCtrl.create({
+    title: 'Send friend request',
+    message: 'Do you want add this person?',
+    buttons: [
+      {
+        text: 'No',
+        role: 'cancel',
+        handler: () => {    
+  return;
+        }
+      },
+      {
+        text: 'Yes',
+        handler: () => {
+         this.http.post(this.url + "/friends/" + addUser.id, null, { "headers": this.headers }).map(fri => fri.json()).subscribe(fri => {
+      
+    });
+        }
+      }
+    ]
+  });
+  alert.present();
 }
 
-ionViewDidLoad() {
 
-    console.log('ionViewDidLoad SearchFriendsPage');
-    
+  ionViewDidLoad() {
+
+
   }
 
 }

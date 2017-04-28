@@ -96,8 +96,8 @@ export class StatisticsPage {
            this.moodOccurenceAngry = moodChart[2];
            this.moodOccurenceSad = moodChart[3];
 
-            console.log("moodChart")
-            console.log(moodChart)
+           // console.log("moodChart")
+           // console.log(moodChart)
 
             this.barChart = new Chart(this.barCanvas.nativeElement, {
 

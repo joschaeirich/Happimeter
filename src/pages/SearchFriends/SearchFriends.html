@@ -10,8 +10,8 @@
 <ion-content class="page-Friends">
   <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
   <ion-list>
-    <ion-item *ngFor="let item of items">
-      {{ item }}
+    <ion-item *ngFor="let item of items" (click)="presentConfirm(item)">
+      {{ item.mail }}
     </ion-item>
   </ion-list>
 </ion-content>

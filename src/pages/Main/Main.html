@@ -21,7 +21,7 @@
 <ion-img class = "scroll animated rotateIn _3" src="assets/MenuIcons/NetworkIcon.png" (click)="networkPage()"></ion-img>
   </div>
   <div class="col col-50">
-<ion-img class = "scroll animated rotateIn _4" src="assets/MenuIcons/StatisticsIcon.png" (click)="statisticsPage()"></ion-img>
+<ion-img class = "scroll animated rotateIn _4" src="assets/MenuIcons/StatisticsIcon.svg" (click)="statisticsPage()"></ion-img>
   </div>
   </div>
   <div class="row" >
@@ -29,7 +29,7 @@
 <ion-img class = "scroll animated rotateIn _5" src="assets/MenuIcons/ForrestIcon.png" (click)="achievementPage()"></ion-img>
   </div>
   <div class="col col-50">
-<ion-img class = "scroll animated rotateIn _6" src="assets/MenuIcons/AddFriendsIcon.png" (click)="friendsPage()"></ion-img>
+<ion-img class = "scroll animated rotateIn _6" [src] = "friendRequest" (click)="friendsPage()"></ion-img>
   </div>
   </div>
     <div class="row" >

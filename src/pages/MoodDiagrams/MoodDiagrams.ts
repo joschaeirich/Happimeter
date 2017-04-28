@@ -31,10 +31,13 @@ export class MoodDiagramsPage {
 
     ionViewDidLoad() {
         var opacity = 0.5;
+
+
         var url = "http://www.pascalbudner.de:8080/v1";
 
         var headers: Headers = new Headers();
         headers.append("Authorization", "Bearer " + this.auth.token);
+
 
 
 
@@ -114,8 +117,8 @@ export class MoodDiagramsPage {
                         zones.push(obj);
                     };
 
-                   //console.log("zones");
-                   //console.log(zones);
+                    //console.log("zones");
+                    //console.log(zones);
 
 
 
@@ -295,7 +298,7 @@ export class MoodDiagramsPage {
                             }
                         },
                         series: [{
- 
+
                             enableMouseTracking: false,
                             showInLegend: false,
 
@@ -310,228 +313,228 @@ export class MoodDiagramsPage {
 
                         ],
 
-                       
+
 
                     };
 
-         
 
 
 
-                this.http.get(url + "/statistics/raw_heartrate", { "headers": headers }).map(res => res.json()).subscribe(res => {
+
+                    this.http.get(url + "/statistics/raw_heartrate", { "headers": headers }).map(res => res.json()).subscribe(res => {
 
 
-                    var bpm_array = [];
+                        var bpm_array = [];
 
-                    for (var i = 0; i < res.entries.length; ++i) {
-                        bpm_array.push(res.entries[i].heartrate);
-                    };
+                        for (var i = 0; i < res.entries.length; ++i) {
+                            bpm_array.push(res.entries[i].heartrate);
+                        };
 
-                    console.log("bpm array " + bpm_array);
-                    var bpm_array_1 = [];
+                        console.log("bpm array " + bpm_array);
+                        var bpm_array_1 = [];
 
-                    if (bpm_array.length == 0) {
-                        bpm_array_1 = [20, 10, 10, 5, 15, 20, 60, 70, 80, 40, 30, 60, 50, 80, 100, 120, 130, 110, 80, 70, 60, 40, 50, 30];
-                    } else {
-                        for (var i = 0; i < bpm_array.length; ++i) {
-                            bpm_array_1[i] = bpm_array_1[i] + 60;
+                        if (bpm_array.length == 0) {
+                            bpm_array_1 = [20, 10, 10, 5, 15, 20, 60, 70, 80, 40, 30, 60, 50, 80, 100, 120, 130, 110, 80, 70, 60, 40, 50, 30];
+                        } else {
+                            for (var i = 0; i < bpm_array.length; ++i) {
+                                bpm_array_1[i] = bpm_array_1[i] + 60;
+                            }
                         }
-                    }
 
-                    var xaxisTime_array = [];
+                        var xaxisTime_array = [];
 
-                    for (var i = 0; i < res.entries.length; ++i) {
+                        for (var i = 0; i < res.entries.length; ++i) {
 
-                        xaxisTime_array.push(res.entries[i].timestamp.substring(11, 13));
+                            xaxisTime_array.push(res.entries[i].timestamp.substring(11, 13));
 
-                    };
-                    console.log("BPM Timestamps")
-                    console.log(xaxisTime_array)
+                        };
+                        console.log("BPM Timestamps")
+                        console.log(xaxisTime_array)
 
-                    this.chartOptions1 = {
-
+                        this.chartOptions1 = {
 
 
 
-                        credits: {
-                            enabled: false
-                        },
-                        chart: {
-                            backgroundColor: 'transparent',
 
-                            style: {
-                                fontFamily: 'roboto',
+                            credits: {
+                                enabled: false
                             },
-
-                            type: 'spline'
-                        },
-
-
-                        title: {
-
-                            text: null,
-
-                        },
-
-                        subtitle: {
-                            display: false,
-                        },
-                        xAxis: {
-                            categories: xaxisTime_array,
-                            labels: {
+                            chart: {
+                                backgroundColor: 'transparent',
 
                                 style: {
-                                    color: '#FFFFFF'
-                                }
-                            }
-                        },
-                        yAxis: {
-                            max: 180,
+                                    fontFamily: 'roboto',
+                                },
+
+                                type: 'spline'
+                            },
+
+
                             title: {
-                                text: null
+
+                                text: null,
+
                             },
 
-                            labels: {
-                                enabled: false//default is true            
+                            subtitle: {
+                                display: false,
                             },
+                            xAxis: {
+                                categories: xaxisTime_array,
+                                labels: {
 
-                            minorGridLineWidth: 0,
-                            gridLineWidth: 0,
-                            alternateGridColor: null,
-
-
-                            plotBands: [{
-                                from: 0,
-                                to: 40,
-                                color: 'transparent',
-                                label: {
-                                    text: 'Heart rate: 40',
                                     style: {
-                                        color: '#FFFFFF',
-                                        fontSize: '11px',
-                                        opacity: opacity
+                                        color: '#FFFFFF'
                                     }
                                 }
-                            }, {
-                                from: 41.5,
-                                to: 80,
-                                color: 'transparent',
-                                label: {
-                                    text: 'Heart rate: 80',
-                                    style: {
-                                        color: '#FFFFFF',
-                                        fontSize: '11px',
-                                        opacity: opacity
-                                    }
-                                }
-                            }, {
-                                from: 81.05,
-                                to: 120,
-                                color: 'transparent',
-                                label: {
-                                    text: 'Heart rate: 120',
-                                    style: {
-                                        color: '#FFFFFF',
-                                        fontSize: '11px',
-                                        opacity: opacity
-                                    }
-                                }
-                            }, {
-                                from: 121.05,
-                                to: 160,
-                                color: 'transparent',
-                                label: {
-                                    text: 'Heart rate: 160',
-                                    style: {
-                                        color: '#FFFFFF',
-                                        fontSize: '11px',
-                                        opacity: opacity
-                                    }
-                                }
-                            }],
-                            plotLines: [{
-                                color: 'rgba(255, 255, 255, 0.5)',
-                                width: 2,
-                                dashStyle: 'ShortDot',
-                                value: 40,
+                            },
+                            yAxis: {
+                                max: 180,
+                                title: {
+                                    text: null
+                                },
 
-                            },
-                            {
-                                color: 'rgba(255, 255, 255, 0.5)',
-                                width: 2,
-                                dashStyle: 'ShortDot',
-                                value: 80
-                            },
-                            {
-                                color: 'rgba(255, 255, 255, 0.5)',
-                                width: 2,
-                                dashStyle: 'ShortDot',
-                                value: 120
-                            },
-                            {
-                                color: 'rgba(255, 255, 255, 0.5)',
-                                width: 2,
-                                dashStyle: 'ShortDot',
-                                value: 160
-                            }]
-                        },
+                                labels: {
+                                    enabled: false//default is true            
+                                },
 
-                        tooltip: {
-                            crosshairs: true,
-                            shared: true
-                        },
-                        plotOptions: {
-                            spline: {
-                                lineWidth: 3,
+                                minorGridLineWidth: 0,
+                                gridLineWidth: 0,
+                                alternateGridColor: null,
+
+
+                                plotBands: [{
+                                    from: 0,
+                                    to: 40,
+                                    color: 'transparent',
+                                    label: {
+                                        text: 'Heart rate: 40',
+                                        style: {
+                                            color: '#FFFFFF',
+                                            fontSize: '11px',
+                                            opacity: opacity
+                                        }
+                                    }
+                                }, {
+                                    from: 41.5,
+                                    to: 80,
+                                    color: 'transparent',
+                                    label: {
+                                        text: 'Heart rate: 80',
+                                        style: {
+                                            color: '#FFFFFF',
+                                            fontSize: '11px',
+                                            opacity: opacity
+                                        }
+                                    }
+                                }, {
+                                    from: 81.05,
+                                    to: 120,
+                                    color: 'transparent',
+                                    label: {
+                                        text: 'Heart rate: 120',
+                                        style: {
+                                            color: '#FFFFFF',
+                                            fontSize: '11px',
+                                            opacity: opacity
+                                        }
+                                    }
+                                }, {
+                                    from: 121.05,
+                                    to: 160,
+                                    color: 'transparent',
+                                    label: {
+                                        text: 'Heart rate: 160',
+                                        style: {
+                                            color: '#FFFFFF',
+                                            fontSize: '11px',
+                                            opacity: opacity
+                                        }
+                                    }
+                                }],
+                                plotLines: [{
+                                    color: 'rgba(255, 255, 255, 0.5)',
+                                    width: 2,
+                                    dashStyle: 'ShortDot',
+                                    value: 40,
+
+                                },
+                                {
+                                    color: 'rgba(255, 255, 255, 0.5)',
+                                    width: 2,
+                                    dashStyle: 'ShortDot',
+                                    value: 80
+                                },
+                                {
+                                    color: 'rgba(255, 255, 255, 0.5)',
+                                    width: 2,
+                                    dashStyle: 'ShortDot',
+                                    value: 120
+                                },
+                                {
+                                    color: 'rgba(255, 255, 255, 0.5)',
+                                    width: 2,
+                                    dashStyle: 'ShortDot',
+                                    value: 160
+                                }]
+                            },
+
+                            tooltip: {
+                                crosshairs: true,
+                                shared: true
+                            },
+                            plotOptions: {
+                                spline: {
+                                    lineWidth: 3,
+                                    marker: {
+                                        radius: 0,
+                                        lineWidth: 0,
+                                        //enabled: false,
+
+                                    }
+                                }
+                            },
+                            series: [{
+                                color: '#FFFFFF',
+                                enableMouseTracking: false,
+                                showInLegend: false,
+
                                 marker: {
-                                    radius: 0,
-                                    lineWidth: 0,
-                                    //enabled: false,
-
-                                }
-                            }
-                        },
-                        series: [{
-                            color: '#FFFFFF',
-                            enableMouseTracking: false,
-                            showInLegend: false,
-
-                            marker: {
-                                enabled: false,
+                                    enabled: false,
+                                },
+                                zoneAxis: 'x',
+                                zones: zones,
+                                data: bpm_array
                             },
-                            zoneAxis: 'x',
-                            zones: zones,
-                            data: bpm_array
-                        },
 
 
-                        {
-                            lineWidth: 0,
-                            enableMouseTracking: false,
-                            showInLegend: false,
+                            {
+                                lineWidth: 0,
+                                enableMouseTracking: false,
+                                showInLegend: false,
 
 
-                            /*
-                                                data: [bpm_array_1[0], bpm_array_1[1], bpm_array_1[2], bpm_array_1[3], bpm_array_1[4], bpm_array_1[5],
-                                                bpm_array_1[6], bpm_array_1[7], bpm_array_1[8],
-                                                { y: bpm_array_1[9], marker: { symbol: 'url(assets/Statistics/Smiley30x30/smiley2_30x30.png)' } },
-                                                bpm_array_1[10], bpm_array_1[11],
-                                                { y: bpm_array_1[12], marker: { symbol: 'url(assets/Statistics/Smiley30x30/smiley4_30x30.png)' } },
-                                                bpm_array_1[13], bpm_array_1[14],
-                                                { y: bpm_array_1[15], marker: { symbol: 'url(assets/Statistics/Smiley30x30/smiley4_30x30.png)' } },
-                                                bpm_array_1[16], bpm_array_1[17],
-                                                { y: bpm_array_1[18], marker: { symbol: 'url(assets/Statistics/Smiley30x30/smiley2_30x30.png)' } },
-                                                bpm_array_1[19], bpm_array_1[20],
-                                                { y: bpm_array_1[21], marker: { symbol: 'url(assets/Statistics/Smiley30x30/smiley1_30x30.png)' } },
-                                                bpm_array_1[22], bpm_array_1[23],
-                                                { y: bpm_array_1[24], marker: { symbol: 'url(assets/Statistics/Smiley30x30/smiley3_30x30.png)' } },
-                                                ]
-                            */
-                        }],
+                                /*
+                                                    data: [bpm_array_1[0], bpm_array_1[1], bpm_array_1[2], bpm_array_1[3], bpm_array_1[4], bpm_array_1[5],
+                                                    bpm_array_1[6], bpm_array_1[7], bpm_array_1[8],
+                                                    { y: bpm_array_1[9], marker: { symbol: 'url(assets/Statistics/Smiley30x30/smiley2_30x30.png)' } },
+                                                    bpm_array_1[10], bpm_array_1[11],
+                                                    { y: bpm_array_1[12], marker: { symbol: 'url(assets/Statistics/Smiley30x30/smiley4_30x30.png)' } },
+                                                    bpm_array_1[13], bpm_array_1[14],
+                                                    { y: bpm_array_1[15], marker: { symbol: 'url(assets/Statistics/Smiley30x30/smiley4_30x30.png)' } },
+                                                    bpm_array_1[16], bpm_array_1[17],
+                                                    { y: bpm_array_1[18], marker: { symbol: 'url(assets/Statistics/Smiley30x30/smiley2_30x30.png)' } },
+                                                    bpm_array_1[19], bpm_array_1[20],
+                                                    { y: bpm_array_1[21], marker: { symbol: 'url(assets/Statistics/Smiley30x30/smiley1_30x30.png)' } },
+                                                    bpm_array_1[22], bpm_array_1[23],
+                                                    { y: bpm_array_1[24], marker: { symbol: 'url(assets/Statistics/Smiley30x30/smiley3_30x30.png)' } },
+                                                    ]
+                                */
+                            }],
 
-                    };
+                        };
 
-       });
+                    });
 
                 });
             });
