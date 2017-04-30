@@ -1,4 +1,3 @@
-
 <ion-header class="toolbar-background-ios-friends toolbar-background-md-friends">
 
   <ion-navbar>
@@ -10,66 +9,68 @@
 
 
 
-<ion-content class="page-Friends" >
+<ion-content class="page-Friends">
 
 
 
 
-<ion-card>
-  <ion-card-content>
+  <ion-card>
+    <ion-card-content>
 
-  <ion-list class="list-background">
+      <ion-list class="list-background">
 
-    <ion-list-header>Your friends</ion-list-header>
+        <ion-list-header>Your friends</ion-list-header>
 
-    <ion-item class="list-background">
-      <ion-avatar item-left>
-        <img src="assets/Friends/Pascal.png">
-      </ion-avatar>
-      <h2>Pascal</h2>
-      <ion-avatar item-right>
-        <img src="assets/TransparentSmileys/smiley1.svg">
-      </ion-avatar>
-    </ion-item>
+        <ion-item class="list-background">
+          <ion-avatar item-left>
+            <img src="assets/Friends/Pascal.png">
+          </ion-avatar>
+          <h2>Pascal</h2>
+          <ion-avatar item-right>
+            <img src="assets/TransparentSmileys/smiley1.svg">
+          </ion-avatar>
+        </ion-item>
 
-    <ion-item class="list-background">
-      <ion-avatar item-left>
-        <img src="assets/Friends/Peter.png">
-      </ion-avatar>
-      <h2>Peter</h2>
-      <ion-avatar item-right>
-        <img src="assets/TransparentSmileys/smiley2.svg">
-      </ion-avatar>
-    </ion-item>
+        <ion-item class="list-background">
+          <ion-avatar item-left>
+            <img src="assets/Friends/Peter.png">
+          </ion-avatar>
+          <h2>Peter</h2>
+          <ion-avatar item-right>
+            <img src="assets/TransparentSmileys/smiley2.svg">
+          </ion-avatar>
+        </ion-item>
 
-    <ion-item class="list-background">
-      <ion-avatar item-left>
-        <img src="assets/Friends/Joscha.png">
-      </ion-avatar>
-      <h2>Joscha</h2>
-      <ion-avatar item-right>
-        <img src="assets/TransparentSmileys/smiley3.svg">
-      </ion-avatar>
-    </ion-item>
+        <ion-item class="list-background">
+          <ion-avatar item-left>
+            <img src="assets/Friends/Joscha.png">
+          </ion-avatar>
+          <h2>Joscha</h2>
+          <ion-avatar item-right>
+            <img src="assets/TransparentSmileys/smiley3.svg">
+          </ion-avatar>
+        </ion-item>
 
-  </ion-list>
-  </ion-card-content>
-</ion-card>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
 
 
   <ion-grid>
     <ion-row>
       <ion-col width-50>
         <ion-card>
+          <div class = "headerSearchFriendIcon" id="headerText"> Search </div>
           <img class="ion-img" style="width:100%" src="assets/Friends/Icons/searchFriends.svg" (click)="SearchFriends()">
         </ion-card>
       </ion-col>
       <ion-col width-50>
         <ion-card>
-            <img class="scroll" src="assets/Friends/Icons/friendRequests.svg" (click)="FriendRequest()">
+          <div class = "headerSearchFriendIcon" id="headerText"> {{headerText}} </div>
+          <img class="scroll" [src]="friendRequest" (click)="FriendRequest()">
         </ion-card>
       </ion-col>
     </ion-row>
   </ion-grid>
- 
+
 </ion-content>
