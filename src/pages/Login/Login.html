@@ -4,7 +4,7 @@
     <br>
     <br>
     <img class="Logo-center" src="assets/Logo.png">
-    <div >
+    <div>
         <form (ngSubmit)="login()" #registerForm="ngForm">
             <ion-row class="boxwidth">
                 <ion-col>
@@ -25,10 +25,9 @@
             <ion-row>
                 <ion-col>
                     <button ion-button class="submit-btn" block full type="submit" [disabled]="!registerForm.form.valid">Login</button>
-                    <button ion-button class="register-btn" block clear (click)="createAccount()">Create New Account</button>
                 </ion-col>
             </ion-row>
-
         </form>
+        <button ion-button class="register-btn" block clear (click)="createAccount()">Create New Account</button>
     </div>
 </ion-content>

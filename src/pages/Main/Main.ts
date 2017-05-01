@@ -7,7 +7,6 @@ import { SettingsPage } from '../Settings/Settings';
 import { AchievementPage } from '../Achievement/Achievement';
 import { StatisticsPage } from '../Statistics/Statistics';
 import { FriendsPage } from '../Friends/Friends';
-import { LoginPage } from '../Login/Login';
 import { Auth } from '../../providers/auth';
 
 

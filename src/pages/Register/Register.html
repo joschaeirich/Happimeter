@@ -1,11 +1,11 @@
-<ion-header class="toolbar-background-ios-settings toolbar-background-md-settings">
+<ion-header class="toolbar-background-ios-register toolbar-background-md-register">
   <ion-navbar>
     <ion-title>Register</ion-title>
   </ion-navbar>
 </ion-header>
  
 <ion-content class="login-card-color">
-  <div>
+  <div class="form-position">
     
     <form (ngSubmit)="register()" #registerForm="ngForm">
       <ion-row>
@@ -13,11 +13,11 @@
           <ion-list inset>
             
             <ion-item>
-              <ion-input type="text" placeholder="Email" name="email" [(ngModel)]="registerCredentials.email" required></ion-input>
+              <ion-input type="text" placeholder="Email" name="email" [(ngModel)]="registerCredentials.email"></ion-input>
             </ion-item>
             
             <ion-item>
-              <ion-input type="password" placeholder="Password" name="password" [(ngModel)]="registerCredentials.password" required></ion-input>
+              <ion-input type="password" placeholder="Password" name="password" [(ngModel)]="registerCredentials.password"></ion-input>
             </ion-item>
             
           </ion-list>

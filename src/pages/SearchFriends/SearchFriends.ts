@@ -47,23 +47,6 @@ export class SearchFriendsPage {
       //console.log(this.items);
     });
 
-    
-    
-    // if the value is an empty string don't filter the items
-    
-    
-    
-    
-    // gibt noch einen Fehler
-
-
-
-    if (val && val.trim() != '') {
-      this.items = this.items.filter((item) => {
-        return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
-      })
-    }
-
   }
 
   presentConfirm(addUser) {
