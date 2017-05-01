@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { Platform} from 'ionic-angular';
+import { Platform,LoadingController} from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { MainPage } from '../pages/Main/Main';
-//import { LoginPage } from '../pages/Login/Login';
+//import { MainPage } from '../pages/Main/Main';
+import { LoginPage } from '../pages/Login/Login';
 //import { Auth } from '../providers/auth';
 
 
@@ -17,7 +17,7 @@ import { MainPage } from '../pages/Main/Main';
 })
 export class MyApp {
 
-  rootPage: any = MainPage;
+  rootPage: any = LoginPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
@@ -38,7 +38,7 @@ export class MyApp {
 /*
   !!!!!!!!!!!! INCLUDE , LoadingController  TO IMPORT PLATFORM FORM IONIC ANGULAR
   
-    constructor(public auth: Auth, platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,
+     constructor(public auth: Auth, platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,
   public loadingCtrl: LoadingController) {
 
     this.presentLoading();
@@ -64,9 +64,9 @@ export class MyApp {
 rootPage: any;
 loader: any;
   
-  */
+ 
   
-
+*/
   
 
 }

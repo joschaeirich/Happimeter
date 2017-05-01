@@ -3,6 +3,9 @@ import { NavController, NavParams } from 'ionic-angular';
 
 import { SearchFriendsPage } from '../SearchFriends/SearchFriends'
 import { FriendRequestPage } from '../FriendRequest/FriendRequest'
+import { ShareMoodPage } from '../ShareMood/ShareMood'
+import { DeleteFriendPage } from '../DeleteFriend/DeleteFriend'
+
 
 import { Auth } from '../../providers/auth';
 
@@ -14,20 +17,29 @@ import { Http, Headers } from '@angular/http';
   templateUrl: 'Friends.html'
 })
 export class FriendsPage {
-  friendRequest: any;
+
+  url = "http://www.pascalbudner.de:8080/v1";
+
   headerText: any;
+  headers: Headers = new Headers();
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, public auth: Auth) { }
+  currentFriendList: any = [];
+  friendRequest: any;
 
-  ionViewDidLoad() {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, public auth: Auth) {
+    this.headers.append("Authorization", "Bearer " + this.auth.token);
+  }
 
-    var url = "http://www.pascalbudner.de:8080/v1";
-
-    var headers: Headers = new Headers();
-    headers.append("Authorization", "Bearer " + this.auth.token);
-
-
-    this.http.get(url + "/friends/requests", { "headers": headers }).map(fri => fri.json()).subscribe(fri => {
+  ionViewDidEnter() {
+    this.currentFriendList = [];
+    this.http.get(this.url + "/friends", { "headers": this.headers }).map(fri => fri.json()).subscribe(fri => {
+      for (var i = 0; i < fri.friends.length; ++i) {
+        this.currentFriendList.push(fri.friends[i].user)
+      }
+    }
+    );
+    //console.log(this.currentFriendList)
+    this.http.get(this.url + "/friends/requests", { "headers": this.headers }).map(fri => fri.json()).subscribe(fri => {
       if (fri.friend_requests.length > 0) {
         this.headerText = "Open Request";
         this.friendRequest = 'assets/Friends/Icons/openFriendRequest.svg';
@@ -35,28 +47,34 @@ export class FriendsPage {
         this.headerText = "No Requests";
         this.friendRequest = 'assets/Friends/Icons/friendRequests.svg';
       }
-      console.log(this.headerText)
+      //console.log(this.headerText)
     });
 
   }
+
+
+
+
+
+
+
   SearchFriends() {
     this.navCtrl.push(SearchFriendsPage);
   }
+  ShareMood() {
+    this.navCtrl.push(ShareMoodPage);
+  }
+  DeleteFriend() {
+    this.navCtrl.push(DeleteFriendPage);
+  }
   FriendRequest() {
-    var url = "http://www.pascalbudner.de:8080/v1";
-
-    var headers: Headers = new Headers();
-    headers.append("Authorization", "Bearer " + this.auth.token);
-
-    this.http.get(url + "/friends/requests", { "headers": headers }).map(fri => fri.json()).subscribe(fri => {
+    this.http.get(this.url + "/friends/requests", { "headers": this.headers }).map(fri => fri.json()).subscribe(fri => {
       if (fri.friend_requests.length > 0) {
         this.navCtrl.push(FriendRequestPage);
       } else {
         return;
       }
-
     });
-
   }
 
 }

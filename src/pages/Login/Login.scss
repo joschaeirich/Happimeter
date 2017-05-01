@@ -1,9 +1,30 @@
 .login-card-color {
-    background-color: #FF1800 !important;
+    background-color: #34373E !important;
     
 }
 
 .submit-btn{
     background-color: white;
     color: gray;
+    font-size: 14px;
+}
+
+.register-btn{
+    font-size: 14px;
+}
+
+.Logo-center {
+    display: block;
+    margin: auto;
+    width: 50%;
+}
+
+.text-input{
+    text-align: center;
+    font-size: 14px;
+}
+
+.boxwidth{
+    max-width: 100% !important;
+    margin: auto;
 }

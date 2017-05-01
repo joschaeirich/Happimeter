@@ -3,7 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { MoodPage } from '../Mood/Mood';
 import { MoodmapPage } from '../Moodmap/Moodmap';
 import { NetworkPage } from '../Network/Network';
-//import { SettingsPage } from '../Settings/Settings';
+import { SettingsPage } from '../Settings/Settings';
 import { AchievementPage } from '../Achievement/Achievement';
 import { StatisticsPage } from '../Statistics/Statistics';
 import { FriendsPage } from '../Friends/Friends';
@@ -35,7 +35,7 @@ export class MainPage {
   }
 
   settingsPage() {
-    this.navCtrl.push(LoginPage);
+    this.navCtrl.push(SettingsPage);
   }
 
   statisticsPage() {
@@ -50,7 +50,7 @@ export class MainPage {
   }
 
 
-  ionViewDidLoad() {
+  ionViewDidEnter() {
     var url = "http://www.pascalbudner.de:8080/v1";
 
     var headers: Headers = new Headers();

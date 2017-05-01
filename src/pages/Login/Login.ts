@@ -23,7 +23,7 @@ export class LoginPage {
   public login() {
     this.showLoading()
     this.auth.login(this.registerCredentials).map(res => res.json()).subscribe(response => {
-      console.log(response);
+      //console.log(response);
       if (response.status==200) {
         this.auth.token = response.token;
         this.loading.dismiss().catch(x => {});
@@ -55,4 +55,6 @@ export class LoginPage {
     });
     alert.present(prompt);
   }
+
+  
 }

@@ -8,16 +8,16 @@
 
 
 <ion-content class="page-Friends">
-  <ion-item class="list-background">
+  <ion-item *ngFor="let friend of friendRequest" class="list-background">
     <ion-avatar clasS="paddingListName" item-left>
-      {{ friendRequest }}
+      {{ friend.name }}
     </ion-avatar>
     <ion-avatar item-right>
-      <img [src]="confirm" id="confirm" (click)="changeToConfirm(friendRequest)">
+      <img [src]="confirm" *ngIf="!friend.accepted" (click)="changeToConfirm(friend)">
     </ion-avatar>
     <ion-avatar item-right>
-      <img [src]="decline" id="decline" (click)="changeToDecline()">
-      <div id="text" class="paddingListName">{{text}} </div>
+      <img [src]="decline" *ngIf="!friend.accepted" (click)="changeToDecline(friend)">
+      <div *ngIf="friend.accepted" class="paddingListName">{{text}} </div>
     </ion-avatar>
   </ion-item>
 </ion-content>

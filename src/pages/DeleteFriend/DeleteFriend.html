@@ -1,0 +1,25 @@
+<ion-header class="toolbar-background-ios-friends toolbar-background-md-friends">
+
+  <ion-navbar>
+    <ion-title>Delete Contact</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="page-Friends">
+  <ion-card>
+    <ion-card-content>
+      <ion-list>
+        <ion-list-header>Which contact would
+          <br>you like to delete? 
+        </ion-list-header >
+        <div  *ngFor="let friend of currentFriendList">
+        <ion-item class="list-background" *ngIf ="!friend.deleted" >
+          <ion-label (click)="deleteFriend(friend)"> {{ friend.name }}</ion-label>
+        </ion-item>
+        </div>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

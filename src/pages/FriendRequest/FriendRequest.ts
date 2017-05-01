@@ -25,35 +25,29 @@ export class FriendRequestPage {
   }
 
   changeToConfirm(addUser) {
-
     this.http.post(this.url + "/friends/" + addUser.id, null, { "headers": this.headers }).map(fri => fri.json()).subscribe(fri => {
 
     });
-    this.decline = document.getElementById('decline').style.display = 'none';
-    this.confirm = document.getElementById('confirm').style.display = 'none';
-    this.text = document.getElementById('text').style.display = 'block';
+    addUser.accepted = true;
     this.text = "Accepted";
   }
 
-
-
-  changeToDecline() {
-    this.decline = document.getElementById('decline').style.display = 'none';
-    this.confirm = document.getElementById('confirm').style.display = 'none';
-    this.text = document.getElementById('text').style.display = 'block';
+  changeToDecline(addUser) {
+    addUser.accepted = true;
     this.text = "Declined";
   }
 
 
 
   ionViewDidLoad() {
-    this.text = document.getElementById('text').style.display = 'none';
-    
+
     // Push friend request 
     this.friendRequest = [];
     this.http.get(this.url + "/friends/requests", { "headers": this.headers }).map(fri => fri.json()).subscribe(fri => {
       for (var i = 0; i < fri.friend_requests.length; ++i) {
-        this.friendRequest.push(fri.friend_requests[i].user.name);
+        var user = fri.friend_requests[i].user;
+        user.accepted = false;
+        this.friendRequest.push(user);
       }
       //console.log(this.friendRequest)
     });

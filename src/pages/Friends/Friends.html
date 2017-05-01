@@ -21,33 +21,9 @@
 
         <ion-list-header>Your friends</ion-list-header>
 
-        <ion-item class="list-background">
-          <ion-avatar item-left>
-            <img src="assets/Friends/Pascal.png">
-          </ion-avatar>
-          <h2>Pascal</h2>
-          <ion-avatar item-right>
-            <img src="assets/TransparentSmileys/smiley1.svg">
-          </ion-avatar>
-        </ion-item>
-
-        <ion-item class="list-background">
-          <ion-avatar item-left>
-            <img src="assets/Friends/Peter.png">
-          </ion-avatar>
-          <h2>Peter</h2>
-          <ion-avatar item-right>
-            <img src="assets/TransparentSmileys/smiley2.svg">
-          </ion-avatar>
-        </ion-item>
-
-        <ion-item class="list-background">
-          <ion-avatar item-left>
-            <img src="assets/Friends/Joscha.png">
-          </ion-avatar>
-          <h2>Joscha</h2>
-          <ion-avatar item-right>
-            <img src="assets/TransparentSmileys/smiley3.svg">
+        <ion-item class="list-background" *ngFor="let friend of currentFriendList">
+          <ion-avatar clasS="paddingListName" item-left>
+            {{ friend.name }}
           </ion-avatar>
         </ion-item>
 
@@ -60,14 +36,28 @@
     <ion-row>
       <ion-col width-50>
         <ion-card>
-          <div class = "headerSearchFriendIcon" id="headerText"> Search </div>
+          <div class="headerSearchFriendIcon" id="headerText"> Search </div>
           <img class="ion-img" style="width:100%" src="assets/Friends/Icons/searchFriends.svg" (click)="SearchFriends()">
         </ion-card>
       </ion-col>
       <ion-col width-50>
         <ion-card>
-          <div class = "headerSearchFriendIcon" id="headerText"> {{headerText}} </div>
+          <div class="headerSearchFriendIcon" id="headerText"> {{headerText}} </div>
           <img class="scroll" [src]="friendRequest" (click)="FriendRequest()">
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col width-50>
+        <ion-card>
+          <div class="headerSearchFriendIcon" id="headerText"> Share Mood </div>
+          <img class="ion-img" style="width:100%" src="assets/Friends/Icons/shareMood.svg" (click)="ShareMood()">
+        </ion-card>
+      </ion-col>
+      <ion-col width-50>
+        <ion-card>
+          <div class="headerSearchFriendIcon" id="headerText"> Delete Friend </div>
+          <img class="scroll" src="assets/Friends/Icons/deleteFriend.svg" (click)="DeleteFriend()">
         </ion-card>
       </ion-col>
     </ion-row>

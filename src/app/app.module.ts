@@ -21,6 +21,8 @@ import { SearchFriendsPage} from '../pages/SearchFriends/SearchFriends';
 import { FriendRequestPage} from '../pages/FriendRequest/FriendRequest';
 import { LoginPage} from '../pages/Login/Login';
 import { RegisterPage} from '../pages/Register/Register';
+import { ShareMoodPage} from '../pages/ShareMood/ShareMood';
+import { DeleteFriendPage} from '../pages/DeleteFriend/DeleteFriend';
 
 
 
@@ -59,7 +61,9 @@ import { BrowserModule } from '@angular/platform-browser';
     SearchFriendsPage,
     FriendRequestPage,
     LoginPage,
-    RegisterPage
+    RegisterPage,
+    ShareMoodPage,
+    DeleteFriendPage
 
   ],
   imports: [
@@ -88,7 +92,9 @@ import { BrowserModule } from '@angular/platform-browser';
     SearchFriendsPage,
     FriendRequestPage,
     LoginPage,
-    RegisterPage
+    RegisterPage,
+    ShareMoodPage,
+    DeleteFriendPage
   ],
   providers: [
     StatusBar,
