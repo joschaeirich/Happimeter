@@ -4,8 +4,11 @@ import { Auth } from '../../providers/auth';
 import { MainPage } from '../Main/Main';
 
 import * as $ from 'jquery';
+import * as moment from 'moment';
+//import 'moment/locale/pt-br';
 
 import { Http, Headers } from '@angular/http';
+
 
 @Component({
     selector: 'page-MoodDiagrams',
@@ -30,6 +33,23 @@ export class MoodDiagramsPage {
 
 
     ionViewDidLoad() {
+
+
+        var date = moment();
+        var last24hours = [];
+
+        for (var i = 1; i <= 24; i++) {
+            last24hours[i - 1] = date.clone().subtract("hours", i).format('HH')
+        }
+
+        last24hours.reverse();
+
+        console.log(last24hours)
+
+
+
+
+
         var opacity = 0.5;
 
 
@@ -75,8 +95,8 @@ export class MoodDiagramsPage {
                         }
 
                     }
-                    //console.log("mood array");
-                    //console.log(mood_array);
+                    // console.log("mood array");
+                    //  console.log(mood_array);
 
 
                     var moodtimestamp_array = [];
@@ -86,8 +106,8 @@ export class MoodDiagramsPage {
                         moodtimestamp_array.push(act.entries[i].timestamp.substring(11, 13));
 
                     };
-                    //console.log("timestamps mood");
-                    //console.log(moodtimestamp_array);
+                    // console.log("timestamps mood");
+                    // console.log(moodtimestamp_array);
 
                     var zones = [];
                     for (var i = 0; i < moodtimestamp_array.length; ++i) {
@@ -134,15 +154,40 @@ export class MoodDiagramsPage {
 
                     };
 
-                    var xaxisTime_array = [];
 
+
+
+
+
+                    var xaxisTime_array = [];
                     for (var i = 0; i < res.entries.length; ++i) {
 
-                        xaxisTime_array.push(res.entries[i].timestamp.substring(11, 13));
-
+                        xaxisTime_array.push(moment.utc(res.entries[i].timestamp).local());
                     };
-                    //console.log("Timestamp xAxis Chart")
-                    //console.log(xaxisTime_array)
+
+
+                    if (moment().isDST() == false) {
+                        for (var i = 0; i < xaxisTime_array.length; i++) {
+                            xaxisTime_array[i] = xaxisTime_array[i].substract("hours", 1).format("HH");
+                        }
+                        }else{
+                        for (var i = 0; i < xaxisTime_array.length; i++) {
+                            xaxisTime_array[i] = xaxisTime_array[i].format("HH");
+                        }
+                    } 
+                        
+                    
+
+
+
+
+
+
+
+
+
+
+
 
                     var activity_array_1 = [];
 
@@ -154,12 +199,12 @@ export class MoodDiagramsPage {
 
                         }
                     }
-
+                    console.log(activity_array)
                     var maxYaxis = 140000;
 
 
                     this.chartOptions = {
-
+                        plotAreaWidth: 300,
                         credits: {
                             enabled: false
                         },
@@ -183,10 +228,13 @@ export class MoodDiagramsPage {
                         },
                         xAxis: {
                             categories: xaxisTime_array,
+                            tickInterval: 1,
+
                             labels: {
 
                                 style: {
-                                    color: '#FFFFFF'
+                                    color: '#FFFFFF',
+                                    width: '300px'
                                 }
                             }
                         },
@@ -330,7 +378,7 @@ export class MoodDiagramsPage {
                             bpm_array.push(res.entries[i].heartrate);
                         };
 
-                        console.log("bpm array " + bpm_array);
+                        //console.log("bpm array " + bpm_array);
                         var bpm_array_1 = [];
 
                         if (bpm_array.length == 0) {
@@ -348,8 +396,8 @@ export class MoodDiagramsPage {
                             xaxisTime_array.push(res.entries[i].timestamp.substring(11, 13));
 
                         };
-                        console.log("BPM Timestamps")
-                        console.log(xaxisTime_array)
+                        // console.log("BPM Timestamps")
+                        // console.log(xaxisTime_array)
 
                         this.chartOptions1 = {
 
@@ -380,7 +428,7 @@ export class MoodDiagramsPage {
                                 display: false,
                             },
                             xAxis: {
-                                categories: xaxisTime_array,
+                                categories: last24hours,
                                 labels: {
 
                                     style: {
