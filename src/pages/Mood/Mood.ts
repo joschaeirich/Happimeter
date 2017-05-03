@@ -33,8 +33,8 @@ export class MoodPage {
 
       var pleasance = res.moods[0].pleasance;
       var activation = res.moods[0].activation;;
-      console.log(activation);
-      console.log(pleasance);
+    //  console.log(activation);
+    //  console.log(pleasance);
 
       if (pleasance == 1 && activation == 1) {
         this.mood = 'assets/ActualMoodState/mood1.svg'
@@ -45,7 +45,7 @@ export class MoodPage {
       } else {
         this.mood = 'assets/ActualMoodState/mood4.svg'
       }
-      console.log(this.mood);
+     // console.log(this.mood);
 
     });
 

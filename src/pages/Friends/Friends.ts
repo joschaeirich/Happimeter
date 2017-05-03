@@ -26,6 +26,8 @@ export class FriendsPage {
   currentFriendList: any = [];
   friendRequest: any = 'assets/Friends/Icons/friendRequests.svg';
 
+  moodIcon: any;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, public auth: Auth) {
     this.headers.append("Authorization", "Bearer " + this.auth.token);
   }
@@ -38,7 +40,23 @@ export class FriendsPage {
       }
     }
     );
-    //console.log(this.currentFriendList)
+
+    /* 
+Display Image for each mood if mood is shared
+*/
+    /*
+    for (var i = 0; i < this.currentFriendList.length; ++i) {
+      var obj:any = {}
+      if (this.currentFriendList[i].user.share_mood == true) {
+       
+       obj.moodIcon[i] ='assets/TransparentSmileys/smiley1.png'
+
+      }
+
+    }
+    console.log(this.currentFriendList)
+    console.log(this.moodIcon)
+*/
     this.http.get(this.url + "/friends/requests", { "headers": this.headers }).map(fri => fri.json()).subscribe(fri => {
       if (fri.friend_requests.length > 0) {
         this.headerText = "Open Request";
@@ -46,10 +64,12 @@ export class FriendsPage {
       } else {
         this.headerText = "No Requests";
       }
-      //console.log(this.headerText)
-    });
 
+    });
   }
+
+
+
 
 
 
