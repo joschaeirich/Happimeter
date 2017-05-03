@@ -239,7 +239,7 @@ export class MoodmapPage {
       console.log(activation);
       console.log(pleasance);
 
-      var image; 
+      var image;
 
       if (pleasance == 1 && activation == 1) {
         image = '/assets/Markers/marker_mood1.png'
@@ -254,14 +254,14 @@ export class MoodmapPage {
 
 
 
-
       var icon = {
         url: image,
-        //url: '/assets/Markers/marker_mood1.png', // url
-        scaledSize: new google.maps.Size(80, 80), // scaled size
+        scaledSize: new google.maps.Size(40, 40), // scaled size
         //origin: new google.maps.Point(0,0), // origin
         //anchor: new google.maps.Point(0, 0) // anchor
       };
+
+
 
 
       let marker = new google.maps.Marker({
@@ -271,10 +271,58 @@ export class MoodmapPage {
         icon: icon
       });
 
+
       let content = "<h4>Information!</h4>";
 
       this.addInfoWindow(marker, content);
     });
+
+    var locations = [[42.373166, -71.069583], [42.371053, -71.079858]];
+    var fillColor = "#2BBD29";
+    var markers = [];
+    for (var i = 0; i < locations.length; i++) {
+      var location = locations[i];
+      var latLng = new google.maps.LatLng(location[0],
+        location[1]);
+      var marker = new google.maps.Marker({
+        icon: {
+          path: google.maps.SymbolPath.CIRCLE,
+          scale: 8.5,
+          fillColor: fillColor,
+          fillOpacity: 0.4,
+          strokeWeight: 0.4
+        },
+        map: this.map,
+        position: latLng,
+        animation: google.maps.Animation.DROP
+      });
+
+
+
+      marker.setOpacity(0.5);
+      markers.push(marker);
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   }
 
   addInfoWindow(marker, content) {
