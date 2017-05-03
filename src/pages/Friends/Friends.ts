@@ -24,7 +24,7 @@ export class FriendsPage {
   headers: Headers = new Headers();
 
   currentFriendList: any = [];
-  friendRequest: any;
+  friendRequest: any = 'assets/Friends/Icons/friendRequests.svg';
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, public auth: Auth) {
     this.headers.append("Authorization", "Bearer " + this.auth.token);
@@ -45,7 +45,6 @@ export class FriendsPage {
         this.friendRequest = 'assets/Friends/Icons/openFriendRequest.svg';
       } else {
         this.headerText = "No Requests";
-        this.friendRequest = 'assets/Friends/Icons/friendRequests.svg';
       }
       //console.log(this.headerText)
     });
