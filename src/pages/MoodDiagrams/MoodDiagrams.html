@@ -6,11 +6,6 @@
 
 </ion-header>
 
-
-
-
-
-
 <ion-content class="page-Statistics">
 
   <ion-card>
@@ -19,7 +14,7 @@
       <div class="righttext bottom-maring-activity"> <b>Activity Level</b></div>
 
       <div id="highcharts-8c5y4z0-0" class="highcharts-container " style="position: relative; overflow: hidden; width: 120%; height: 100%; 
-      text-align: left; line-height: normal; z-index: 0; font-family: Wayward Sans; left: -25px; top: 0px;">
+      text-align: left; line-height: normal; z-index: 0; left: -25px; top: 0px;">
         <chart [options]="chartOptions" (load)="saveInstance($event.context)" style="display: block" tpye="chart"> </chart>
       </div>
 
@@ -43,7 +38,7 @@
       <img class="card-header-diagramm" src='./assets/Statistics/MoodTable/heart.svg' />
       <div class="righttext"> <b>Heart rate</b></div>
       <div id="highcharts-jkvc64n-4" class="highcharts-container " style="position: relative; overflow: hidden; width: 120%; height: 100%; 
-      text-align: left; line-height: normal; z-index: 0; font-family: Wayward Sans; left: -25px; top: 0px;">
+      text-align: left; line-height: normal; z-index: 0; left: -25px; top: 0px;">
         <chart [options]="chartOptions1" (load)="saveInstance($event.context)" style="display: block" tpye="chart"> </chart>
       </div>
 
@@ -52,7 +47,7 @@
       <div class="row">
         <div class="col">
           <div class="text-center">
-          <b>  Mean heart rate: {{meanBpm}} </b>
+            <b>  Mean heart rate: {{meanBpm}} </b>
           </div>
         </div>
       </div>
@@ -65,247 +60,20 @@
   <ion-card>
     <ion-card-content>
       <img class="card-header-diagramm" src='./assets/Statistics/MoodTable/history.svg' />
-      <div class="righttext"> <b>Mood Histroy</b></div>
+      <div class="righttext"> <b>Energy Level Histroy</b></div>
       <br>
-      <div class="grid-basic-page">
-        <ion-row>
-          <ion-col width-40>
-            <div>Time</div>
-          </ion-col>
-          <ion-col>
-            <div>M</div>
-          </ion-col>
-          <ion-col>
-            <div>T</div>
-          </ion-col>
-          <ion-col>
-            <div>W</div>
-          </ion-col>
-          <ion-col>
-            <div>T</div>
-          </ion-col>
-          <ion-col>
-            <div>F</div>
-          </ion-col>
-          <ion-col>
-            <div>S</div>
-          </ion-col>
-          <ion-col>
-            <div>S</div>
-          </ion-col>
-        </ion-row>
-
-        <ion-row align-items-center>
-          <ion-col width-40>
-            <div>08:00</div>
-          </ion-col>
-          <ion-col>
-            <div><img src="assets/TransparentSmileys/smiley1.svg"></div>
-          </ion-col>
-          <ion-col>
-            <div><img src="assets/TransparentSmileys/smiley2.svg"></div>
-          </ion-col>
-          <ion-col>
-            <div><img src="assets/TransparentSmileys/smiley3.svg"></div>
-          </ion-col>
-          <ion-col>
-            <div><img src="assets/TransparentSmileys/smiley1.svg"></div>
-          </ion-col>
-          <ion-col>
-            <div><img src="assets/TransparentSmileys/smiley2.svg"></div>
-          </ion-col>
-          <ion-col>
-            <div><img src="assets/TransparentSmileys/smiley2.svg"></div>
-          </ion-col>
-          <ion-col>
-            <div><img src="assets/TransparentSmileys/smiley4.svg"></div>
-          </ion-col>
-        </ion-row>
-        <ion-row align-items-center>
-          <ion-col width-40>
-            <div>10:00</div>
-          </ion-col>
-          <ion-col>
-            <div><img src="assets/TransparentSmileys/smiley1.svg"></div>
-          </ion-col>
-          <ion-col>
-            <div><img src="assets/TransparentSmileys/smiley2.svg"></div>
-          </ion-col>
-          <ion-col>
-            <div><img src="assets/TransparentSmileys/smiley3.svg"></div>
-          </ion-col>
-          <ion-col>
-            <div><img src="assets/TransparentSmileys/smiley1.svg"></div>
-          </ion-col>
-          <ion-col>
-            <div><img src="assets/TransparentSmileys/smiley2.svg"></div>
-          </ion-col>
-          <ion-col>
-            <div><img src="assets/TransparentSmileys/smiley2.svg"></div>
-          </ion-col>
-          <ion-col>
-            <div><img src="assets/TransparentSmileys/smiley4.svg"></div>
-          </ion-col>
-        </ion-row>
-        <ion-row align-items-center>
-          <ion-col width-40>
-            <div>12:00</div>
-          </ion-col>
-          <ion-col>
-            <div><img src="assets/TransparentSmileys/smiley1.svg"></div>
-          </ion-col>
-          <ion-col>
-            <div><img src="assets/TransparentSmileys/smiley2.svg"></div>
-          </ion-col>
-          <ion-col>
-            <div><img src="assets/TransparentSmileys/smiley3.svg"></div>
-          </ion-col>
-          <ion-col>
-            <div><img src="assets/TransparentSmileys/smiley1.svg"></div>
-          </ion-col>
-          <ion-col>
-            <div><img src="assets/TransparentSmileys/smiley2.svg"></div>
-          </ion-col>
-          <ion-col>
-            <div><img src="assets/TransparentSmileys/smiley2.svg"></div>
-          </ion-col>
-          <ion-col>
-            <div><img src="assets/TransparentSmileys/smiley4.svg"></div>
-          </ion-col>
-        </ion-row>
-        <ion-row align-items-center>
-          <ion-col width-40>
-            <div>14:00</div>
-          </ion-col>
-          <ion-col>
-            <div><img src="assets/TransparentSmileys/smiley1.svg"></div>
-          </ion-col>
-          <ion-col>
-            <div><img src="assets/TransparentSmileys/smiley2.svg"></div>
-          </ion-col>
-          <ion-col>
-            <div><img src="assets/TransparentSmileys/smiley3.svg"></div>
-          </ion-col>
-          <ion-col>
-            <div><img src="assets/TransparentSmileys/smiley1.svg"></div>
-          </ion-col>
-          <ion-col>
-            <div><img src="assets/TransparentSmileys/smiley2.svg"></div>
-          </ion-col>
-          <ion-col>
-            <div><img src="assets/TransparentSmileys/smiley2.svg"></div>
-          </ion-col>
-          <ion-col>
-            <div><img src="assets/TransparentSmileys/smiley4.svg"></div>
-          </ion-col>
-        </ion-row>
-        <ion-row align-items-center>
-          <ion-col width-40>
-            <div>16:00</div>
-          </ion-col>
-          <ion-col>
-            <div><img src="assets/TransparentSmileys/smiley1.svg"></div>
-          </ion-col>
-          <ion-col>
-            <div><img src="assets/TransparentSmileys/smiley2.svg"></div>
-          </ion-col>
-          <ion-col>
-            <div><img src="assets/TransparentSmileys/smiley3.svg"></div>
-          </ion-col>
-          <ion-col>
-            <div><img src="assets/TransparentSmileys/smiley1.svg"></div>
-          </ion-col>
-          <ion-col>
-            <div><img src="assets/TransparentSmileys/smiley2.svg"></div>
-          </ion-col>
-          <ion-col>
-            <div><img src="assets/TransparentSmileys/smiley2.svg"></div>
-          </ion-col>
-          <ion-col>
-            <div><img src="assets/TransparentSmileys/smiley4.svg"></div>
-          </ion-col>
-        </ion-row>
-        <ion-row align-items-center>
-          <ion-col width-40>
-            <div>18:00</div>
-          </ion-col>
-          <ion-col>
-            <div><img src="assets/TransparentSmileys/smiley1.svg"></div>
-          </ion-col>
-          <ion-col>
-            <div><img src="assets/TransparentSmileys/smiley2.svg"></div>
-          </ion-col>
-          <ion-col>
-            <div><img src="assets/TransparentSmileys/smiley3.svg"></div>
-          </ion-col>
-          <ion-col>
-            <div><img src="assets/TransparentSmileys/smiley1.svg"></div>
-          </ion-col>
-          <ion-col>
-            <div><img src="assets/TransparentSmileys/smiley2.svg"></div>
-          </ion-col>
-          <ion-col>
-            <div><img src="assets/TransparentSmileys/smiley2.svg"></div>
-          </ion-col>
-          <ion-col>
-            <div><img src="assets/TransparentSmileys/smiley4.svg"></div>
-          </ion-col>
-        </ion-row>
-        <ion-row align-items-center>
-          <ion-col width-40>
-            <div>20:00</div>
-          </ion-col>
-          <ion-col>
-            <div><img src="assets/TransparentSmileys/smiley1.svg"></div>
-          </ion-col>
-          <ion-col>
-            <div><img src="assets/TransparentSmileys/smiley2.svg"></div>
-          </ion-col>
-          <ion-col>
-            <div><img src="assets/TransparentSmileys/smiley3.svg"></div>
-          </ion-col>
-          <ion-col>
-            <div><img src="assets/TransparentSmileys/smiley1.svg"></div>
-          </ion-col>
-          <ion-col>
-            <div><img src="assets/TransparentSmileys/smiley2.svg"></div>
-          </ion-col>
-          <ion-col>
-            <div><img src="assets/TransparentSmileys/smiley2.svg"></div>
-          </ion-col>
-          <ion-col>
-            <div><img src="assets/TransparentSmileys/smiley4.svg"></div>
-          </ion-col>
-        </ion-row>
-        <ion-row align-items-center>
-          <ion-col width-40>
-            <div>22:00</div>
-          </ion-col>
-          <ion-col>
-            <div><img src="assets/TransparentSmileys/smiley1.svg"></div>
-          </ion-col>
-          <ion-col>
-            <div><img src="assets/TransparentSmileys/smiley2.svg"></div>
-          </ion-col>
-          <ion-col>
-            <div><img src="assets/TransparentSmileys/smiley3.svg"></div>
-          </ion-col>
-          <ion-col>
-            <div><img src="assets/TransparentSmileys/smiley1.svg"></div>
-          </ion-col>
-          <ion-col>
-            <div><img src="assets/TransparentSmileys/smiley2.svg"></div>
-          </ion-col>
-          <ion-col>
-            <div><img src="assets/TransparentSmileys/smiley2.svg"></div>
-          </ion-col>
-          <ion-col>
-            <div><img src="assets/TransparentSmileys/smiley4.svg"></div>
-          </ion-col>
-        </ion-row>
+      <div id="highcharts-8c5y4z0-0" class="highcharts-container " style="position: relative; overflow: hidden; width: 120%; height: 100%; 
+      text-align: left; line-height: normal; z-index: 0; left: -25px; top: 0px;">
+        <chart [options]="activationChart" (load)="saveInstance1($event.context)" style="display: block" tpye="chart1"> </chart>
       </div>
+      <br>
+      <div class="righttext"> <b>Pleasance Level Histroy</b></div>
+      <div id="highcharts-8c5y4z0-0" class="highcharts-container " style="position: relative; overflow: hidden; width: 120%; height: 100%; 
+      text-align: left; line-height: normal; z-index: 0; left: -25px; top: 0px;">
+        <chart [options]="happinessChart" (load)="saveInstance1($event.context)" style="display: block" tpye="chart1"> </chart>
+      </div>
+
     </ion-card-content>
   </ion-card>
-
 
 </ion-content>

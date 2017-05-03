@@ -8,7 +8,7 @@
 
   <ion-card>
     <ion-card-header class="headersize-statistics">
-      <b> Mood Frequency </b>
+      <b> Your Mood Input Frequency </b>
     </ion-card-header>
     <ion-card-content>
       <canvas class="canvas" #barCanvas></canvas>
@@ -17,29 +17,61 @@
       <div class="row">
         <div class="col col-25">
           <img class="img-frequency-card" src="assets/TransparentSmileys/smiley1.svg">
-          <div class="moodNumberPosition"> {{moodOccurenceHappy}} </div>
+          <div class="moodNumberPosition"> <span>{{moodOccurenceHappy}}</span> % </div>
         </div>
         <div class="col col-25">
           <img class="img-frequency-card" src="assets/TransparentSmileys/smiley2.svg">
-          <div class="moodNumberPosition"> {{moodOccurenceChill}}</div>
+          <div class="moodNumberPosition"> <span>{{moodOccurenceChill}}</span> % </div>
         </div>
         <div class="col col-25">
           <img class="img-frequency-card" src="assets/TransparentSmileys/smiley4.svg">
-          <div class="moodNumberPosition"> {{moodOccurenceAngry}}</div>
+          <div class="moodNumberPosition"> <span>{{moodOccurenceAngry}} </span>%  </div>
         </div>
         <div class="col col-25">
           <img class="img-frequency-card" src="assets/TransparentSmileys/smiley3.svg">
-          <div class="moodNumberPosition">{{moodOccurenceSad}} </div>
+          <div class="moodNumberPosition"><span>{{moodOccurenceSad}} </span>% </div>
         </div>
       </div>
     </ion-card-content>
   </ion-card>
 
+  <ion-card>
+    <ion-card-header class="headersize-statistics">
+      <b> Predicted Mood Frequency </b>
+    </ion-card-header>
+    <ion-card-content>
+      <canvas class="canvas" #barCanvasPred></canvas>
+      <br>
+      <br>
+      <div class="row">
+        <div class="col col-25">
+          <img class="img-frequency-card" src="assets/TransparentSmileys/smiley1.svg">
+          <div class="moodNumberPosition"> {{predMoodOccurenceHappy}} % </div>
+        </div>
+        <div class="col col-25">
+          <img class="img-frequency-card" src="assets/TransparentSmileys/smiley2.svg">
+          <div class="moodNumberPosition"> {{predMoodOccurenceChill}} % </div>
+        </div>
+        <div class="col col-25">
+          <img class="img-frequency-card" src="assets/TransparentSmileys/smiley4.svg">
+          <div class="moodNumberPosition"> {{predMoodOccurenceAngry}} % </div>
+        </div>
+        <div class="col col-25">
+          <img class="img-frequency-card" src="assets/TransparentSmileys/smiley3.svg">
+          <div class="moodNumberPosition">{{predMoodOccurenceSad}} % </div>
+        </div>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+
+
+
+
+
   <ion-grid>
     <ion-row>
       <ion-col width-50>
-
-
         <ion-card>
 
           <img class="img" src="assets/Statistics/MoodDiagrams.svg" (click)="MoodDiagrams()">

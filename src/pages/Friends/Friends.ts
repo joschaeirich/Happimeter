@@ -26,37 +26,36 @@ export class FriendsPage {
   currentFriendList: any = [];
   friendRequest: any = 'assets/Friends/Icons/friendRequests.svg';
 
-  moodIcon: any;
-
+  moodData: any;
+  
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, public auth: Auth) {
     this.headers.append("Authorization", "Bearer " + this.auth.token);
   }
 
   ionViewDidEnter() {
     this.currentFriendList = [];
+    this.moodData = [];
     this.http.get(this.url + "/friends", { "headers": this.headers }).map(fri => fri.json()).subscribe(fri => {
       for (var i = 0; i < fri.friends.length; ++i) {
-        this.currentFriendList.push(fri.friends[i].user)
+        var obj = fri.friends[i].user;
+        if(fri.friends[i].user.mood.pleasance==1 && fri.friends[i].user.mood.activation==1){
+          obj.icon = "assets/TransparentSmileys/smiley1.svg"
+        }else if(fri.friends[i].user.mood.pleasance==1 && fri.friends[i].user.mood.activation==0){
+          obj.icon = "assets/TransparentSmileys/smiley2.svg"
+        }else if(fri.friends[i].user.mood.pleasance==0 && fri.friends[i].user.mood.activation==1){
+          obj.icon = "assets/TransparentSmileys/smiley3.svg"
+        }else if(fri.friends[i].user.mood.pleasance==0 && fri.friends[i].user.mood.activation==0){
+          obj.icon = "assets/TransparentSmileys/smiley4.svg"
+        }else{
+          obj.icon = null
+        }
+        this.currentFriendList.push(obj);
+
       }
     }
     );
-
-    /* 
-Display Image for each mood if mood is shared
-*/
-    /*
-    for (var i = 0; i < this.currentFriendList.length; ++i) {
-      var obj:any = {}
-      if (this.currentFriendList[i].user.share_mood == true) {
-       
-       obj.moodIcon[i] ='assets/TransparentSmileys/smiley1.png'
-
-      }
-
-    }
-    console.log(this.currentFriendList)
-    console.log(this.moodIcon)
-*/
+    console.log(this.moodData)
+  
     this.http.get(this.url + "/friends/requests", { "headers": this.headers }).map(fri => fri.json()).subscribe(fri => {
       if (fri.friend_requests.length > 0) {
         this.headerText = "Open Request";
