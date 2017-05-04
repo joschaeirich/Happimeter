@@ -23,7 +23,8 @@
 
   <div class ="mood_image">
   
-  <ion-img [src] = "mood"></ion-img>
+  <ion-img *ngIf = "!errormsg" [src] = "mood"> </ion-img>
+  {{errormsg}}
   </div>
 
   <br>

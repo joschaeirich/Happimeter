@@ -27,6 +27,7 @@ export class FriendsPage {
   friendRequest: any = 'assets/Friends/Icons/friendRequests.svg';
 
   moodData: any;
+  errormsg: any;
   
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, public auth: Auth) {
     this.headers.append("Authorization", "Bearer " + this.auth.token);
@@ -36,6 +37,10 @@ export class FriendsPage {
     this.currentFriendList = [];
     this.moodData = [];
     this.http.get(this.url + "/friends", { "headers": this.headers }).map(fri => fri.json()).subscribe(fri => {
+       if (fri.friends.length == 0) {
+        this.errormsg = "You have no friends"
+        return;
+      }
       for (var i = 0; i < fri.friends.length; ++i) {
         var obj = fri.friends[i].user;
         if(fri.friends[i].user.mood.pleasance==1 && fri.friends[i].user.mood.activation==1){

@@ -24,6 +24,8 @@ export class MoodDiagramsPage {
 
     meanBpm: any = 0;
 
+    errormsg: any; 
+
     saveInstance(chart) {
         chart.setSize(
             $(document).width(),
@@ -59,7 +61,9 @@ export class MoodDiagramsPage {
 
 
         this.http.get(url + "/statistics/happiness/24hours", { "headers": headers }).map(hap => hap.json()).subscribe(hap => {
-
+            if(hap.entries.length==0){
+                this.errormsg = "No mood entries so far =("
+            }
 
             this.http.get(url + "/statistics/activation/24hours", { "headers": headers }).map(act => act.json()).subscribe(act => {
 

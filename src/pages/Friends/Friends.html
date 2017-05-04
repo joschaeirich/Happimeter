@@ -20,17 +20,17 @@
       <ion-list class="list-background">
 
         <ion-list-header>Your friends</ion-list-header>
-
-        <ion-item class="list-background" *ngFor="let friend of currentFriendList">
-          <ion-avatar class="paddingListName" item-left>
-            {{ friend.name }}
-          </ion-avatar>
-          <ion-avatar *ngIf="friend.icon!=null" class="padding-mood-image" item-right>
-            <img [src]="friend.icon"> 
-          </ion-avatar>
-        </ion-item>
+          <ion-item class="list-background" *ngFor="let friend of currentFriendList">
+            <ion-avatar class="paddingListName" item-left>
+              {{ friend.name }} 
+            </ion-avatar>
+            <ion-avatar *ngIf="friend.icon!=null" class="padding-mood-image" item-right>
+              <img [src]="friend.icon">
+            </ion-avatar>
+          </ion-item>
 
       </ion-list>
+
     </ion-card-content>
   </ion-card>
 

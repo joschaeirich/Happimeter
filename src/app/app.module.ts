@@ -24,8 +24,6 @@ import { RegisterPage } from '../pages/Register/Register';
 import { ShareMoodPage } from '../pages/ShareMood/ShareMood';
 import { DeleteFriendPage } from '../pages/DeleteFriend/DeleteFriend';
 
-
-
 import { Auth } from '../providers/auth';
 import { GlobalVariables } from '../providers/globalVariables';
 
