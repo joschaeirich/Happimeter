@@ -87,8 +87,19 @@ export class StatisticsPage {
             var totalCount = 0;
 
             for (var i = 0; i < res.mood_distribution.length; ++i) {
-                totalCount += res.mood_distribution[i].count;
-            }
+
+                if (res.mood_distribution[i].activation == 1 && res.mood_distribution[i].happiness == 1) {
+                    totalCount += res.mood_distribution[i].count;
+                } else if (res.mood_distribution[i].activation == 0 && res.mood_distribution[i].happiness == 1) {
+                    totalCount += res.mood_distribution[i].count;
+                } else if (res.mood_distribution[i].activation == 1 && res.mood_distribution[i].happiness == 0) {
+                    totalCount += res.mood_distribution[i].count;
+                } else if (res.mood_distribution[i].activation == 0 && res.mood_distribution[i].happiness == 0) {
+                    totalCount += res.mood_distribution[i].count;
+                } else {
+
+                }
+            };
 
             for (var i = 0; i < res.mood_distribution.length; ++i) {
                 if (res.mood_distribution[i].activation == 1 && res.mood_distribution[i].happiness == 1) {
@@ -97,8 +108,10 @@ export class StatisticsPage {
                     moodChart[1] = Math.round((res.mood_distribution[i].count / totalCount) * 100);
                 } else if (res.mood_distribution[i].activation == 1 && res.mood_distribution[i].happiness == 0) {
                     moodChart[2] = Math.round((res.mood_distribution[i].count / totalCount) * 100);
-                } else {
+                } else if (res.mood_distribution[i].activation == 0 && res.mood_distribution[i].happiness == 0) {
                     moodChart[3] = Math.round((res.mood_distribution[i].count / totalCount) * 100);
+                } else {
+
                 }
             };
 
@@ -108,6 +121,11 @@ export class StatisticsPage {
             this.moodOccurenceAngry = moodChart[2];
             this.moodOccurenceSad = moodChart[3];
 
+            if ((this.moodOccurenceHappy + this.moodOccurenceChill + this.moodOccurenceAngry + this.moodOccurenceSad) < 100) {
+                this.moodOccurenceHappy = this.moodOccurenceHappy + 1
+            } else if ((this.moodOccurenceHappy + this.moodOccurenceChill + this.moodOccurenceAngry + this.moodOccurenceSad) > 100) {
+                this.moodOccurenceHappy = this.moodOccurenceHappy - 1
+            }
             // console.log("moodChart")
             // console.log(moodChart)
 

@@ -9,6 +9,8 @@ import { Auth } from '../../providers/auth';
 
 import { Http, Headers } from '@angular/http';
 
+import { Storage } from '@ionic/storage';
+
 @Component({
   selector: 'page-Settings',
   templateUrl: 'Settings.html'
@@ -17,7 +19,7 @@ export class SettingsPage {
 
   account: any;
 
-  constructor(public navCtrl: NavController, public http: Http, public auth: Auth, private alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public http: Http, public auth: Auth, private alertCtrl: AlertController, public storage: Storage) {
 
 
 
@@ -51,7 +53,9 @@ export class SettingsPage {
 
             this.http.delete(url + "/auth", { "headers": headers }).map(res => res.json()).subscribe(res => {
               // console.log(res) 
+              this.storage.set('login_token', null);
               this.navCtrl.push(LoginPage);
+            
             });
           }
         }

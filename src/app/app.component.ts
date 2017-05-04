@@ -8,7 +8,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { LoginPage } from '../pages/Login/Login';
 //import { Auth } from '../providers/auth';
 
-
+import { Storage } from '@ionic/storage';
 
 
 

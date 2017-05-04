@@ -24,18 +24,60 @@ declare var google;
 
 export class MoodmapPage {
 
+  url = "http://www.pascalbudner.de:8080/v1";
+  headers: Headers = new Headers();
 
+  moodData: any = [];
+  locations: any = [];
 
   @ViewChild('map') mapElement: ElementRef;
   map: any;
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public geolocation: Geolocation, public http: Http, public auth: Auth) {
+    this.headers.append("Authorization", "Bearer " + this.auth.token);
 
   }
 
   ionViewDidLoad() {
+
+
+    this.http.get(this.url + "/moods", { "headers": this.headers }).map(res => res.json()).subscribe(res => {
+      for (var i = 0; i < res.moods.length; ++i) {
+        var data: any = {};
+
+        if (res.moods[i].pleasance == 1 && res.moods[i].activation == 1) {
+          data.mood = 0
+          data.fillcolor = "red"
+          data.locationLat = 42.367180
+          data.locationLong = -71.076075
+        } else if (res.moods[i].pleasance == 1 && res.moods[i].activation == 0) {
+          data.mood = 1
+          data.fillcolor = "blue"
+          data.locationLat = 42.364291
+          data.locationLong = -71.081918
+        } else if (res.moods[i].pleasance == 0 && res.moods[i].activation == 1) {
+          data.mood = 2
+          data.fillcolor = "black"
+          data.locationLat = 42.363241
+          data.locationLong = -71.082547
+        } else if (res.moods[i].pleasance == 0 && res.moods[i].activation == 0) {
+          data.mood = 3
+          data.fillcolor = "green"
+          data.locationLat = 42.363788
+          data.locationLong = - 71.079103
+        }
+        data.timestamp = res.moods[i].timestamp;
+        this.moodData.push(data);
+      };
+    });
+
+
+
     this.loadMap();
+
+
+
   }
 
   loadMap() {
@@ -226,32 +268,22 @@ export class MoodmapPage {
 
   addMarker() {
 
-    var url = "http://www.pascalbudner.de:8080/v1";
-
-    var headers: Headers = new Headers();
-    headers.append("Authorization", "Bearer " + this.auth.token);
-
-    this.http.get(url + "/moods", { "headers": headers }).map(res => res.json()).subscribe(res => {
+    this.http.get(this.url + "/moods", { "headers": this.headers }).map(res => res.json()).subscribe(res => {
 
 
       var pleasance = res.moods[0].pleasance,
         activation = res.moods[0].activation;
-      console.log(activation);
-      console.log(pleasance);
 
       var image;
-
       if (pleasance == 1 && activation == 1) {
         image = '/assets/Markers/marker_mood1.png'
       } else if (pleasance == 1 && activation == 0) {
         image = '/assets/Markers/marker_mood2.png'
       } else if (pleasance == 0 && activation == 1) {
         image = '/assets/Markers/marker_mood3.png'
-      } else {
+      } else if (pleasance == 0 && activation == 0) {
         image = '/assets/Markers/marker_mood4.png'
       }
-      console.log(image);
-
 
 
       var icon = {
@@ -277,18 +309,19 @@ export class MoodmapPage {
       this.addInfoWindow(marker, content);
     });
 
-    var locations = [[42.373166, -71.069583], [42.371053, -71.079858]];
-    var fillColor = "#2BBD29";
+    //var fillColor = "#2BBD29";
+
     var markers = [];
-    for (var i = 0; i < locations.length; i++) {
-      var location = locations[i];
+    for (var i = 0; i < this.moodData.length; i++) {
+      var location = [[this.moodData[i].locationLat], [this.moodData[i].locationLong]];
+
       var latLng = new google.maps.LatLng(location[0],
         location[1]);
       var marker = new google.maps.Marker({
         icon: {
           path: google.maps.SymbolPath.CIRCLE,
           scale: 8.5,
-          fillColor: fillColor,
+          fillColor: this.moodData[i].fillcolor,
           fillOpacity: 0.4,
           strokeWeight: 0.4
         },
@@ -297,31 +330,10 @@ export class MoodmapPage {
         animation: google.maps.Animation.DROP
       });
 
-
-
       marker.setOpacity(0.5);
       markers.push(marker);
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   }
 
