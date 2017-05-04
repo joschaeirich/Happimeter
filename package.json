@@ -26,6 +26,7 @@
     "@ionic-native/status-bar": "^3.1.0",
     "@ionic/storage": "^2.0.0",
     "@swimlane/ngx-charts": "^5.1.2",
+    "@types/google-maps": "3.2.0",
     "angular-moment": "^1.0.1",
     "angular2-highcharts": "^0.5.5",
     "chart.js": "^2.5.0",
@@ -34,6 +35,7 @@
     "ionicons": "3.0.0",
     "jquery": "^3.2.1",
     "moment": "^2.18.1",
+    "node-js-marker-clusterer": "^1.0.0",
     "rxjs": "5.0.1",
     "sw-toolbox": "3.4.0",
     "zone.js": "0.7.2"

@@ -3,10 +3,14 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
 
+
 import { MainPage } from '../Main/Main';
 import { Auth } from '../../providers/auth';
 
 import { Http, Headers } from '@angular/http';
+
+
+//import * as MarkerClusterer from 'node-js-marker-clusterer';
 
 declare var google;
 
@@ -29,6 +33,7 @@ export class MoodmapPage {
 
   moodData: any = [];
   locations: any = [];
+  markerCluster: any;
 
   @ViewChild('map') mapElement: ElementRef;
   map: any;
@@ -38,6 +43,7 @@ export class MoodmapPage {
     this.headers.append("Authorization", "Bearer " + this.auth.token);
 
   }
+
 
   ionViewDidLoad() {
 
@@ -49,26 +55,29 @@ export class MoodmapPage {
         if (res.moods[i].pleasance == 1 && res.moods[i].activation == 1) {
           data.mood = 0
           data.fillcolor = "red"
-          data.locationLat = 42.367180
-          data.locationLong = -71.076075
+          data.locationLat = res.moods[i].position.latitude
+          data.locationLong = res.moods[i].position.longitude
         } else if (res.moods[i].pleasance == 1 && res.moods[i].activation == 0) {
           data.mood = 1
           data.fillcolor = "blue"
-          data.locationLat = 42.364291
-          data.locationLong = -71.081918
+          data.locationLat = res.moods[i].position.latitude
+          data.locationLong = res.moods[i].position.longitude
         } else if (res.moods[i].pleasance == 0 && res.moods[i].activation == 1) {
           data.mood = 2
           data.fillcolor = "black"
-          data.locationLat = 42.363241
-          data.locationLong = -71.082547
+          data.locationLat = res.moods[i].position.latitude
+          data.locationLong = res.moods[i].position.longitude
         } else if (res.moods[i].pleasance == 0 && res.moods[i].activation == 0) {
           data.mood = 3
           data.fillcolor = "green"
-          data.locationLat = 42.363788
-          data.locationLong = - 71.079103
+          data.locationLat = res.moods[i].position.latitude
+          data.locationLong = res.moods[i].position.longitude
         }
+
+  
         data.timestamp = res.moods[i].timestamp;
         this.moodData.push(data);
+        console.log(this.moodData)
       };
     });
 
@@ -78,12 +87,10 @@ export class MoodmapPage {
 
 
 
+
   }
 
   loadMap() {
-
-
-
     this.geolocation.getCurrentPosition().then((position) => {
 
       let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
@@ -330,10 +337,15 @@ export class MoodmapPage {
         animation: google.maps.Animation.DROP
       });
 
+
       marker.setOpacity(0.5);
       markers.push(marker);
 
     }
+
+
+    //this.markerCluster = new MarkerClusterer(this.map, markers,{ imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' } );
+
 
   }
 
@@ -348,7 +360,6 @@ export class MoodmapPage {
     });
 
   }
-
 
 
   backButton() {
