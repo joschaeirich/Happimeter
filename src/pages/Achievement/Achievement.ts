@@ -31,41 +31,43 @@ export class AchievementPage {
       console.log(treeNumber);
     
     if(treeNumber==0){
-      this.treeImage = 'assets/Achievement/mountains_background.svg'
+      this.treeImage = 'assets/Achievement/mountains_background.png'
     }else if(treeNumber<=5){
-      this.treeImage = 'assets/Achievement/achievement_1.svg'
+      this.treeImage = 'assets/Achievement/achievement_1.png'
     }else if(treeNumber<=10){
-      this.treeImage = 'assets/Achievement/achievement_2.svg'
+      this.treeImage = 'assets/Achievement/achievement_2.png'
     }else if(treeNumber<=15){
-      this.treeImage = 'assets/Achievement/achievement_3.svg'
+      this.treeImage = 'assets/Achievement/achievement_3.png'
     }else if(treeNumber<20){
-      this.treeImage = 'assets/Achievement/achievement_4.svg'
+      this.treeImage = 'assets/Achievement/achievement_4.png'
     }else if(treeNumber<=25){
-      this.treeImage = 'assets/Achievement/achievement_5.svg'
+      this.treeImage = 'assets/Achievement/achievement_5.png'
     }else if(treeNumber<=30){
-      this.treeImage = 'assets/Achievement/achievement_6.svg'
+      this.treeImage = 'assets/Achievement/achievement_6.png'
     }else if(treeNumber<=35){
-      this.treeImage = 'assets/Achievement/achievement_7.svg'
+      this.treeImage = 'assets/Achievement/achievement_7.png'
     }else if(treeNumber<=40){
-      this.treeImage = 'assets/Achievement/achievement_8.svg'
+      this.treeImage = 'assets/Achievement/achievement_8.png'
     }else if(treeNumber<=45){
-      this.treeImage = 'assets/Achievement/achievement_9.svg'
+      this.treeImage = 'assets/Achievement/achievement_9.png'
     }else if(treeNumber<=50){
-      this.treeImage = 'assets/Achievement/achievement_10.svg'
+      this.treeImage = 'assets/Achievement/achievement_10.png'
     }else if(treeNumber<=55){
-      this.treeImage = 'assets/Achievement/achievement_11.svg'
+      this.treeImage = 'assets/Achievement/achievement_11.png'
     }else if(treeNumber<=60){
-      this.treeImage = 'assets/Achievement/achievement_12.svg'
+      this.treeImage = 'assets/Achievement/achievement_12.png'
     }else if(treeNumber<=65){
-      this.treeImage = 'assets/Achievement/achievement_13.svg'
+      this.treeImage = 'assets/Achievement/achievement_13.png'
     }else if(treeNumber<=70){
-      this.treeImage = 'assets/Achievement/achievement_14.svg'
+      this.treeImage = 'assets/Achievement/achievement_14.png'
     }else if(treeNumber<=75){
-      this.treeImage = 'assets/Achievement/achievement_15.svg'
+      this.treeImage = 'assets/Achievement/achievement_15.png'
     }else if(treeNumber<=80){
-      this.treeImage = 'assets/Achievement/achievement_16.svg'
+      this.treeImage = 'assets/Achievement/achievement_16.png'
     }else if(treeNumber<=85){
-      this.treeImage = 'assets/Achievement/achievement_17.svg'
+      this.treeImage = 'assets/Achievement/achievement_17.png'
+    }else if(treeNumber<=100){
+      this.treeImage = 'assets/Achievement/achievement_18.png'
     }
 
       

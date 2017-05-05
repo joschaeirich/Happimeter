@@ -283,13 +283,13 @@ export class MoodmapPage {
 
       var image;
       if (pleasance == 1 && activation == 1) {
-        image = '/assets/Markers/marker_mood1.png'
+        image = 'assets/Markers/marker_mood1.png'
       } else if (pleasance == 1 && activation == 0) {
-        image = '/assets/Markers/marker_mood2.png'
+        image = 'assets/Markers/marker_mood2.png'
       } else if (pleasance == 0 && activation == 1) {
-        image = '/assets/Markers/marker_mood3.png'
+        image = 'assets/Markers/marker_mood3.png'
       } else if (pleasance == 0 && activation == 0) {
-        image = '/assets/Markers/marker_mood4.png'
+        image = 'assets/Markers/marker_mood4.png'
       }
 
 
@@ -303,7 +303,7 @@ export class MoodmapPage {
 
 
 
-      let marker = new google.maps.Marker({
+      new google.maps.Marker({
         map: this.map,
         animation: google.maps.Animation.DROP,
         position: this.map.getCenter(),
@@ -311,14 +311,14 @@ export class MoodmapPage {
       });
 
 
-      let content = "<h4>Information!</h4>";
+      //let content = "";
 
-      this.addInfoWindow(marker, content);
-    });
+      //this.addInfoWindow(markerIcon);
 
-    //var fillColor = "#2BBD29";
 
-    var markers = [];
+          //var fillColor = "#2BBD29";
+
+    var markersAllMoods = [];
     for (var i = 0; i < this.moodData.length; i++) {
       var location = [[this.moodData[i].locationLat], [this.moodData[i].locationLong]];
 
@@ -339,20 +339,23 @@ export class MoodmapPage {
 
 
       marker.setOpacity(0.5);
-      markers.push(marker);
+      markersAllMoods.push(marker);
 
     }
+    });
+
+
 
 
     //this.markerCluster = new MarkerClusterer(this.map, markers,{ imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' } );
 
 
   }
-
-  addInfoWindow(marker, content) {
+/*
+  addInfoWindow(marker) {
 
     let infoWindow = new google.maps.InfoWindow({
-      content: content
+      
     });
 
     google.maps.event.addListener(marker, 'click', () => {
@@ -361,7 +364,7 @@ export class MoodmapPage {
 
   }
 
-
+*/
   backButton() {
     this.navCtrl.push(MainPage);
   }
