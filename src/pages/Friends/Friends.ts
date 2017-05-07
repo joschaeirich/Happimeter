@@ -18,7 +18,7 @@ import { Http, Headers } from '@angular/http';
 })
 export class FriendsPage {
 
-  url = "http://www.pascalbudner.de:8080/v1";
+  url = "https://www.pascalbudner.de:8080/v1";
 
   headerText: any;
   headers: Headers = new Headers();

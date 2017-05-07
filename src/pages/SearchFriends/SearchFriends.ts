@@ -10,7 +10,7 @@ import { Http, Headers } from '@angular/http';
 })
 export class SearchFriendsPage {
   items: any = [];
-  url: any = "http://www.pascalbudner.de:8080/v1";
+  url: any = "https://www.pascalbudner.de:8080/v1";
   headers: Headers = new Headers();
   friendRequest: any;
 

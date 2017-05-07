@@ -5,7 +5,7 @@ import 'rxjs/add/operator/map';
 
 //import {GlobalVariables} from '../../providers/globalVariables';
 
-var url= "http://www.pascalbudner.de:8080/v1";
+var url= "https://www.pascalbudner.de:8080/v1";
 
 export class User {
   name: string;

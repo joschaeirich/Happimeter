@@ -52,7 +52,7 @@ export class MoodDiagramsPage {
         var opacity = 0.5;
 
 
-        var url = "http://www.pascalbudner.de:8080/v1";
+        var url = "https://www.pascalbudner.de:8080/v1";
 
         var headers: Headers = new Headers();
         headers.append("Authorization", "Bearer " + this.auth.token);

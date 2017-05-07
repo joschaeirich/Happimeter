@@ -25,14 +25,16 @@ function count() {
   templateUrl: 'MoodInput.html'
 })
 export class MoodInputPage {
-  url = "http://www.pascalbudner.de:8080/v1";
+  url = "https://www.pascalbudner.de:8080/v1";
   headers: Headers = new Headers();
 
   mood1: any = 'assets/MoodInput/mood1.svg'
   mood2: any = 'assets/MoodInput/mood2.svg'
   mood3: any = 'assets/MoodInput/mood3.svg'
   mood4: any = 'assets/MoodInput/mood4.svg'
-
+  
+  contrast: number = 0;
+  
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, public auth: Auth) {
 
@@ -81,7 +83,7 @@ export class MoodInputPage {
       moodData.device_id = "Smartphone";
     //console.log(moodData)
     this.http.post(this.url + "/moods", moodData, { "headers": this.headers }).map(res => res.json()).subscribe(res => { });
-    
+
     this.TreePage();
   }
 

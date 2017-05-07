@@ -13,7 +13,7 @@ import { Http, Headers } from '@angular/http';
 export class FriendRequestPage {
   friendRequest: any = [];
   headers: Headers = new Headers();
-  url: any = "http://www.pascalbudner.de:8080/v1";
+  url: any = "https://www.pascalbudner.de:8080/v1";
 
   decline: any = 'assets/confirm_notConfirm/cross.svg';
   text: any;

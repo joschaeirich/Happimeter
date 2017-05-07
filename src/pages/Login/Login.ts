@@ -19,7 +19,7 @@ export class LoginPage {
   constructor(private navCtrl: NavController, private auth: Auth, private alertCtrl: AlertController, private loadingCtrl: LoadingController, public storage: Storage) {
 
 
-    storage.ready().then(() => {
+ /*   storage.ready().then(() => {
 
       // set a key/value
 
@@ -32,7 +32,7 @@ export class LoginPage {
         console.log(val)}
       })
     });
-    
+*/    
   }
 
   public createAccount() {

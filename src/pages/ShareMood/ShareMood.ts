@@ -12,7 +12,7 @@ import { Http, Headers } from '@angular/http';
 })
 export class ShareMoodPage {
 
-  url = "http://www.pascalbudner.de:8080/v1";
+  url = "https://www.pascalbudner.de:8080/v1";
 
   headers: Headers = new Headers();
   currentFriendList: any = [];

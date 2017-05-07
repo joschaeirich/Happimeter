@@ -8,6 +8,7 @@ import { AchievementPage } from '../Achievement/Achievement';
 import { StatisticsPage } from '../Statistics/Statistics';
 import { FriendsPage } from '../Friends/Friends';
 import { Auth } from '../../providers/auth';
+import { SpeechPage } from '../Speech/Speech';
 
 
 import { Http, Headers } from '@angular/http';
@@ -48,9 +49,12 @@ export class MainPage {
     this.navCtrl.push(FriendsPage);
   }
 
+  speechPage() {
+    this.navCtrl.push(SpeechPage);
+  }
 
   ionViewDidEnter() {
-    var url = "http://www.pascalbudner.de:8080/v1";
+    var url = "https://www.pascalbudner.de:8080/v1";
 
     var headers: Headers = new Headers();
     headers.append("Authorization", "Bearer " + this.auth.token);
@@ -59,11 +63,11 @@ export class MainPage {
     this.http.get(url + "/friends/requests", { "headers": headers }).map(fri => fri.json()).subscribe(fri => {
       if (fri.friend_requests.length > 0) {
         this.friendRequest = 'assets/MenuIcons/AddFriendsIconOpenRequest.svg';
-      }else{
+      } else {
         this.friendRequest = 'assets/MenuIcons/AddFriendsIcon.svg';
       }
 
-    });  
+    });
 
   }
 

@@ -28,7 +28,7 @@ declare var google;
 
 export class MoodmapPage {
 
-  url = "http://www.pascalbudner.de:8080/v1";
+  url = "https://www.pascalbudner.de:8080/v1";
   headers: Headers = new Headers();
 
   moodData: any = [];

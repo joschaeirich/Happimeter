@@ -1,4 +1,4 @@
-<ion-header class="toolbar-background-ios-mood">
+<ion-header class="toolbar-background-ios-mood toolbar-background-md-mood">
 
   <ion-navbar>
 
@@ -12,24 +12,37 @@
   <br>
 
 
+
+
+
+ <ion-item>
+      <ion-range min="-200" max="200" pin="true" [(ngModel)]="contrast" color="secondary">
+        <ion-icon range-left small name="contrast"></ion-icon>
+        <ion-icon range-right name="contrast"></ion-icon>
+      </ion-range>
+</ion-item>
+
+
+
+<!--
   <div class="row">
     <div class="col col-50">
-      <ion-img style="width:100%" [src]="mood1" (click)="MoodUpload(1,1)"></ion-img>
+      <img style="width:100%" [src]="mood1" (click)="MoodUpload(1,1)">
     </div>
     <div class="col col-50">
-      <ion-img class="scroll" [src]="mood2" (click)="MoodUpload(0,1)"></ion-img>
+      <img class="scroll" [src]="mood2" (click)="MoodUpload(0,1)">
     </div>
   </div>
   <div class="row">
     <div class="col col-50">
-      <ion-img class="scroll" [src]="mood3" (click)="MoodUpload(1,0)"></ion-img>
+      <img class="scroll" [src]="mood3" (click)="MoodUpload(1,0)">
     </div>
     <div class="col col-50">
-      <ion-img class="scroll" [src]="mood4" (click)="MoodUpload(0,0)"></ion-img>
+      <img class="scroll" [src]="mood4" (click)="MoodUpload(0,0)">
 
     </div>
   </div>
-  <!--<button class ="buttom_position" ion-button full (click)="backButton()" outline> Back  </button>-->
+  -->
 
 
 

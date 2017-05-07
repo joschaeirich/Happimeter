@@ -23,7 +23,7 @@ export class MoodPage {
 
 
 
-    var url = "http://www.pascalbudner.de:8080/v1";
+    var url = "https://www.pascalbudner.de:8080/v1";
 
     var headers: Headers = new Headers();
     headers.append("Authorization", "Bearer " + this.auth.token);

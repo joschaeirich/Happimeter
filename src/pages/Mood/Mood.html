@@ -1,32 +1,19 @@
-
-
 <ion-header class="toolbar-background-ios-mood toolbar-background-md-mood">
-
   <ion-navbar>
     <ion-title>Mood</ion-title>
   </ion-navbar>
-
 </ion-header>
 
-    
-   
-
-
-
-<ion-content  class = "page-Mood" style="text-align: center">
+<ion-content class="page-Mood" style="text-align: center">
   <h3> Right now you are:</h3>
   <br>
   <br>
   <br>
   <br>
   <br>
-
-  <div class ="mood_image">
-  
-  <ion-img *ngIf = "!errormsg" [src] = "mood"> </ion-img>
-  {{errormsg}}
+  <div class="mood_image">
+    <img *ngIf="!errormsg" [src]="mood"> {{errormsg}}
   </div>
-
   <br>
   <br>
   <br>
@@ -35,12 +22,5 @@
   <br>
   <br>
   <br>
-  <button ion-button full  (click)="nextPage()" outline> How are you feeling?  </button>
-    <!--<button ion-button full (click)="backButton()" outline> Back  </button>-->
-
-
-
-
-  
- 
+  <button ion-button full (click)="nextPage()" outline> How are you feeling?  </button>
 </ion-content>
