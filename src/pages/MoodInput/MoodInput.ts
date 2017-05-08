@@ -4,7 +4,7 @@ import { Tree1Page } from '../Tree1/Tree1';
 import { Tree2Page } from '../Tree2/Tree2';
 import { Tree3Page } from '../Tree3/Tree3';
 import { Tree4Page } from '../Tree4/Tree4';
-import { MoodPage } from '../Mood/Mood';
+import { Geolocation } from '@ionic-native/geolocation';
 
 import { Auth } from '../../providers/auth';
 import { Http, Headers } from '@angular/http';
@@ -28,15 +28,14 @@ export class MoodInputPage {
   url = "https://www.pascalbudner.de:8080/v1";
   headers: Headers = new Headers();
 
-  mood1: any = 'assets/MoodInput/mood1.svg'
-  mood2: any = 'assets/MoodInput/mood2.svg'
-  mood3: any = 'assets/MoodInput/mood3.svg'
-  mood4: any = 'assets/MoodInput/mood4.svg'
-  
-  contrast: number = 0;
-  
+  pleasance: number = 1;
+  activation: number = 1;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, public auth: Auth) {
+  contrast: number = 0;
+
+  moodIcon: any;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, public auth: Auth, public geolocation: Geolocation) {
 
     this.headers.append("Authorization", "Bearer " + this.auth.token);
 
@@ -47,8 +46,32 @@ export class MoodInputPage {
       counter = Number.parseInt(raw_counter);
     }
   }
+  ionViewDidLoad(pleasance, activation) {
+    this.moodIcon = 'assets/TransparentSmileys/transparent_mood5.svg'
+  }
 
+onChange(pleasance, activation){
+ if (this.pleasance == 2 && this.activation == 2) {
+      this.moodIcon = 'assets/TransparentSmileys/transparent_mood1.svg'
+    } else if (this.pleasance == 1 && this.activation == 2) {
+      this.moodIcon = 'assets/TransparentSmileys/transparent_mood2.svg'
+    } else if (this.pleasance == 0 && this.activation == 2) {
+      this.moodIcon = 'assets/TransparentSmileys/transparent_mood3.svg'
+    } else if (this.pleasance == 2 && this.activation == 1) {
+      this.moodIcon = 'assets/TransparentSmileys/transparent_mood4.svg'
+    } else if (this.pleasance == 1 && this.activation == 1) {
+      this.moodIcon = 'assets/TransparentSmileys/transparent_mood5.svg'
+    } else if (this.pleasance == 0 && this.activation == 1) {
+      this.moodIcon = 'assets/TransparentSmileys/transparent_mood6.svg'
+    } else if (this.pleasance == 2 && this.activation == 0) {
+      this.moodIcon = 'assets/TransparentSmileys/transparent_mood7.svg'
+    } else if (this.pleasance == 1 && this.activation == 0) {
+      this.moodIcon = 'assets/TransparentSmileys/transparent_mood8.svg'
+    } else if (this.pleasance == 0 && this.activation == 0) {
+      this.moodIcon = 'assets/TransparentSmileys/transparent_mood9.svg'
+    }
 
+}
   TreePage() {
     switch (counter) {
       case 0:
@@ -70,12 +93,12 @@ export class MoodInputPage {
     count();
   }
 
-  MoodUpload(activation, happiness) {
+  MoodUpload(pleasance, activation) {
     var timeDifference = moment().utcOffset();
     timeDifference = timeDifference * 60;
 
     var moodData: any = {}
-    moodData.pleasance = happiness,
+    moodData.pleasance = pleasance,
       moodData.activation = activation,
       moodData.timestamp = moment().utc().unix(),
       moodData.local_timestamp = moodData.timestamp + timeDifference,
@@ -86,18 +109,5 @@ export class MoodInputPage {
 
     this.TreePage();
   }
-
-
-
-
-  backButton() {
-    this.navCtrl.push(MoodPage);
-  }
-
-
-  ionViewDidLoad() {
-
-  }
-
 
 }

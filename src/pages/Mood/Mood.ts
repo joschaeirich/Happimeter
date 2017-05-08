@@ -39,7 +39,7 @@ export class MoodPage {
       var activation = res.moods[0].activation;;
       //  console.log(activation);
       //  console.log(pleasance);
-
+/*
       if (pleasance == 1 && activation == 1) {
         this.mood = 'assets/ActualMoodState/mood1.svg'
       } else if (pleasance == 1 && activation == 0) {
@@ -51,7 +51,29 @@ export class MoodPage {
       } else {
 
       }
-      // console.log(this.mood);
+  */    
+           if (pleasance == 2 && activation == 2) {
+        this.mood = 'assets/TransparentSmileys/transparent_mood1.svg'
+      } else if (pleasance == 1 && activation == 2) {
+        this.mood = 'assets/TransparentSmileys/transparent_mood2.svg'
+      } else if (pleasance == 0 && activation == 2) {
+        this.mood = 'assets/TransparentSmileys/transparent_mood3.svg'
+      } else if (pleasance == 2 && activation == 1) {
+        this.mood = 'assets/TransparentSmileys/transparent_mood4.svg'
+      } else if (pleasance == 1 && activation == 1) {
+        this.mood = 'assets/TransparentSmileys/transparent_mood5.svg'
+      } else if (pleasance == 0 && activation == 1) {
+        this.mood = 'assets/TransparentSmileys/transparent_mood6.svg'
+      } else if (pleasance == 2 && activation == 0) {
+        this.mood = 'assets/TransparentSmileys/transparent_mood7.svg'
+      }else if (pleasance == 1 && activation == 0) {
+        this.mood = 'assets/TransparentSmileys/transparent_mood8.svg'
+      } else if (pleasance == 0 && activation == 0) {
+        this.mood = 'assets/TransparentSmileys/transparent_mood9.svg'
+      } else { 
+      }
+      
+      
 
     });
 

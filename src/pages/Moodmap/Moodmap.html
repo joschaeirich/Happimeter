@@ -1,26 +1,27 @@
-
-
-
-
 <ion-header class="toolbar-background-ios-moodmap toolbar-background-md-moodmap">
 
   <ion-navbar>
     <ion-title>Moodmap</ion-title>
+<br>
   </ion-navbar>
-
+  <div class="row">
+    <div class="col col-border centerbutton">
+      <button ion-button clear fab-center [disabled]="clicked_activation==false" (click)="activationHeatmap()"> view Acitivity </button>
+    </div>
+    <div class="col col-border centerbutton">
+      <button ion-button clear fab-center [disabled]="clicked_plesance==false" (click)="pleasanceHeatmap()"> view Plesanace </button>
+    </div>
+  </div>
+  <br>
 </ion-header>
 
-<ion-content padding class = "page-Moodmap">
 
-<!--
-<ion-buttons end>
-      <button ion-button (click)="addMarker()"><ion-icon name="add"></ion-icon>Add Marker</button>
-    </ion-buttons>  
-    class="buttom_position"
--->
+<ion-content padding class="page-Moodmap">
 
-<div  #map id="map" ></div>
-<div class="col text-center">
-</div>
+
+
+  <div #map id="map"></div>
+
+
 
 </ion-content>

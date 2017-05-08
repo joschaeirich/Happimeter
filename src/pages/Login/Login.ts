@@ -19,20 +19,21 @@ export class LoginPage {
   constructor(private navCtrl: NavController, private auth: Auth, private alertCtrl: AlertController, private loadingCtrl: LoadingController, public storage: Storage) {
 
 
- /*   storage.ready().then(() => {
+    storage.ready().then(() => {
 
       // set a key/value
 
 
       // Or to get a key/value pair
       storage.get('login_token').then((val) => {
-        if(val != null){
-        this.auth.token = val;
-        this.navCtrl.setRoot(MainPage);
-        console.log(val)}
+        if (val != null) {
+          this.auth.token = val;
+          this.navCtrl.setRoot(MainPage);
+          //  console.log(val)
+        }
       })
     });
-*/    
+
   }
 
   public createAccount() {

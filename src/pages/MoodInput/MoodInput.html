@@ -13,14 +13,28 @@
 
 
 
-
+<img class="currentMood-size" [src] = 'moodIcon'>
 
  <ion-item>
-      <ion-range min="-200" max="200" pin="true" [(ngModel)]="contrast" color="secondary">
-        <ion-icon range-left small name="contrast"></ion-icon>
-        <ion-icon range-right name="contrast"></ion-icon>
+      <ion-range min="0" max="2" pin ="true"[(ngModel)]="pleasance" color="secondary" (ngModelChange)="onChange(pleasance, activation)" >
+        <img range-left class="icon-size" src ="assets/MoodInput/lowpleasance.svg">
+        <img range-right class="icon-size" src ="assets/MoodInput/highpleasance.svg">
       </ion-range>
 </ion-item>
+
+ <ion-item>
+      <ion-range min="0" max="2"  pin ="true"[(ngModel)]="activation" color="secondary" (ngModelChange)="onChange(pleasance, activation)" >
+        <img range-left class="icon-size" src ="assets/MoodInput/lowactivity.svg">
+        <img range-right class="icon-size" src ="assets/MoodInput/highactivity.svg">
+      </ion-range>
+</ion-item>
+
+
+<div>
+  <br>
+  <br>
+<button ion-button outline full (click)="MoodUpload(pleasance, activation)">Send data</button>
+</div>
 
 
 

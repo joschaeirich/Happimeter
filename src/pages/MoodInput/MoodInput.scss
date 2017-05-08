@@ -1,6 +1,3 @@
-page-MoodInput {
-
-}
 
 .col {
     padding: 0;
@@ -18,4 +15,24 @@ page-MoodInput {
 
 .toolbar-background-ios-statistics .toolbar-background-ios {
     background: #673AB7;
+}
+
+
+.item-ios.item-block .item-inner {
+    padding-right: 13px;
+    border-bottom: 0px;
+}
+
+.item-md.item-block .item-inner {
+    padding-right: 13px;
+    border-bottom: 0px;
+}
+
+.icon-size{
+    width:15%;
+}
+
+.currentMood-size{
+    width:50%;
+    margin: auto;
 }
