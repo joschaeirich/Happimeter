@@ -389,8 +389,6 @@ export class MoodDiagramsPage {
                             marker: {
                                 enabled: false,
                             },
-                            // zoneAxis: 'x',
-                            //  zones: zones,
                             data: activity_array
                         }, {
                             lineWidth: 0,
@@ -439,8 +437,6 @@ export class MoodDiagramsPage {
                             }
                         }
 
-
-                        //console.log(bpm_array);
                         var bpm_array_1 = [];
 
                         if (bpm_array.length == 0) {

@@ -8,33 +8,20 @@
 
   <ion-card>
     <ion-card-header class="headersize-statistics">
-      <b> Your Mood Input Frequency </b>
+      <b>Mood occurrences</b>
     </ion-card-header>
     <ion-card-content>
-      <canvas class="canvas" #barCanvas></canvas>
-      <br>
-      <br>
-      <div class="row">
-        <div class="col col-25">
-          <img class="img-frequency-card" src="assets/TransparentSmileys/smiley1.svg">
-          <div class="moodNumberPosition"> <span>{{moodOccurenceHappy}}</span> % </div>
-        </div>
-        <div class="col col-25">
-          <img class="img-frequency-card" src="assets/TransparentSmileys/smiley2.svg">
-          <div class="moodNumberPosition"> <span>{{moodOccurenceChill}}</span> % </div>
-        </div>
-        <div class="col col-25">
-          <img class="img-frequency-card" src="assets/TransparentSmileys/smiley4.svg">
-          <div class="moodNumberPosition"> <span>{{moodOccurenceAngry}} </span>%  </div>
-        </div>
-        <div class="col col-25">
-          <img class="img-frequency-card" src="assets/TransparentSmileys/smiley3.svg">
-          <div class="moodNumberPosition"><span>{{moodOccurenceSad}} </span>% </div>
-        </div>
-      </div>
+
+
+
+      <chart class="chartPosition" [options]="chartOptions" (load)="saveInstance($event.context)" style="display: block" tpye="chart"> </chart>
+
+
+
+
     </ion-card-content>
   </ion-card>
-
+  <!--
   <ion-card>
     <ion-card-header class="headersize-statistics">
       <b> Predicted Mood Frequency </b>
@@ -64,7 +51,7 @@
     </ion-card-content>
   </ion-card>
 
-
+-->
 
 
 
@@ -80,7 +67,7 @@
           </ion-card-header>
         </ion-card>
       </ion-col>
-
+      <!--
       <ion-col width-50>
         <ion-card>
           <img class="img" src="assets/Statistics/MoodTable.svg" (click)="MoodTable()">
@@ -88,8 +75,8 @@
             <b> Tables </b>
           </ion-card-header>
         </ion-card>
-
       </ion-col>
+      -->
     </ion-row>
   </ion-grid>
 

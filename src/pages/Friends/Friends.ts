@@ -43,16 +43,24 @@ export class FriendsPage {
       }
       for (var i = 0; i < fri.friends.length; ++i) {
         var obj = fri.friends[i].user;
-        if(fri.friends[i].user.mood.pleasance==1 && fri.friends[i].user.mood.activation==1){
-          obj.icon = "assets/TransparentSmileys/smiley1.svg"
-        }else if(fri.friends[i].user.mood.pleasance==1 && fri.friends[i].user.mood.activation==0){
-          obj.icon = "assets/TransparentSmileys/smiley2.svg"
+        if(fri.friends[i].user.mood.pleasance==2 && fri.friends[i].user.mood.activation==2){
+          obj.icon = "assets/BoltSmilieys/transparent_mood1.svg"
+        }else if(fri.friends[i].user.mood.pleasance==1 && fri.friends[i].user.mood.activation==2){
+          obj.icon = "assets/BoltSmilieys/transparent_mood2.svg"
+        }else if(fri.friends[i].user.mood.pleasance==0 && fri.friends[i].user.mood.activation==2){
+          obj.icon = "assets/BoltSmilieys/transparent_mood3.svg"
+        }else if(fri.friends[i].user.mood.pleasance==2 && fri.friends[i].user.mood.activation==1){
+          obj.icon = "assets/BoltSmilieys/transparent_mood4.svg"
+        }else if(fri.friends[i].user.mood.pleasance==1 && fri.friends[i].user.mood.activation==1){
+          obj.icon = "assets/BoltSmilieys/transparent_mood5.svg"
         }else if(fri.friends[i].user.mood.pleasance==0 && fri.friends[i].user.mood.activation==1){
-          obj.icon = "assets/TransparentSmileys/smiley3.svg"
+          obj.icon = "assets/BoltSmilieys/transparent_mood6.svg"
+        }else if(fri.friends[i].user.mood.pleasance==2 && fri.friends[i].user.mood.activation==0){
+          obj.icon = "assets/BoltSmilieys/transparent_mood7.svg"
+        }else if(fri.friends[i].user.mood.pleasance==1 && fri.friends[i].user.mood.activation==0){
+          obj.icon = "assets/BoltSmilieys/transparent_mood8.svg"
         }else if(fri.friends[i].user.mood.pleasance==0 && fri.friends[i].user.mood.activation==0){
-          obj.icon = "assets/TransparentSmileys/smiley4.svg"
-        }else{
-          obj.icon = null
+          obj.icon = "assets/BoltSmilieys/transparent_mood9.svg"
         }
         this.currentFriendList.push(obj);
 

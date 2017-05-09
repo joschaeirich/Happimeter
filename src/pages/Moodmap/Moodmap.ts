@@ -324,7 +324,6 @@ export class MoodmapPage {
         icon: icon
       });
 
-      console.log(this.moodData)
       for (var i = 0; i < this.moodData.length; i++) {
         if (this.moodData[i].locationLat == null) {
           continue;
