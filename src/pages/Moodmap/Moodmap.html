@@ -2,20 +2,18 @@
 
   <ion-navbar>
     <ion-title>Moodmap</ion-title>
-<br>
+    <br>
   </ion-navbar>
   <div class="row">
     <div class="col col-border centerbutton">
-      <button ion-button clear fab-center [disabled]="clicked_activation==false" (click)="activationHeatmap()"> view Acitivity </button>
+      <button ion-button clear fab-center [ngClass]="{'activation_is_clicked': clicked_activation, 'activation_is_not_clicked': !clicked_activation}" (click)="activationHeatmap()"> view Acitivity </button>
     </div>
     <div class="col col-border centerbutton">
-      <button ion-button clear fab-center [disabled]="clicked_plesance==false" (click)="pleasanceHeatmap()"> view Plesanace </button>
+      <button ion-button clear fab-center [ngClass]="{'pleasance_is_clicked': clicked_pleasance, 'pleasance_is_not_clicked': !clicked_pleasance}" (click)="pleasanceHeatmap()"> view Pleasance </button>
     </div>
   </div>
   <br>
 </ion-header>
-
-
 <ion-content padding class="page-Moodmap">
 
 

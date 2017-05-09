@@ -24,7 +24,7 @@ export class MoodDiagramsPage {
 
     meanBpm: any = 0;
 
-    errormsg: any; 
+    errormsg: any;
 
     saveInstance(chart) {
         chart.setSize(
@@ -61,7 +61,7 @@ export class MoodDiagramsPage {
 
 
         this.http.get(url + "/statistics/happiness/24hours", { "headers": headers }).map(hap => hap.json()).subscribe(hap => {
-            if(hap.entries.length==0){
+            if (hap.entries.length == 0) {
                 this.errormsg = "No mood entries so far =("
             }
 
@@ -82,26 +82,35 @@ export class MoodDiagramsPage {
                     };
                     //console.log("happiness array" + happiness_array);
 
-                    var pleasance_array = [];
+                    var act_array = [];
 
                     for (var i = 0; i < act.entries.length; ++i) {
-                        pleasance_array.push(act.entries[i].activation);
+                        act_array.push(act.entries[i].activation);
                     };
                     //console.log("pleasance array" + pleasance_array);
 
                     var mood_array = [];
 
                     for (var i = 0; i < act.entries.length; ++i) {
-                        if (happiness_array[i] == 1 && pleasance_array[i] == 1) {
+                        if (happiness_array[i] == 2 && act_array[i] == 2) {
                             mood_array[i] = 0;
-                        } else if (happiness_array[i] == 1 && pleasance_array[i] == 0) {
+                        } else if (happiness_array[i] == 1 && act_array[i] == 2) {
                             mood_array[i] = 1;
-                        } else if (happiness_array[i] == 0 && pleasance_array[i] == 1) {
+                        } else if (happiness_array[i] == 0 && act_array[i] == 2) {
                             mood_array[i] = 2;
-                        } else {
+                        } else if (happiness_array[i] == 2 && act_array[i] == 1) {
                             mood_array[i] = 3;
+                        } else if (happiness_array[i] == 1 && act_array[i] == 1) {
+                            mood_array[i] = 4;
+                        } else if (happiness_array[i] == 0 && act_array[i] == 1) {
+                            mood_array[i] = 5;
+                        } else if (happiness_array[i] == 2 && act_array[i] == 0) {
+                            mood_array[i] = 6;
+                        } else if (happiness_array[i] == 1 && act_array[i] == 0) {
+                            mood_array[i] = 7;
+                        } else if (happiness_array[i] == 0 && act_array[i] == 0) {
+                            mood_array[i] = 8;
                         }
-
                     }
                     // console.log("mood array");
                     // console.log(mood_array);
@@ -199,35 +208,55 @@ export class MoodDiagramsPage {
                         }
                     }
 
+
+
                     for (var i = 0; i < activity_array_1.length; ++i) {
                         for (var u = 0; u < moodData.length; ++u) {
                             if (activity_array_1[i].timestamp == moodData[u].timestamp) {
                                 activity_array_1[i].moodValue = moodData[u].moodValue;
                                 break;
-                            } else {
-                                activity_array_1[i].moodValue = 4;
-                            }
+                            } 
                         }
                         if (activity_array_1[i].moodValue == 0) {
                             activity_array_1[i].marker = {
-                                "symbol": 'url(assets/Statistics/Smiley30x30/smiley1_30x30.png)'
+                                "symbol": 'url(assets/MoodDiagramSmilieys/mood1.png)'
                             }
                         } else if (activity_array_1[i].moodValue == 1) {
                             activity_array_1[i].marker = {
-                                "symbol": 'url(assets/Statistics/Smiley30x30/smiley2_30x30.png)'
+                                "symbol": 'url(assets/MoodDiagramSmilieys/mood2.png)'
                             }
                         } else if (activity_array_1[i].moodValue == 2) {
                             activity_array_1[i].marker = {
-                                "symbol": 'url(assets/Statistics/Smiley30x30/smiley3_30x30.png)'
+                                "symbol": 'url(assets/MoodDiagramSmilieys/mood3.png)'
                             }
                         } else if (activity_array_1[i].moodValue == 3) {
                             activity_array_1[i].marker = {
-                                "symbol": 'url(assets/Statistics/Smiley30x30/smiley4_30x30.png)'
+                                "symbol": 'url(assets/MoodDiagramSmilieys/mood4.png)'
                             }
+                        } else if (activity_array_1[i].moodValue == 4) {
+                            activity_array_1[i].marker = {
+                                "symbol": 'url(assets/MoodDiagramSmilieys/mood5.png)'
+                            }
+                        } else if (activity_array_1[i].moodValue == 5) {
+                            activity_array_1[i].marker = {
+                                "symbol": 'url(assets/MoodDiagramSmilieys/mood6.png)'
+                            }
+                        } else if (activity_array_1[i].moodValue == 6) {
+                            activity_array_1[i].marker = {
+                                "symbol": 'url(assets/MoodDiagramSmilieys/mood7.png)'
+                            }
+                        } else if (activity_array_1[i].moodValue == 7) {
+                            activity_array_1[i].marker = {
+                                "symbol": 'url(assets/MoodDiagramSmilieys/mood8.png)'
+                            }
+                        } else if (activity_array_1[i].moodValue == 8) {
+                            activity_array_1[i].marker = {
+                                "symbol": 'url(assets/MoodDiagramSmilieys/mood9.png)'
+                            }
+
                         }
+
                     }
-
-
 
                     /* 
                     Maximum of the y Axis in the activity chart
@@ -457,25 +486,43 @@ export class MoodDiagramsPage {
                                     bpm_array_1[i].moodValue = moodData[u].moodValue;
                                     moodData[u].moodValue = -1;
                                     break;
-                                } else {
-                                    bpm_array_1[i].moodValue = 4;
-                                }
+                                } 
                             }
                             if (bpm_array_1[i].moodValue == 0) {
                                 bpm_array_1[i].marker = {
-                                    "symbol": 'url(assets/Statistics/Smiley30x30/smiley1_30x30.png)'
+                                    "symbol": 'url(assets/MoodDiagramSmilieys/mood1.png)'
                                 }
                             } else if (bpm_array_1[i].moodValue == 1) {
                                 bpm_array_1[i].marker = {
-                                    "symbol": 'url(assets/Statistics/Smiley30x30/smiley2_30x30.png)'
+                                    "symbol": 'url(assets/MoodDiagramSmilieys/mood2.png)'
                                 }
                             } else if (bpm_array_1[i].moodValue == 2) {
                                 bpm_array_1[i].marker = {
-                                    "symbol": 'url(assets/Statistics/Smiley30x30/smiley3_30x30.png)'
+                                    "symbol": 'url(assets/MoodDiagramSmilieys/mood3.png)'
                                 }
                             } else if (bpm_array_1[i].moodValue == 3) {
                                 bpm_array_1[i].marker = {
-                                    "symbol": 'url(assets/Statistics/Smiley30x30/smiley4_30x30.png)'
+                                    "symbol": 'url(assets/MoodDiagramSmilieys/mood4.png)'
+                                }
+                            } else if (bpm_array_1[i].moodValue == 4) {
+                                bpm_array_1[i].marker = {
+                                    "symbol": 'url(assets/MoodDiagramSmilieys/mood5.png)'
+                                }
+                            } else if (bpm_array_1[i].moodValue == 5) {
+                                bpm_array_1[i].marker = {
+                                    "symbol": 'url(assets/MoodDiagramSmilieys/mood6.png)'
+                                }
+                            } else if (bpm_array_1[i].moodValue == 6) {
+                                bpm_array_1[i].marker = {
+                                    "symbol": 'url(assets/MoodDiagramSmilieys/mood7.png)'
+                                }
+                            } else if (bpm_array_1[i].moodValue == 7) {
+                                bpm_array_1[i].marker = {
+                                    "symbol": 'url(assets/MoodDiagramSmilieys/mood8.png)'
+                                }
+                            } else if (bpm_array_1[i].moodValue == 8) {
+                                bpm_array_1[i].marker = {
+                                    "symbol": 'url(assets/MoodDiagramSmilieys/mood9.png)'
                                 }
                             }
                         }

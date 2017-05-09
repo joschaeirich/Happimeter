@@ -29,8 +29,12 @@ export class MoodmapPage {
   url = "https://www.pascalbudner.de:8080/v1";
   headers: Headers = new Headers();
 
-  moodData: any = [];
+  moodData_act: any = [];
+  moodData_ple: any = [];
   location: any = [];
+
+  markersActivity: any = [];
+  markersPleasance: any = [];
 
   heatmapData_act: any = [];
   heatmapData_ple: any = [];
@@ -55,41 +59,47 @@ export class MoodmapPage {
 
     this.http.get(this.url + "/moods", { "headers": this.headers }).map(res => res.json()).subscribe(res => {
       for (var i = 0; i < res.moods.length; ++i) {
-        var data: any = {};
+        var data_act: any = {};
 
-        if (res.moods[i].pleasance == 1 && res.moods[i].activation == 1) {
-          data.mood = 0
-          data.fillcolor = "red"
-          data.opacitiy = 1.0
-          data.locationLat = res.moods[i].position.latitude
-          data.locationLong = res.moods[i].position.longitude
-        } else if (res.moods[i].pleasance == 1 && res.moods[i].activation == 0) {
-          data.mood = 1
-          data.fillcolor = "red"
-          data.opacitiy = 0.75
-          data.locationLat = res.moods[i].position.latitude
-          data.locationLong = res.moods[i].position.longitude
-        } else if (res.moods[i].pleasance == 0 && res.moods[i].activation == 1) {
-          data.mood = 2
-          data.fillcolor = "red"
-          data.opacitiy = 0.5
-          data.locationLat = res.moods[i].position.latitude
-          data.locationLong = res.moods[i].position.longitude
-        } else if (res.moods[i].pleasance == 0 && res.moods[i].activation == 0) {
-          data.mood = 3
-          data.fillcolor = "red"
-          data.opacitiy = 0.25
-          data.locationLat = res.moods[i].position.latitude
-          data.locationLong = res.moods[i].position.longitude
+        if (res.moods[i].activation == 2) {
+          data_act.fillcolor = "green"
+          data_act.locationLat = res.moods[i].position.latitude
+          data_act.locationLong = res.moods[i].position.longitude
+        } else if (res.moods[i].activation == 1) {
+          data_act.fillcolor = "orange"
+          data_act.locationLat = res.moods[i].position.latitude
+          data_act.locationLong = res.moods[i].position.longitude
+        } else if (res.moods[i].activation == 0) {
+          data_act.fillcolor = "red"
+          data_act.locationLat = res.moods[i].position.latitude
+          data_act.locationLong = res.moods[i].position.longitude
+        }
+        data_act.timestamp = res.moods[i].timestamp;
+        this.moodData_act.push(data_act);
+
+        var data_ple: any = {};
+        if (res.moods[i].pleasance == 2) {
+          data_ple.fillcolor = "green"
+          data_ple.locationLat = res.moods[i].position.latitude
+          data_ple.locationLong = res.moods[i].position.longitude
+        } else if (res.moods[i].pleasance == 1) {
+          data_ple.fillcolor = "orange"
+          data_ple.locationLat = res.moods[i].position.latitude
+          data_ple.locationLong = res.moods[i].position.longitude
+        } else if (res.moods[i].pleasance == 0) {
+          data_ple.fillcolor = "red"
+          data_ple.locationLat = res.moods[i].position.latitude
+          data_ple.locationLong = res.moods[i].position.longitude
         }
 
 
-        data.timestamp = res.moods[i].timestamp;
-        this.moodData.push(data);
+        data_ple.timestamp = res.moods[i].timestamp;
+        this.moodData_ple.push(data_ple);
 
       };
-
       this.loadMap();
+
+
     });
   }
 
@@ -308,14 +318,10 @@ export class MoodmapPage {
         image = 'assets/Markers/marker_mood9.png'
       }
 
-
       var icon = {
         url: image,
         scaledSize: new google.maps.Size(40, 40), // scaled size    
       };
-
-
-
 
       new google.maps.Marker({
         map: this.map,
@@ -324,12 +330,13 @@ export class MoodmapPage {
         icon: icon
       });
 
-      for (var i = 0; i < this.moodData.length; i++) {
-        if (this.moodData[i].locationLat == null) {
+      for (var i = 0; i < this.moodData_act.length; i++) {
+        if (this.moodData_act[i].locationLat == null) {
           continue;
         }
 
-        this.location = [this.moodData[i].locationLat, this.moodData[i].locationLong];
+        this.location = [this.moodData_act[i].locationLat, this.moodData_act[i].locationLong];
+
 
 
         var heatmap_act_obj: any = {}
@@ -346,28 +353,6 @@ export class MoodmapPage {
 
       }
 
-
-
-
-      /*   
-       var markersAllMoods = [];
-              var latLng = new google.maps.LatLng(location[0],
-                location[1]);           
-              var marker = new google.maps.Marker({
-                icon: {
-                  path: google.maps.SymbolPath.CIRCLE,
-                  scale: 8.5,
-                  fillColor: this.moodData[i].fillcolor,
-                  fillOpacity: this.moodData[i].opacitiy,
-                  strokeWeight: 0.4
-                },
-                map: this.map,
-                position: latLng,
-                animation: google.maps.Animation.DROP
-              });
-              marker.setOpacity(0.5);
-              markersAllMoods.push(marker);
-      */
     });
 
   }
@@ -375,6 +360,83 @@ export class MoodmapPage {
   activationHeatmap() {
 
     if (this.clicked_activation == true) {
+
+      this.markersActivity = [];
+      for (var i = 0; i < this.moodData_act.length; i++) {
+        if (this.moodData_act[i].locationLat == null) {
+          continue;
+        }
+        var location = [this.moodData_act[i].locationLat, this.moodData_act[i].locationLong];
+
+        var latLng = new google.maps.LatLng(location[0], location[1]);
+
+        var marker = new google.maps.Marker({
+          icon: {
+            path: google.maps.SymbolPath.CIRCLE,
+            scale: 8.5,
+            fillColor: this.moodData_act[i].fillcolor,
+            fillOpacity: 1,
+            strokeWeight: 0.4
+          },
+          map: this.map,
+          position: latLng,
+          animation: google.maps.Animation.DROP
+        });
+
+        this.markersActivity.push(marker);
+      }
+      this.clicked_activation = false;
+
+    } else if (this.clicked_activation == false) {
+      for (var i = 0; i < this.markersActivity.length; i++) {
+        this.markersActivity[i].setMap(null);
+      }
+      this.clicked_activation = true;
+    }
+
+  }
+
+  pleasanceHeatmap() {
+
+    if (this.clicked_pleasance == true) {
+
+      this.markersPleasance = [];
+      for (var i = 0; i < this.moodData_ple.length; i++) {
+        if (this.moodData_ple[i].locationLat == null) {
+          continue;
+        }
+        var location = [this.moodData_ple[i].locationLat, this.moodData_ple[i].locationLong];
+
+        var latLng = new google.maps.LatLng(location[0], location[1]);
+
+        var marker = new google.maps.Marker({
+          icon: {
+            path: google.maps.SymbolPath.CIRCLE,
+            scale: 8.5,
+            fillColor: this.moodData_ple[i].fillcolor,
+            fillOpacity: 1,
+            strokeWeight: 0.4
+          },
+          map: this.map,
+          position: latLng,
+          animation: google.maps.Animation.DROP
+        });
+
+        this.markersPleasance.push(marker);
+      }
+      this.clicked_pleasance = false;
+
+    } else if (this.clicked_pleasance == false) {
+      for (var i = 0; i < this.markersPleasance.length; i++) {
+        this.markersPleasance[i].setMap(null);
+      }
+      this.clicked_pleasance = true;
+    }
+
+  }
+}
+/*
+ if (this.clicked_activation == true) {
       this.heatmap = new google.maps.visualization.HeatmapLayer({
         data: this.heatmapData_act,
         map: this.map
@@ -399,28 +461,37 @@ export class MoodmapPage {
 
       this.heatmap.set('gradient', this.heatmap.get('gradient') ? null : gradient);
       this.heatmap.set('radius', this.heatmap.get('radius') ? null : 10);
-      this.heatmap.set('opacity', this.heatmap.get('opacity') ? null : 0.2);
+      this.heatmap.set('opacity', this.heatmap.get('opacity') ? null : 0.8);
       this.clicked_activation = false;
+
     } else if (this.clicked_activation == false) {
-      this.heatmap.setMap(this.heatmap.getMap() ? null : this.map);
+      this.heatmap.setMap(null);
       this.clicked_activation = true;
     }
-  }
 
-  pleasanceHeatmap() {
-    if (this.clicked_pleasance == true) {
-      var heatmap = new google.maps.visualization.HeatmapLayer({
+
+
+
+
+
+pleasance 
+
+  if (this.clicked_pleasance == true) {
+      this.heatmap = new google.maps.visualization.HeatmapLayer({
         data: this.heatmapData_ple,
         map: this.map
+
       });
 
-      heatmap.set('radius', heatmap.get('radius') ? null : 10);
+      this.heatmap.set('radius', this.heatmap.get('radius') ? null : 10);
 
-      heatmap.set('opacity', heatmap.get('opacity') ? null : 0.2);
-      this.clicked_activation = false;
+      this.heatmap.set('opacity', this.heatmap.get('opacity') ? null : 0.8);
+      this.clicked_pleasance = false;
+
+    } else if (this.clicked_pleasance == false) {
+      this.heatmap.setMap(null);
+      this.clicked_pleasance = true;
     }
   }
 
-}
-
-
+*/

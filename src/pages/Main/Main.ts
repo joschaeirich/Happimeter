@@ -20,7 +20,7 @@ import { Http, Headers } from '@angular/http';
 })
 export class MainPage {
 
-  friendRequest: any;
+  friendRequest: any = 'assets/MenuIcons/AddFriendsIcon.svg';
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, public auth: Auth) { }
 

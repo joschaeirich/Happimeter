@@ -41,3 +41,19 @@ background: color($colors, moodmap);
     margin-left: 18px;
     margin-top: 14px;
 }
+
+.activation_is_clicked {
+    opacity: 1;
+}
+
+.activation_is_not_clicked {
+    opacity: 0.2;
+}
+
+.pleasance_is_clicked{
+    opacity: 1;
+}
+
+.pleasance_is_not_clicked{
+    opacity: 0.2;
+}
