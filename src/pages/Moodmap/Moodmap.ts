@@ -160,7 +160,6 @@ export class MoodmapPage {
     this.geolocation.getCurrentPosition().then((position) => {
 
       let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-
       let mapOptions = {
         center: latLng,
         zoom: 15,
@@ -330,6 +329,7 @@ export class MoodmapPage {
       }
 
       this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+
       this.addMarker();
 
 

@@ -3,8 +3,6 @@ import { Http } from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
-//import {GlobalVariables} from '../../providers/globalVariables';
-
 var url= "https://www.pascalbudner.de:8080/v1";
 
 export class User {

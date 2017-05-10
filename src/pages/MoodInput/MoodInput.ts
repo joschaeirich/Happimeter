@@ -34,7 +34,8 @@ export class MoodInputPage {
   contrast: number = 0;
 
   moodIcon: any;
-
+  lat: any;
+  long: any;
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, public auth: Auth, public geolocation: Geolocation) {
 
     this.headers.append("Authorization", "Bearer " + this.auth.token);
@@ -45,13 +46,16 @@ export class MoodInputPage {
     } else {
       counter = Number.parseInt(raw_counter);
     }
+
+
+
   }
   ionViewDidLoad(pleasance, activation) {
     this.moodIcon = 'assets/TransparentSmileys/transparent_mood5.svg'
   }
 
-onChange(pleasance, activation){
- if (this.pleasance == 2 && this.activation == 2) {
+  onChange(pleasance, activation) {
+    if (this.pleasance == 2 && this.activation == 2) {
       this.moodIcon = 'assets/TransparentSmileys/transparent_mood1.svg'
     } else if (this.pleasance == 1 && this.activation == 2) {
       this.moodIcon = 'assets/TransparentSmileys/transparent_mood2.svg'
@@ -71,7 +75,7 @@ onChange(pleasance, activation){
       this.moodIcon = 'assets/TransparentSmileys/transparent_mood9.svg'
     }
 
-}
+  }
   TreePage() {
     switch (counter) {
       case 0:
@@ -94,20 +98,32 @@ onChange(pleasance, activation){
   }
 
   MoodUpload(pleasance, activation) {
-    var timeDifference = moment().utcOffset();
-    timeDifference = timeDifference * 60;
 
-    var moodData: any = {}
-    moodData.pleasance = pleasance,
-      moodData.activation = activation,
-      moodData.timestamp = moment().utc().unix(),
-      moodData.local_timestamp = moodData.timestamp + timeDifference,
-      moodData.account_id = "Smartphone",
-      moodData.device_id = "Smartphone";
-    //console.log(moodData)
-    this.http.post(this.url + "/moods", moodData, { "headers": this.headers }).map(res => res.json()).subscribe(res => { });
+    this.geolocation.getCurrentPosition().then((position) => {
 
-    this.TreePage();
+      var timeDifference = moment().utcOffset();
+      timeDifference = timeDifference * 60;
+
+      var moodData: any = {}
+      moodData.pleasance = pleasance,
+        moodData.activation = activation,
+        moodData.timestamp = moment().utc().unix(),
+        moodData.local_timestamp = moodData.timestamp + timeDifference,
+        moodData.account_id = "Smartphone",
+        moodData.device_id = "Smartphone";
+        moodData.position={
+          lat: position.coords.latitude,
+          lon: position.coords.longitude
+        } 
+        
+        
+        
+      console.log(moodData)
+
+      this.http.post(this.url + "/moods", moodData, { "headers": this.headers }).map(res => res.json()).subscribe(res => { });
+
+      this.TreePage();
+    })
   }
 
 }
