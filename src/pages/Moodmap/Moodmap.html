@@ -6,20 +6,36 @@
   </ion-navbar>
   <div class="row">
     <div class="col col-border centerbutton">
-      <button ion-button clear fab-center [ngClass]="{'activation_is_clicked': clicked_activation, 'activation_is_not_clicked': !clicked_activation}" (click)="activationHeatmap()"> view Acitivity </button>
+      <button ion-button clear fab-center [ngClass]="{'activation_is_clicked': clicked_activation, 'activation_is_not_clicked': !clicked_activation}"
+        (click)="activationMarkers()">Acitivity </button>
     </div>
     <div class="col col-border centerbutton">
-      <button ion-button clear fab-center [ngClass]="{'pleasance_is_clicked': clicked_pleasance, 'pleasance_is_not_clicked': !clicked_pleasance}" (click)="pleasanceHeatmap()"> view Pleasance </button>
+      <button ion-button clear fab-center [ngClass]="{'pleasance_is_clicked': clicked_pleasance, 'pleasance_is_not_clicked': !clicked_pleasance}"
+        (click)="pleasanceMarkers()">Pleasance </button>
+    </div>
+    <div class="col col-border centerbutton">
+      <button ion-button clear fab-center [ngClass]="{'mood_is_clicked': clicked_mood, 'mood_is_not_clicked': !clicked_mood}" (click)="moodMarkers()">Mood </button>
     </div>
   </div>
+
   <br>
 </ion-header>
 <ion-content padding class="page-Moodmap">
-
-
-
   <div #map id="map"></div>
 
-
+  <div class="legend-position">
+    <div class="row">
+      <div> <img src="assets/LegendMoodMap/greenCircle.png"> </div>
+      <div class="text-position"> High </div>
+    </div>
+    <div class="row">
+      <div> <img src="assets/LegendMoodMap/orangeCircle.png"></div>
+      <div class="text-position"> Medium </div>
+    </div>
+    <div class="row">
+      <div> <img src="assets/LegendMoodMap/redCircle.png"></div>
+      <div class="text-position"> Low </div>
+    </div>
+  </div>
 
 </ion-content>

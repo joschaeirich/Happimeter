@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 
 import { NavController, NavParams } from 'ionic-angular';
 import { MoodInputPage } from '../MoodInput/MoodInput';
-import { MainPage } from '../Main/Main';
 import { Auth } from '../../providers/auth';
 
 import { Http, Headers } from '@angular/http';
@@ -13,46 +12,27 @@ import { Http, Headers } from '@angular/http';
 })
 export class MoodPage {
 
-
-
   mood: any;
   errormsg: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, public auth: Auth) { }
   ionViewDidLoad() {
 
-
-
     var url = "https://www.pascalbudner.de:8080/v1";
 
     var headers: Headers = new Headers();
     headers.append("Authorization", "Bearer " + this.auth.token);
 
-    this.http.get(url + "/moods", { "headers": headers }).map(res => res.json()).subscribe(res => {
-      if (res.moods.length == 0) {
+    this.http.get(url + "/classifier/prediction", { "headers": headers }).map(res => res.json()).subscribe(res => {
+      if (res.length == 0) {
         this.errormsg = "No data yet =("
         return;
       }
 
+      var pleasance = res.happiness;
+      var activation = res.activation;;
 
-      var pleasance = res.moods[0].pleasance;
-      var activation = res.moods[0].activation;;
-      //  console.log(activation);
-      //  console.log(pleasance);
-/*
-      if (pleasance == 1 && activation == 1) {
-        this.mood = 'assets/ActualMoodState/mood1.svg'
-      } else if (pleasance == 1 && activation == 0) {
-        this.mood = 'assets/ActualMoodState/mood2.svg'
-      } else if (pleasance == 0 && activation == 1) {
-        this.mood = 'assets/ActualMoodState/mood3.svg'
-      } else if (pleasance == 0 && activation == 0) {
-        this.mood = 'assets/ActualMoodState/mood4.svg'
-      } else {
-
-      }
-  */    
-           if (pleasance == 2 && activation == 2) {
+      if (pleasance == 2 && activation == 2) {
         this.mood = 'assets/TransparentSmileys/transparent_mood1.svg'
       } else if (pleasance == 1 && activation == 2) {
         this.mood = 'assets/TransparentSmileys/transparent_mood2.svg'
@@ -66,23 +46,15 @@ export class MoodPage {
         this.mood = 'assets/TransparentSmileys/transparent_mood6.svg'
       } else if (pleasance == 2 && activation == 0) {
         this.mood = 'assets/TransparentSmileys/transparent_mood7.svg'
-      }else if (pleasance == 1 && activation == 0) {
+      } else if (pleasance == 1 && activation == 0) {
         this.mood = 'assets/TransparentSmileys/transparent_mood8.svg'
       } else if (pleasance == 0 && activation == 0) {
         this.mood = 'assets/TransparentSmileys/transparent_mood9.svg'
-      } else { 
       }
-      
-      
-
     });
-
   }
 
   nextPage() {
     this.navCtrl.push(MoodInputPage);
-  }
-  backButton() {
-    this.navCtrl.push(MainPage);
   }
 }

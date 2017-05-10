@@ -7,7 +7,7 @@ import { Auth } from '../../providers/auth';
 
 import { Http, Headers } from '@angular/http';
 
-
+import { Haversine } from 'haversine-position';
 //import * as MarkerClusterer from 'node-js-marker-clusterer';
 
 declare var google;
@@ -29,12 +29,11 @@ export class MoodmapPage {
   url = "https://www.pascalbudner.de:8080/v1";
   headers: Headers = new Headers();
 
-  moodData_act: any = [];
-  moodData_ple: any = [];
   location: any = [];
 
   markersActivity: any = [];
   markersPleasance: any = [];
+  markersMood: any = [];
 
   heatmapData_act: any = [];
   heatmapData_ple: any = [];
@@ -43,6 +42,9 @@ export class MoodmapPage {
 
   clicked_activation = true;
   clicked_pleasance = true;
+  clicked_mood = true;
+
+  Allclusters: any = [];
 
   @ViewChild('map') mapElement: ElementRef;
   map: any;
@@ -56,50 +58,99 @@ export class MoodmapPage {
 
   ionViewDidLoad() {
 
-
     this.http.get(this.url + "/moods", { "headers": this.headers }).map(res => res.json()).subscribe(res => {
+
+
       for (var i = 0; i < res.moods.length; ++i) {
-        var data_act: any = {};
-
-        if (res.moods[i].activation == 2) {
-          data_act.fillcolor = "green"
-          data_act.locationLat = res.moods[i].position.latitude
-          data_act.locationLong = res.moods[i].position.longitude
-        } else if (res.moods[i].activation == 1) {
-          data_act.fillcolor = "orange"
-          data_act.locationLat = res.moods[i].position.latitude
-          data_act.locationLong = res.moods[i].position.longitude
-        } else if (res.moods[i].activation == 0) {
-          data_act.fillcolor = "red"
-          data_act.locationLat = res.moods[i].position.latitude
-          data_act.locationLong = res.moods[i].position.longitude
-        }
-        data_act.timestamp = res.moods[i].timestamp;
-        this.moodData_act.push(data_act);
-
-        var data_ple: any = {};
-        if (res.moods[i].pleasance == 2) {
-          data_ple.fillcolor = "green"
-          data_ple.locationLat = res.moods[i].position.latitude
-          data_ple.locationLong = res.moods[i].position.longitude
-        } else if (res.moods[i].pleasance == 1) {
-          data_ple.fillcolor = "orange"
-          data_ple.locationLat = res.moods[i].position.latitude
-          data_ple.locationLong = res.moods[i].position.longitude
-        } else if (res.moods[i].pleasance == 0) {
-          data_ple.fillcolor = "red"
-          data_ple.locationLat = res.moods[i].position.latitude
-          data_ple.locationLong = res.moods[i].position.longitude
+        if (res.moods[i].position.latitude == null) {
+          continue;
         }
 
+        var found = false;
+        var mood = res.moods[i];
+        for (var j = 0; j < this.Allclusters.length; ++j) {
+          var cluster = this.Allclusters[j];
+          var moodPos = {
+            lat: mood.position.latitude,
+            lng: mood.position.longitude
+          };
+          var clusterPos = {
+            lat: cluster.latitude,
+            lng: cluster.longitude
+          };
 
-        data_ple.timestamp = res.moods[i].timestamp;
-        this.moodData_ple.push(data_ple);
+          if (Haversine.getDistance(clusterPos, moodPos) <= 200) {
 
-      };
+            this.Allclusters[j].sumAct += mood.activation;
+            this.Allclusters[j].sumPls += mood.pleasance;
+            this.Allclusters[j].count++;
+            found = true;
+          }
+        }
+        if (found == false) {
+          this.Allclusters.push({
+            latitude: mood.position.latitude,
+            longitude: mood.position.longitude,
+            sumAct: mood.activation,
+            sumPls: mood.pleasance,
+            count: 1
+          });
+        }
+      }
+
+      for (var i = 0; i < this.Allclusters.length; ++i) {
+        this.Allclusters[i].avgAct = this.Allclusters[i].sumAct / this.Allclusters[i].count;
+        this.Allclusters[i].avgPls = this.Allclusters[i].sumPls / this.Allclusters[i].count;
+        var avgAct = this.Allclusters[i].avgAct;
+        var avgPls = this.Allclusters[i].avgPls;
+
+        if (avgAct <= 2 && avgAct > 1.3) {
+          this.Allclusters[i].fillcolorAct = "green"
+          this.Allclusters[i].activation = 2;
+        } else if (avgAct <= 1.3 && avgAct > 0.7) {
+          this.Allclusters[i].fillcolorAct = "orange"
+          this.Allclusters[i].activation = 1;
+        } else if (avgAct <= 0.7) {
+          this.Allclusters[i].fillcolorAct = "red"
+          this.Allclusters[i].activation = 0;
+        }
+
+        if (avgPls <= 2 && avgPls > 1.3) {
+          this.Allclusters[i].fillcolorPls = "green"
+          this.Allclusters[i].pleasance = 2;
+        } else if (avgPls <= 1.3 && avgPls > 0.7) {
+          this.Allclusters[i].fillcolorPls = "orange"
+          this.Allclusters[i].pleasance = 1;
+        } else if (avgPls <= 0.7) {
+          this.Allclusters[i].fillcolorPls = "red"
+          this.Allclusters[i].pleasance = 0;
+        }
+
+        var activation = this.Allclusters[i].activation;
+        var pleasance = this.Allclusters[i].pleasance;
+
+        if (activation == 2 && pleasance == 2) {
+          this.Allclusters[i].image = 'assets/Markers/marker_mood1.png'
+        } else if (pleasance == 1 && activation == 2) {
+          this.Allclusters[i].image = 'assets/Markers/marker_mood2.png'
+        } else if (pleasance == 0 && activation == 2) {
+          this.Allclusters[i].image = 'assets/Markers/marker_mood3.png'
+        } else if (pleasance == 2 && activation == 1) {
+          this.Allclusters[i].image = 'assets/Markers/marker_mood4.png'
+        } else if (pleasance == 1 && activation == 1) {
+          this.Allclusters[i].image = 'assets/Markers/marker_mood5.png'
+        } else if (pleasance == 0 && activation == 1) {
+          this.Allclusters[i].image = 'assets/Markers/marker_mood6.png'
+        } else if (pleasance == 2 && activation == 0) {
+          this.Allclusters[i].image = 'assets/Markers/marker_mood7.png'
+        } else if (pleasance == 1 && activation == 0) {
+          this.Allclusters[i].image = 'assets/Markers/marker_mood8.png'
+        } else if (pleasance == 0 && activation == 0) {
+          this.Allclusters[i].image = 'assets/Markers/marker_mood9.png'
+        }
+        
+      }
       this.loadMap();
-
-
     });
   }
 
@@ -329,53 +380,52 @@ export class MoodmapPage {
         position: this.map.getCenter(),
         icon: icon
       });
-
-      for (var i = 0; i < this.moodData_act.length; i++) {
-        if (this.moodData_act[i].locationLat == null) {
-          continue;
-        }
-
-        this.location = [this.moodData_act[i].locationLat, this.moodData_act[i].locationLong];
-
-
-
-        var heatmap_act_obj: any = {}
-        heatmap_act_obj.location = new google.maps.LatLng(this.location[0], this.location[1]);
-        heatmap_act_obj.weight = res.moods[i].activation;
-
-        this.heatmapData_act.push(heatmap_act_obj);
-
-        var heatmap_ple_obj: any = {}
-        heatmap_ple_obj.location = new google.maps.LatLng(this.location[0], this.location[1]);
-        heatmap_ple_obj.weight = res.moods[i].pleasance;
-
-        this.heatmapData_ple.push(heatmap_ple_obj);
-
-      }
-
+      /*
+            for (var i = 0; i < this.moodData_act.length; i++) {
+              if (this.moodData_act[i].locationLat == null) {
+                continue;
+              }
+      
+              this.location = [this.moodData_act[i].locationLat, this.moodData_act[i].locationLong];
+      
+      
+      
+              var heatmap_act_obj: any = {}
+              heatmap_act_obj.location = new google.maps.LatLng(this.location[0], this.location[1]);
+              heatmap_act_obj.weight = res.moods[i].activation;
+      
+              this.heatmapData_act.push(heatmap_act_obj);
+      
+              var heatmap_ple_obj: any = {}
+              heatmap_ple_obj.location = new google.maps.LatLng(this.location[0], this.location[1]);
+              heatmap_ple_obj.weight = res.moods[i].pleasance;
+      
+              this.heatmapData_ple.push(heatmap_ple_obj);
+      
+            }
+      */
     });
 
   }
 
-  activationHeatmap() {
+
+  activationMarkers() {
 
     if (this.clicked_activation == true) {
 
       this.markersActivity = [];
-      for (var i = 0; i < this.moodData_act.length; i++) {
-        if (this.moodData_act[i].locationLat == null) {
-          continue;
-        }
-        var location = [this.moodData_act[i].locationLat, this.moodData_act[i].locationLong];
+      for (var i = 0; i < this.Allclusters.length; i++) {
+
+        var location = [this.Allclusters[i].latitude, this.Allclusters[i].longitude];
 
         var latLng = new google.maps.LatLng(location[0], location[1]);
 
         var marker = new google.maps.Marker({
           icon: {
             path: google.maps.SymbolPath.CIRCLE,
-            scale: 8.5,
-            fillColor: this.moodData_act[i].fillcolor,
-            fillOpacity: 1,
+            scale: 20,
+            fillColor: this.Allclusters[i].fillcolorAct,
+            fillOpacity: 0.5,
             strokeWeight: 0.4
           },
           map: this.map,
@@ -396,25 +446,23 @@ export class MoodmapPage {
 
   }
 
-  pleasanceHeatmap() {
+  pleasanceMarkers() {
 
     if (this.clicked_pleasance == true) {
 
       this.markersPleasance = [];
-      for (var i = 0; i < this.moodData_ple.length; i++) {
-        if (this.moodData_ple[i].locationLat == null) {
-          continue;
-        }
-        var location = [this.moodData_ple[i].locationLat, this.moodData_ple[i].locationLong];
+      for (var i = 0; i < this.Allclusters.length; i++) {
+
+        var location = [this.Allclusters[i].latitude, this.Allclusters[i].longitude];
 
         var latLng = new google.maps.LatLng(location[0], location[1]);
 
         var marker = new google.maps.Marker({
           icon: {
             path: google.maps.SymbolPath.CIRCLE,
-            scale: 8.5,
-            fillColor: this.moodData_ple[i].fillcolor,
-            fillOpacity: 1,
+            scale: 20,
+            fillColor: this.Allclusters[i].fillcolorPls,
+            fillOpacity: 0.5,
             strokeWeight: 0.4
           },
           map: this.map,
@@ -432,9 +480,43 @@ export class MoodmapPage {
       }
       this.clicked_pleasance = true;
     }
+  }
 
+  moodMarkers() {
+
+    if (this.clicked_mood == true) {
+
+      this.markersMood = [];
+      for (var i = 0; i < this.Allclusters.length; i++) {
+
+        var location = [this.Allclusters[i].latitude, this.Allclusters[i].longitude];
+        var latLng = new google.maps.LatLng(location[0], location[1]);
+
+        var icon = {
+          url: this.Allclusters[i].image,
+          scaledSize: new google.maps.Size(40, 40), // scaled size    
+        };
+
+        var marker = new google.maps.Marker({
+          map: this.map,
+          position: latLng,
+          animation: google.maps.Animation.DROP,
+          icon: icon
+        });
+
+        this.markersMood.push(marker);
+      }
+      this.clicked_mood = false;
+
+    } else if (this.clicked_mood == false) {
+      for (var i = 0; i < this.markersMood.length; i++) {
+        this.markersMood[i].setMap(null);
+      }
+      this.clicked_mood = true;
+    }
   }
 }
+
 /*
  if (this.clicked_activation == true) {
       this.heatmap = new google.maps.visualization.HeatmapLayer({
