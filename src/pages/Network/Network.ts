@@ -1,11 +1,11 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { MainPage } from '../Main/Main';
-import * as d3 from "d3";
+//import * as d3 from "d3";
 
 
-import {NgCytoscape} from "ng2-cytoscape/dist";
-
+//import {NgCytoscape} from "ng2-cytoscape/dist";
+/*
 var graph: any = {
   "nodes": [
     { "id": "Joscha", "group": 1 },
@@ -22,7 +22,7 @@ var graph: any = {
 
   ]
 }
-
+*/
 @Component({
   selector: 'page-Network',
   templateUrl: 'Network.html'

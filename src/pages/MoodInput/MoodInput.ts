@@ -111,19 +111,19 @@ export class MoodInputPage {
         moodData.local_timestamp = moodData.timestamp + timeDifference,
         moodData.account_id = "Smartphone",
         moodData.device_id = "Smartphone";
-        moodData.position={
-          lat: position.coords.latitude,
-          lon: position.coords.longitude
-        } 
-        
-        
-        
+      moodData.position = {
+        lat: position.coords.latitude,
+        lon: position.coords.longitude
+      }
+
+
+
       console.log(moodData)
 
       this.http.post(this.url + "/moods", moodData, { "headers": this.headers }).map(res => res.json()).subscribe(res => { });
-
-      this.TreePage();
     })
+
+    this.TreePage();
   }
 
 }
