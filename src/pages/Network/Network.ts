@@ -4,6 +4,8 @@ import { MainPage } from '../Main/Main';
 import * as d3 from "d3";
 
 
+import {NgCytoscape} from "ng2-cytoscape/dist";
+
 var graph: any = {
   "nodes": [
     { "id": "Joscha", "group": 1 },
@@ -31,11 +33,38 @@ export class NetworkPage {
   @ViewChild('canvas') network1;
 
 
+
   constructor(public navCtrl: NavController) {
 
   }
 
   ionViewDidLoad() {
+    
+
+
+  }
+  backButton() {
+    this.navCtrl.push(MainPage);
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*
     var width = 640,
       height = 480;
@@ -57,7 +86,7 @@ export class NetworkPage {
         (nodes[link.target] = { name: link.target });
     });
 */
-    
+ /*
         var svg = d3.select(this.network.nativeElement),
           width = +svg.attr("width"),
           height = +svg.attr("height");
@@ -133,11 +162,4 @@ export class NetworkPage {
           d.fx = null;
           d.fy = null;
         }
-    
-
-  }
-  backButton() {
-    this.navCtrl.push(MainPage);
-  }
-
-}
+*/    
