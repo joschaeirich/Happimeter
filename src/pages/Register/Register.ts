@@ -8,7 +8,7 @@ import { Auth } from '../../providers/auth';
 })
 export class RegisterPage {
   createSuccess = false;
-  registerCredentials = { email: '', password: '' };
+  registerCredentials = { email: '', password: '', name: '' };
  
   constructor(private nav: NavController, private auth: Auth, private alertCtrl: AlertController) { }
  
@@ -17,6 +17,7 @@ export class RegisterPage {
       console.log(response)
       if (response) {
         this.createSuccess = true;
+        console.log(this.registerCredentials)
         this.showPopup("Success", "Account created.");
       } else {
         this.showPopup("Error", "Problem creating account.");

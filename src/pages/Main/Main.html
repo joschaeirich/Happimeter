@@ -1,41 +1,34 @@
-
-
-
-<ion-content class ="main-page" Ionic pages and navigation. ng-controller="AppCtrl">
-  <div class="row" >
-  <div class="col col-50">
-    <img class="ion-img animated rotateIn _1"  style="width:100%"  src="assets/MenuIcons/MoodIcon.svg" (click)="moodPage()">
-  </div>
+<ion-content class="main-page" Ionic pages and navigation. ng-controller="AppCtrl">
+  <div class="row">
     <div class="col col-50">
-<img class = "scroll animated rotateIn _2" src="assets/MenuIcons/MoodMap.svg"  (click)="moodMapPage()">
+      <img class="ion-img rotateIn _1" style="width:100%" src="assets/MenuIcons/MoodIcon.svg" (click)="moodPage()" [ngClass]="{'animated': !pageVisited}">
+    </div>
+    <div class="col col-50">
+      <img class="scroll rotateIn _2" src="assets/MenuIcons/MoodMap.svg" (click)="moodMapPage()" [ngClass]="{'animated': !pageVisited}">
     </div>
   </div>
-  <div class="row" >
-  <div class="col col-50">
-<img class = "scroll animated rotateIn _3" src="assets/MenuIcons/NetworkIcon.svg" (click)="networkPage()">
+  <div class="row">
+    <div class="col col-50">
+      <img class="scroll rotateIn _3" src="assets/MenuIcons/NetworkIcon.svg" (click)="networkPage()" [ngClass]="{'animated': !pageVisited}">
+    </div>
+    <div class="col col-50">
+      <img class="scroll rotateIn _4" src="assets/MenuIcons/StatisticsIcon.svg" (click)="statisticsPage()" [ngClass]="{'animated': !pageVisited}">
+    </div>
   </div>
-  <div class="col col-50">
-<img class = "scroll animated rotateIn _4" src="assets/MenuIcons/StatisticsIcon.svg" (click)="statisticsPage()">
+  <div class="row">
+    <div class="col col-50">
+      <img class="scroll rotateIn _5" src="assets/MenuIcons/ForrestIcon.svg" (click)="achievementPage()" [ngClass]="{'animated': !pageVisited}">
+    </div>
+    <div class="col col-50">
+      <img class="scroll rotateIn _6" [src]="friendRequest" (click)="friendsPage()" [ngClass]="{'animated': !pageVisited}">
+    </div>
   </div>
+  <div class="row">
+    <div class="col col-50">
+      <img class="scroll rotateIn _7" src="assets/MenuIcons/SpeechIcon.svg" (click)="speechPage()" [ngClass]="{'animated': !pageVisited}">
+    </div>
+    <div class="col col-50">
+      <img class="scroll rotateIn _8" src="assets/MenuIcons/SettingsIcon.svg" (click)="settingsPage()" [ngClass]="{'animated': !pageVisited}">
+    </div>
   </div>
-  <div class="row" >
-  <div class="col col-50">
-<img class = "scroll animated rotateIn _5" src="assets/MenuIcons/ForrestIcon.svg" (click)="achievementPage()">
-  </div>
-  <div class="col col-50">
-<img class = "scroll animated rotateIn _6" [src] = "friendRequest" (click)="friendsPage()">
-  </div>
-  </div>
-    <div class="row" >
-  <div class="col col-50">
-<img class = "scroll animated rotateIn _7" src="assets/MenuIcons/SpeechIcon.svg" (click)="speechPage()">
-  </div>  
-  <div class="col col-50">
-<img class = "scroll animated rotateIn _8" src="assets/MenuIcons/SettingsIcon.svg" (click)="settingsPage()">
-  </div>
-  </div>
-
 </ion-content>
-
-
-

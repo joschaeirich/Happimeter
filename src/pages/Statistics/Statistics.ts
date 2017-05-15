@@ -131,7 +131,7 @@ export class StatisticsPage {
                 this.moodOccurence1 = this.moodOccurence1 - 1
             }
             // console.log("moodChart")
-            console.log(moodChart)
+            // console.log(moodChart)
 
 
 

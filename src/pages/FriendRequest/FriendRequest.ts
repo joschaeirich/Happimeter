@@ -33,6 +33,9 @@ export class FriendRequestPage {
   }
 
   changeToDecline(addUser) {
+     this.http.delete(this.url + "/friends/" + addUser.id, { "headers": this.headers }).map(fri => fri.json()).subscribe(fri => {
+
+    });
     addUser.accepted = true;
     this.text = "Declined";
   }
@@ -40,7 +43,7 @@ export class FriendRequestPage {
 
 
   ionViewDidLoad() {
-
+console.log(this.friendRequest)
     // Push friend request 
     this.friendRequest = [];
     this.http.get(this.url + "/friends/requests", { "headers": this.headers }).map(fri => fri.json()).subscribe(fri => {

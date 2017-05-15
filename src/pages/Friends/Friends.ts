@@ -75,6 +75,7 @@ export class FriendsPage {
         this.friendRequest = 'assets/Friends/Icons/openFriendRequest.svg';
       } else {
         this.headerText = "No Requests";
+        this.friendRequest = 'assets/Friends/Icons/friendRequests.svg';
       }
 
     });

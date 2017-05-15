@@ -86,8 +86,10 @@ export class SettingsPage {
 
             this.http.delete(url + "/me", { "headers": headers }).map(del => del.json()).subscribe(del => {
               console.log(del) 
+              this.storage.set('login_token', null);
               this.navCtrl.push(LoginPage);
             });
+            
           }
         }
       ]

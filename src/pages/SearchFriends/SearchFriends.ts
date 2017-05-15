@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { Auth } from '../../providers/auth';
-
 import { Http, Headers } from '@angular/http';
+
+import { FriendsPage } from '../Friends/Friends';
 
 @Component({
   selector: 'page-SearchFriends',
@@ -65,7 +66,7 @@ export class SearchFriendsPage {
           text: 'Yes',
           handler: () => {
             this.http.post(this.url + "/friends/" + addUser.id, null, { "headers": this.headers }).map(fri => fri.json()).subscribe(fri => {
-
+              this.navCtrl.push(FriendsPage);
             });
           }
         }

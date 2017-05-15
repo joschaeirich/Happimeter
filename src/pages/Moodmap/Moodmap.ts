@@ -34,6 +34,7 @@ export class MoodmapPage {
   markersActivity: any = [];
   markersPleasance: any = [];
   markersMood: any = [];
+  markerCurrentMood: any; 
 
   heatmapData_act: any = [];
   heatmapData_ple: any = [];
@@ -374,7 +375,7 @@ export class MoodmapPage {
         scaledSize: new google.maps.Size(40, 40), // scaled size    
       };
 
-      new google.maps.Marker({
+      this.markerCurrentMood = new google.maps.Marker({
         map: this.map,
         animation: google.maps.Animation.DROP,
         position: this.map.getCenter(),
@@ -485,7 +486,6 @@ export class MoodmapPage {
   moodMarkers() {
 
     if (this.clicked_mood == true) {
-
       this.markersMood = [];
       for (var i = 0; i < this.Allclusters.length; i++) {
 
@@ -511,6 +511,7 @@ export class MoodmapPage {
     } else if (this.clicked_mood == false) {
       for (var i = 0; i < this.markersMood.length; i++) {
         this.markersMood[i].setMap(null);
+       
       }
       this.clicked_mood = true;
     }

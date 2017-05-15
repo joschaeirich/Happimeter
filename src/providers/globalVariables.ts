@@ -5,11 +5,11 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class GlobalVariables {
+  pageVisited: any = false;
 
-   constructor(public http: Http) {
-    
-    console.log('Hello GlobalVariables Provider');
+  constructor(public http: Http) {
+
   }
- 
+
 
 }

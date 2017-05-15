@@ -8,6 +8,7 @@ import { AchievementPage } from '../Achievement/Achievement';
 import { StatisticsPage } from '../Statistics/Statistics';
 import { FriendsPage } from '../Friends/Friends';
 import { Auth } from '../../providers/auth';
+import { GlobalVariables } from '../../providers/globalVariables';
 import { SpeechPage } from '../Speech/Speech';
 
 
@@ -22,7 +23,19 @@ export class MainPage {
 
   friendRequest: any = 'assets/MenuIcons/AddFriendsIcon.svg';
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, public auth: Auth) { }
+  pageVisited: any = false; 
+
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, public auth: Auth, public global:GlobalVariables) {
+   }
+
+   ionViewWillEnter() {
+    this.pageVisited = this.global.pageVisited;
+    this.global.pageVisited = true;
+    console.log("Page visited is " + this.pageVisited);
+   }
+
+  
 
   moodPage() {
     this.navCtrl.push(MoodPage);

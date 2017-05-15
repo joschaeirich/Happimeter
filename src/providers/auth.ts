@@ -36,25 +36,23 @@ export class Auth {
     } else {
       return this.http.post(url+"/auth", {
         "mail": credentials.email,
-        "password": credentials.password
+        "password": credentials.password, 
       });
 
     }
   }
 
   public register(credentials) {
-    if (credentials.email == null || credentials.password == null) {
+    if (credentials.email == null || credentials.password == null || credentials.name === null) {
       return Observable.throw("Please insert credentials");
     } else {
       // At this point store the credentials to your backend!
       return this.http.post(url+"/users", {
         "mail": credentials.email,
-        "password": credentials.password
+        "password": credentials.password,
+        "name":credentials.name
       });
-      /*return Observable.create(observer => {
-        observer.next(true);
-        observer.complete();
-      });*/
+
     }
   }
  
@@ -71,23 +69,3 @@ export class Auth {
   }
 }
 
-
-/*
-
-  constructor(public http: Http) {
-    console.log('Hello Auth Provider');
-  }
-
-  login() {
-
-    return new Promise((resolve) => {
-
-      setTimeout(() => {
-        resolve(true);
-      }, 3000);
-
-    });
-  }
-
-}
-*/

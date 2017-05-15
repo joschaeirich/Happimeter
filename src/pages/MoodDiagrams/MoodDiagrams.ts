@@ -23,6 +23,9 @@ export class MoodDiagramsPage {
     happinessChart: any;
 
     meanBpm: any = 0;
+    meanActivity: any = 0;
+    meanActivityString: any = "medium"
+
 
     errormsg: any;
 
@@ -121,8 +124,9 @@ export class MoodDiagramsPage {
                      */
                     var moodtimestamp_array = [];
                     for (var i = 0; i < act.entries.length; ++i) {
-                        moodtimestamp_array.push(moment.utc(act.entries[i].timestamp).local());
+                        moodtimestamp_array.push(moment.utc(act.entries[i].timestamp, "DD/MM/YYYY HH:mm").local());
                     };
+                    // console.log(moodtimestamp_array);
 
                     if (moment().isDST() == false) {
                         for (var i = 0; i < moodtimestamp_array.length; i++) {
@@ -135,7 +139,7 @@ export class MoodDiagramsPage {
                     }
 
                     // console.log("timestamps mood");
-                    // console.log(moodtimestamp_array);
+                    //console.log(moodtimestamp_array);
 
                     /*  
                         moodData
@@ -162,7 +166,7 @@ export class MoodDiagramsPage {
                     for (var i = 0; i < res.entries.length; ++i) {
                         activity_array.push({
                             y: res.entries[i].vmc,
-                            timestamp: moment.utc(res.entries[i].timestamp).local()
+                            timestamp: moment.utc(res.entries[i].timestamp, "DD/MM/YYYY HH:mm").local()
 
                         });
 
@@ -189,6 +193,7 @@ export class MoodDiagramsPage {
                     for (var i = 0; i < res.entries.length; ++i) {
 
                         xaxisTime_array[i] = activity_array[i].timestamp
+
                     };
 
 
@@ -215,7 +220,7 @@ export class MoodDiagramsPage {
                             if (activity_array_1[i].timestamp == moodData[u].timestamp) {
                                 activity_array_1[i].moodValue = moodData[u].moodValue;
                                 break;
-                            } 
+                            }
                         }
                         if (activity_array_1[i].moodValue == 0) {
                             activity_array_1[i].marker = {
@@ -258,6 +263,24 @@ export class MoodDiagramsPage {
 
                     }
 
+
+                    var counterActivtiy = 0;
+                    for (var i = 0; i < activity_array.length; i++) {
+                        counterActivtiy++
+                        this.meanActivity += activity_array[i].y
+                    }
+                    this.meanActivity = Math.round(this.meanActivity / counterActivtiy);
+                    if (this.meanActivity > 80000) {
+                        this.meanActivityString = "Very High"
+                    }else if (this.meanActivity <= 80000 && this.meanActivity > 40000) {
+                        this.meanActivityString = "High"
+                    }else if (this.meanActivity <= 40000 && this.meanActivity > 10000) {
+                        this.meanActivityString = "Medium"
+                    }else if (this.meanActivity <= 10000 && this.meanActivity > 100) {
+                        this.meanActivityString = "Low"
+                    }
+
+                    console.log(this.meanActivityString)
                     /* 
                     Maximum of the y Axis in the activity chart
                     */
@@ -452,7 +475,7 @@ export class MoodDiagramsPage {
                         for (var i = 0; i < res.entries.length; ++i) {
                             bpm_array.push({
                                 y: res.entries[i].heartrate,
-                                timestamp: moment.utc(res.entries[i].timestamp).local()
+                                timestamp: moment.utc(res.entries[i].timestamp, "DD/MM/YYYY HH:mm").local()
                             });
                         };
 
@@ -486,7 +509,7 @@ export class MoodDiagramsPage {
                                     bpm_array_1[i].moodValue = moodData[u].moodValue;
                                     moodData[u].moodValue = -1;
                                     break;
-                                } 
+                                }
                             }
                             if (bpm_array_1[i].moodValue == 0) {
                                 bpm_array_1[i].marker = {
@@ -546,7 +569,7 @@ export class MoodDiagramsPage {
                         var xaxis_bpm_Time_array = [];
                         for (var i = 0; i < res.entries.length; ++i) {
 
-                            xaxis_bpm_Time_array.push(moment.utc(res.entries[i].timestamp).local());
+                            xaxis_bpm_Time_array.push(moment.utc(res.entries[i].timestamp, "DD/MM/YYYY HH:mm").local());
                         };
 
 
@@ -779,7 +802,7 @@ export class MoodDiagramsPage {
                                         display: false,
                                     },
                                     xAxis: {
-                                        categories: ["", "", "", "", "", "", "", ""],
+                                        categories: weekdays_array,
                                         labels: {
                                             style: {
                                                 color: '#FFFFFF'
@@ -787,6 +810,8 @@ export class MoodDiagramsPage {
                                         }
                                     },
                                     yAxis: {
+                                        minRange: 1,
+                                        min: 0,
                                         title: {
                                             text: null
                                         },
@@ -798,7 +823,7 @@ export class MoodDiagramsPage {
                                         alternateGridColor: null,
                                         plotBands: [{
                                             from: 0,
-                                            to: 0.33,
+                                            to: 1,
                                             color: 'transparent',
                                             label: {
                                                 text: 'Low',
@@ -809,8 +834,8 @@ export class MoodDiagramsPage {
                                                 }
                                             }
                                         }, {
-                                            from: 0.33,
-                                            to: 0.66,
+                                            from: 1.01,
+                                            to: 2,
                                             color: 'transparent',
                                             label: {
                                                 text: 'Medium',
@@ -821,8 +846,8 @@ export class MoodDiagramsPage {
                                                 }
                                             }
                                         }, {
-                                            from: 0.66,
-                                            to: 1,
+                                            from: 2.01,
+                                            to: 3,
                                             color: 'transparent',
                                             label: {
                                                 text: 'High',
@@ -837,19 +862,19 @@ export class MoodDiagramsPage {
                                             color: 'rgba(255, 255, 255, 0.5)',
                                             width: 2,
                                             dashStyle: 'ShortDot',
-                                            value: 0.33,
-                                        },
-                                        {
-                                            color: 'rgba(255, 255, 255, 0.5)',
-                                            width: 2,
-                                            dashStyle: 'ShortDot',
-                                            value: 0.66,
-                                        },
-                                        {
-                                            color: 'rgba(255, 255, 255, 0.5)',
-                                            width: 2,
-                                            dashStyle: 'ShortDot',
                                             value: 1,
+                                        },
+                                        {
+                                            color: 'rgba(255, 255, 255, 0.5)',
+                                            width: 2,
+                                            dashStyle: 'ShortDot',
+                                            value: 2,
+                                        },
+                                        {
+                                            color: 'rgba(255, 255, 255, 0.5)',
+                                            width: 2,
+                                            dashStyle: 'ShortDot',
+                                            value: 3,
                                         }]
                                     },
                                     tooltip: {
@@ -906,6 +931,8 @@ export class MoodDiagramsPage {
                                         }
                                     },
                                     yAxis: {
+                                        minRange: 1,
+                                        min: 0,
                                         title: {
                                             text: null
                                         },
@@ -917,7 +944,7 @@ export class MoodDiagramsPage {
                                         alternateGridColor: null,
                                         plotBands: [{
                                             from: 0,
-                                            to: 0.33,
+                                            to: 1,
                                             color: 'transparent',
                                             label: {
                                                 text: 'Low',
@@ -928,8 +955,8 @@ export class MoodDiagramsPage {
                                                 }
                                             }
                                         }, {
-                                            from: 0.33,
-                                            to: 0.66,
+                                            from: 1.01,
+                                            to: 2,
                                             color: 'transparent',
                                             label: {
                                                 text: 'Medium',
@@ -940,8 +967,8 @@ export class MoodDiagramsPage {
                                                 }
                                             }
                                         }, {
-                                            from: 0.66,
-                                            to: 1,
+                                            from: 2.01,
+                                            to: 3,
                                             color: 'transparent',
                                             label: {
                                                 text: 'High',
@@ -956,19 +983,19 @@ export class MoodDiagramsPage {
                                             color: 'rgba(255, 255, 255, 0.5)',
                                             width: 2,
                                             dashStyle: 'ShortDot',
-                                            value: 0.33,
-                                        },
-                                        {
-                                            color: 'rgba(255, 255, 255, 0.5)',
-                                            width: 2,
-                                            dashStyle: 'ShortDot',
-                                            value: 0.66,
-                                        },
-                                        {
-                                            color: 'rgba(255, 255, 255, 0.5)',
-                                            width: 2,
-                                            dashStyle: 'ShortDot',
                                             value: 1,
+                                        },
+                                        {
+                                            color: 'rgba(255, 255, 255, 0.5)',
+                                            width: 2,
+                                            dashStyle: 'ShortDot',
+                                            value: 2,
+                                        },
+                                        {
+                                            color: 'rgba(255, 255, 255, 0.5)',
+                                            width: 2,
+                                            dashStyle: 'ShortDot',
+                                            value: 3,
                                         }]
                                     },
                                     tooltip: {

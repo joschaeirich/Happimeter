@@ -20,18 +20,13 @@ export class LoginPage {
 
 
     storage.ready().then(() => {
-
-      // set a key/value
-
-
-      // Or to get a key/value pair
       storage.get('login_token').then((val) => {
         if (val != null) {
           this.auth.token = val;
           this.navCtrl.setRoot(MainPage);
-          //  console.log(val)
         }
       })
+
     });
 
   }
