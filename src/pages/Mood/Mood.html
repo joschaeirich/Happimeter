@@ -5,22 +5,30 @@
 </ion-header>
 
 <ion-content class="page-Mood" style="text-align: center">
-  <h3> Right now you are:</h3>
+  <h3> Is this your current mood?</h3>
+  <div class="row">
+    <div class="col">
+      Activation: {{activation}}
+    </div>
+    <div class="col">
+      Pleasance: {{pleasance}}
+    </div>
+  </div>
   <br>
   <br>
-  <br>
-  <br>
-  <br>
+
   <div class="mood_image">
     <img *ngIf="!errormsg" [src]="mood"> {{errormsg}}
   </div>
   <br>
   <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <button ion-button full (click)="nextPage()" outline> How are you feeling?  </button>
+
+  <div class="row">
+    <div class="col">
+      <img src="assets/confirm_notConfirm/hacken.svg" style="width: 40px" (click)="confirm()">
+    </div>
+    <div class="col">
+      <img src="assets/confirm_notConfirm/cross.svg" style="width: 40px" (click)="NOTconfirm()">
+    </div>
+  </div>
 </ion-content>

@@ -116,7 +116,7 @@ export class MoodDiagramsPage {
                         }
                     }
                     // console.log("mood array");
-                    // console.log(mood_array);
+                     console.log(mood_array);
 
                     /*  
                         Mood Timestamp
@@ -262,7 +262,7 @@ export class MoodDiagramsPage {
                         }
 
                     }
-
+                    console.log(activity_array_1)
 
                     var counterActivtiy = 0;
                     for (var i = 0; i < activity_array.length; i++) {
@@ -272,15 +272,15 @@ export class MoodDiagramsPage {
                     this.meanActivity = Math.round(this.meanActivity / counterActivtiy);
                     if (this.meanActivity > 80000) {
                         this.meanActivityString = "Very High"
-                    }else if (this.meanActivity <= 80000 && this.meanActivity > 40000) {
+                    } else if (this.meanActivity <= 80000 && this.meanActivity > 40000) {
                         this.meanActivityString = "High"
-                    }else if (this.meanActivity <= 40000 && this.meanActivity > 10000) {
+                    } else if (this.meanActivity <= 40000 && this.meanActivity > 10000) {
                         this.meanActivityString = "Medium"
-                    }else if (this.meanActivity <= 10000 && this.meanActivity > 100) {
+                    } else if (this.meanActivity <= 10000 && this.meanActivity > 100) {
                         this.meanActivityString = "Low"
                     }
 
-                    console.log(this.meanActivityString)
+
                     /* 
                     Maximum of the y Axis in the activity chart
                     */
