@@ -35,7 +35,7 @@ export class MoodPage {
   url: any = "https://www.pascalbudner.de:8080/v1";
   headers: Headers = new Headers();
   pleasance: any = 1;
-  activation:any = 1; 
+  activation: any = 1;
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, public auth: Auth, public geolocation: Geolocation) {
@@ -44,12 +44,9 @@ export class MoodPage {
 
   ionViewDidLoad() {
 
-
-
-
     this.http.get(this.url + "/classifier/prediction", { "headers": this.headers }).map(res => res.json()).subscribe(res => {
-      if (res.length == 0) {
-        this.errormsg = "No data yet =("
+      if (res.status == 400) {
+        this.errormsg = "We haven't received any sensor data yet =( In order to collect data you need to have a Pebble watch and download the happimeter app at the pebble appstore"
         return;
       }
 
@@ -76,6 +73,8 @@ export class MoodPage {
         this.mood = 'assets/TransparentSmileys/transparent_mood9.svg'
       }
     });
+    console.log(this.pleasance)
+    console.log(this.activation)
   }
 
   confirm() {
@@ -92,7 +91,7 @@ export class MoodPage {
         moodData.local_timestamp = moodData.timestamp + timeDifference,
         moodData.account_id = "Smartphone",
         moodData.device_id = "Smartphone";
-      moodData.position = {
+        moodData.position = {
         lat: position.coords.latitude,
         lon: position.coords.longitude
       }

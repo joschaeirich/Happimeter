@@ -26,3 +26,12 @@ background: color($colors, network);
 .toolbar-background-md-network .toolbar-background-md {
     background: #334398;
 }
+
+.page-Network .__________cytoscape_container canvas {
+  text-align: left !important;
+  -moz-user-select: text !important;
+}
+
+.page-Network .__________cytoscape_container div {
+  text-align: left !important;
+}

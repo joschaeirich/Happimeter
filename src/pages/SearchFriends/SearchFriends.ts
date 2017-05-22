@@ -75,10 +75,4 @@ export class SearchFriendsPage {
     alert.present();
   }
 
-
-  ionViewDidLoad() {
-    
-
-  }
-
 }

@@ -1,6 +1,3 @@
-
-
-
 <ion-header class="toolbar-background-ios-network toolbar-background-md-network">
 
   <ion-navbar>
@@ -11,15 +8,16 @@
 
 
 <ion-content padding class="page-Network" style="text-align: center">
-  
-<img src= "assets/Construction.svg">
-  We are still working on this side =)
-<!--
-<script src="http://d3js.org/d3.v3.min.js"></script>
 
-<svg class="fullscreen-image"  #network></svg>
+  <!--<img src= "assets/Construction.svg">
+  We are still working on this side =)-->
 
-<canvas width="960" height="960" #canvas></canvas>-->
- 
- 
+  <div class="row justify-content-center">
+    <div class="col text-center">
+      <button ion-button class="btn btn-primary" (click)="toggleUser()" outline>{{button_text}}</button>
+    </div>
+  </div>
+  <div #network style="display: block; width: 100%; height: calc(100vh - 130px);">
+  </div>
+
 </ion-content>

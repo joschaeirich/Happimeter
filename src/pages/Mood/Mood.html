@@ -5,8 +5,8 @@
 </ion-header>
 
 <ion-content class="page-Mood" style="text-align: center">
-  <h3> Is this your current mood?</h3>
-  <div class="row">
+  <h3 [hidden]="errormsg"> Is this your current mood?</h3>
+  <div [hidden]="errormsg" class="row">
     <div class="col">
       Activation: {{activation}}
     </div>
@@ -25,10 +25,10 @@
 
   <div class="row">
     <div class="col">
-      <img src="assets/confirm_notConfirm/hacken.svg" style="width: 40px" (click)="confirm()">
+      <img [hidden]="errormsg" src="assets/confirm_notConfirm/hacken.svg" style="width: 40px" (click)="confirm()">
     </div>
     <div class="col">
-      <img src="assets/confirm_notConfirm/cross.svg" style="width: 40px" (click)="NOTconfirm()">
+      <img [hidden]="errormsg" src="assets/confirm_notConfirm/cross.svg" style="width: 40px" (click)="NOTconfirm()">
     </div>
   </div>
 </ion-content>

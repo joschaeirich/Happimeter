@@ -37,6 +37,7 @@ export class ShareMoodPage {
   shareMood(addUser) {
     console.log(addUser)
     this.http.put(this.url + "/friends/" + addUser.id, {
+     
       "share_mood": addUser.share_mood == true ? 1 : 0
 
 

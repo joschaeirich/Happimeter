@@ -5,6 +5,7 @@ import { SearchFriendsPage } from '../SearchFriends/SearchFriends'
 import { FriendRequestPage } from '../FriendRequest/FriendRequest'
 import { ShareMoodPage } from '../ShareMood/ShareMood'
 import { DeleteFriendPage } from '../DeleteFriend/DeleteFriend'
+import { MainPage } from '../Main/Main'
 
 
 import { Auth } from '../../providers/auth';
@@ -61,13 +62,14 @@ export class FriendsPage {
           obj.icon = "assets/BoltSmilieys/transparent_mood8.svg"
         }else if(fri.friends[i].user.mood.pleasance==0 && fri.friends[i].user.mood.activation==0){
           obj.icon = "assets/BoltSmilieys/transparent_mood9.svg"
+        }else{
+          obj.icon = "assets/BoltSmilieys/questionmark.svg"
         }
         this.currentFriendList.push(obj);
 
       }
     }
     );
-    console.log(this.moodData)
   
     this.http.get(this.url + "/friends/requests", { "headers": this.headers }).map(fri => fri.json()).subscribe(fri => {
       if (fri.friend_requests.length > 0) {
@@ -80,15 +82,6 @@ export class FriendsPage {
 
     });
   }
-
-
-
-
-
-
-
-
-
 
   SearchFriends() {
     this.navCtrl.push(SearchFriendsPage);
@@ -107,6 +100,10 @@ export class FriendsPage {
         return;
       }
     });
+  }
+
+  mainPage(){
+    this.navCtrl.push(MainPage);
   }
 
 }

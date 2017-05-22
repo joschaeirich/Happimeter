@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams,AlertController } from 'ionic-angular';
 import { MoodPage } from '../Mood/Mood';
 import { MoodmapPage } from '../Moodmap/Moodmap';
 import { NetworkPage } from '../Network/Network';
@@ -26,13 +26,14 @@ export class MainPage {
   pageVisited: any = false; 
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, public auth: Auth, public global:GlobalVariables) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, public auth: Auth, public global:GlobalVariables
+  ,private alertCtrl: AlertController) {
    }
 
    ionViewWillEnter() {
     this.pageVisited = this.global.pageVisited;
     this.global.pageVisited = true;
-    console.log("Page visited is " + this.pageVisited);
+
    }
 
   
@@ -80,6 +81,21 @@ export class MainPage {
         this.friendRequest = 'assets/MenuIcons/AddFriendsIcon.svg';
       }
 
+    }, () => {
+      let alert = this.alertCtrl.create({
+      title: 'No internet connection',
+      message: 'Please connect your phone to the internet to use all awesome happimeter features',
+      buttons: [
+        {
+          text: 'Ok',
+          role: 'cancel',
+          handler: () => {
+            return;
+          }
+        },    
+      ]
+    });
+    alert.present();
     });
 
   }

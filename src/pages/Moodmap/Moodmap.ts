@@ -34,7 +34,7 @@ export class MoodmapPage {
   markersActivity: any = [];
   markersPleasance: any = [];
   markersMood: any = [];
-  markerCurrentMood: any; 
+  markerCurrentMood: any;
 
   heatmapData_act: any = [];
   heatmapData_ple: any = [];
@@ -46,6 +46,8 @@ export class MoodmapPage {
   clicked_mood = true;
 
   Allclusters: any = [];
+
+  errormsg: any;
 
   @ViewChild('map') mapElement: ElementRef;
   map: any;
@@ -61,6 +63,10 @@ export class MoodmapPage {
 
     this.http.get(this.url + "/moods", { "headers": this.headers }).map(res => res.json()).subscribe(res => {
 
+      if (res.moods.length == 0) {
+        this.errormsg = "We haven't received any sensor data yet =( In order to collect data you need to have a Pebble watch and download the happimeter app at the pebble appstore"
+        return;
+      }
 
       for (var i = 0; i < res.moods.length; ++i) {
         if (res.moods[i].position.latitude == null) {
@@ -149,7 +155,7 @@ export class MoodmapPage {
         } else if (pleasance == 0 && activation == 0) {
           this.Allclusters[i].image = 'assets/Markers/marker_mood9.png'
         }
-        
+
       }
       this.loadMap();
     });
@@ -511,7 +517,7 @@ export class MoodmapPage {
     } else if (this.clicked_mood == false) {
       for (var i = 0; i < this.markersMood.length; i++) {
         this.markersMood[i].setMap(null);
-       
+
       }
       this.clicked_mood = true;
     }

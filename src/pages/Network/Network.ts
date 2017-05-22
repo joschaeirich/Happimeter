@@ -1,165 +1,154 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, AfterViewInit, ElementRef } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { MainPage } from '../Main/Main';
-//import * as d3 from "d3";
+
+import { Auth } from '../../providers/auth';
+import { Http, Headers } from '@angular/http';
 
 
-//import {NgCytoscape} from "ng2-cytoscape/dist";
-/*
-var graph: any = {
-  "nodes": [
-    { "id": "Joscha", "group": 1 },
-    { "id": "Pascal", "group": 2 },
-    { "id": "Peter", "group": 3 },
-    { "id": "Rob", "group": 4 }
 
-  ],
-  "links": [
-    { "source": "Joscha", "target": "Peter", "value": 1 },
-    { "source": "Pascal", "target": "Peter", "value": 2 },
-    { "source": "Rob", "target": "Peter", "value": 3 },
-    { "source": "Peter", "target": "Joscha", "value": 4 }
 
-  ]
-}
-*/
 @Component({
   selector: 'page-Network',
   templateUrl: 'Network.html'
 })
-export class NetworkPage {
+export class NetworkPage implements AfterViewInit {
 
-  @ViewChild('network') network;
-  @ViewChild('canvas') network1;
+  public title: string = "Network";
+  public cy: Cy.Instance;
+  public button_text: string = "Hide yourself";
+  private contains_user: boolean = true;
+  private edges: Array<any> = [];
+
+  public friendsList: any = [];
+
+  @ViewChild('network') network_element: ElementRef;
 
 
-
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, public http: Http, public auth: Auth) {
 
   }
 
-  ionViewDidLoad() {
+toggleUser() {
+    if (this.contains_user) {
+      this.cy.remove("node[id = 'user']");
+      this.contains_user = false;
+      this.button_text = "Show yourself";
+    } else {
+      this.cy.remove("edge");
+      this.cy.add({
+        "group": "nodes",
+        "data": {
+          "id": "user",
+          "label":" You"
+        }
+      });
+      this.cy.add(this.edges);
+      this.button_text = "Hide yourself";
+      this.contains_user = true;
+    }  
     
+    var layout = this.cy.layout({
+      name: "cose",
+      anmiate: true,
+      minNodeSpacing: 10
+    });
+    layout.run();
+    this.cy.zoom(1);
+    this.cy.center();
+  }
+
+  ngAfterViewInit() {
+
+    var url = "https://www.pascalbudner.de:8080/v1";
+    var headers: Headers = new Headers();
+    headers.append("Authorization", "Bearer " + this.auth.token);
 
 
+    this.cy = cytoscape({ "container": this.network_element.nativeElement, "minZoom": 0.5, "maxZoom": 2 });
+
+    this.cy.add({
+      "group": "nodes",
+      "data": {
+        "id": "user",
+        "label": " You"
+      }
+    });
+
+    this.cy.zoom(1);
+    this.cy.center();
+    this.cy.style("node { content: data(label); text-margin-y: -5px; color: #ffffff; font-size:7px; background-color: #0D47A1; border-color: #fff; border-width: 1px;} edge {line-color: #ffffff; opacity: 0.5;}");
+
+    this.http.get(url + "/friends", { "headers": headers }).map(fri => fri.json()).subscribe(fri => {
+
+      for (var i = 0; i < fri.friends.length; ++i) {
+        var user = fri.friends[i].user;
+        var ele = this.cy.add({
+          "group": "nodes",
+          "data": {
+            "id": user.id,
+            "label": user.name || user.mail
+          }
+        });
+
+        var mood_image_id = 0;
+        if (user.mood.pleasance == 2 && user.mood.activation == 2) {
+          mood_image_id = 1;
+        } else if (user.mood.pleasance == 1 && user.mood.activation == 2) {
+          mood_image_id = 2;
+        } else if (user.mood.pleasance == 0 && user.mood.activation == 2) {
+          mood_image_id = 3;
+        } else if (user.mood.pleasance == 2 && user.mood.activation == 1) {
+          mood_image_id = 4;
+        } else if (user.mood.pleasance == 1 && user.mood.activation == 1) {
+          mood_image_id = 5;
+        } else if (user.mood.pleasance == 0 && user.mood.activation == 1) {
+          mood_image_id = 6;
+        } else if (user.mood.pleasance == 2 && user.mood.activation == 0) {
+          mood_image_id = 7;
+        } else if (user.mood.pleasance == 1 && user.mood.activation == 0) {
+          mood_image_id = 8;
+        } else if (user.mood.pleasance == 0 && user.mood.activation == 0) {
+          mood_image_id = 9;
+        } else {
+          mood_image_id = 0;
+        }
+
+        ele.css("background-image", "url('assets/NetworkSmilies_PNG/mood" + mood_image_id + ".png')");
+        ele.css("background-fit", "cover");
+        this.edges.push({
+          "group": "edges",
+          "data": {
+            "id": user.id + "-user",
+            "source": user.id,
+            "target": "user"
+          }
+        });
+
+        for (let common_friend_id of user.shared_friend_ids) {
+          this.edges.push({
+            "group": "edges",
+            "data": {
+              "id": user.id + "-" + common_friend_id,
+              "source": user.id,
+              "target": common_friend_id
+            }
+          });
+        }
+
+        this.cy.add(this.edges);
+      }
+
+      var layout = this.cy.layout({
+        name: "cose",
+        minNodeSpacing: 10
+      });
+      layout.run();
+      this.cy.zoom(1);
+      this.cy.center();
+    });
+
   }
-  backButton() {
-    this.navCtrl.push(MainPage);
-  }
+
 
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-    var width = 640,
-      height = 480;
-
-    var links = [
-      { source: 'Baratheon', target: 'Lannister' },
-      { source: 'Baratheon', target: 'Stark' },
-      { source: 'Lannister', target: 'Stark' },
-      { source: 'Stark', target: 'Bolton' }
-    ];
-    // create empty nodes array
-    var nodes = {};
-
-    // compute nodes from links data
-    links.forEach(function (link) {
-      link.source = nodes[link.source] ||
-        (nodes[link.source] = { name: link.source });
-      link.target = nodes[link.target] ||
-        (nodes[link.target] = { name: link.target });
-    });
-*/
- /*
-        var svg = d3.select(this.network.nativeElement),
-          width = +svg.attr("width"),
-          height = +svg.attr("height");
-        // "var color = d3.scaleOrdinal(d3.schemeCategory20);" nicht benutzt. braucht man um gruppe eine farbe zuzuordnen 
-    
-        var simulation = d3.forceSimulation()
-          .force("link", d3.forceLink().id(function (d: any) { return d.id; }))
-          .force("charge", d3.forceManyBody())
-          .force("center", d3.forceCenter())
-          .force("center", d3.forceCenter(width, height));
-    
-        var link = svg.append("g")
-          .attr("class", "links")
-          .selectAll("line")
-          .data(graph.links)
-          .enter().append("line")
-          .attr("stroke-width", function (d: any) { return Math.sqrt(d.value); });
-    
-        var node = svg.append("g")
-          .attr("class", "nodes")
-          .selectAll("circle")
-          .data(graph.nodes)
-          .enter().append("circle")
-          .attr("r", 15)
-          .attr("fill", '#fff')
-          .call(d3.drag()
-            .on("start", dragstarted)
-            .on("drag", dragged)
-            .on("end", dragended))
-        svg.call(d3.zoom()
-          .scaleExtent([1 / 8, 10])
-          .on("zoom", zoomed));
-    
-        node.append("title")
-          .text(function (d: any) { return d.id; });
-    
-        simulation
-          .nodes(graph.nodes)
-          .on("tick", ticked);
-    
-          simulation.force("link")
-        //      .links(graph.links);
-        
-        function ticked() {
-          link
-            .attr("x1", function (d: any) { return d.source.x; })
-            .attr("y1", function (d: any) { return d.source.y; })
-            .attr("x2", function (d: any) { return d.target.x; })
-            .attr("y2", function (d: any) { return d.target.y; });
-    
-          node
-            .attr("cx", function (d: any) { return d.x; })
-            .attr("cy", function (d: any) { return d.y; });
-        }
-    
-        function zoomed() {
-          svg.attr("transform", d3.event.transform);
-        }
-    
-        function dragstarted(d) {
-          if (!d3.event.active) simulation.alphaTarget(0.3).restart();
-          d.fx = d.x;
-          d.fy = d.y;
-        }
-    
-        function dragged(d) {
-          d.fx = d3.event.x;
-          d.fy = d3.event.y;
-        }
-    
-        function dragended(d) {
-          if (!d3.event.active) simulation.alphaTarget(0);
-          d.fx = null;
-          d.fy = null;
-        }
-*/    
