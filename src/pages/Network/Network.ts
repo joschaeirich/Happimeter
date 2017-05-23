@@ -82,7 +82,7 @@ export class NetworkPage implements AfterViewInit {
 
     this.http.get(url + "/friends", { "headers": headers }).map(fri => fri.json()).subscribe(fri => {
 
-      if (fri.status == 200) {
+      if (fri.friends.length == 0) {
         this.errormsg = "You have no friends yet. Check out the friends page and send some requests ;) "
         return;
       }

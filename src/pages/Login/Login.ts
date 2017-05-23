@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, AlertController, LoadingController, Loading } from 'ionic-angular';
 import { Auth } from '../../providers/auth';
-import { RegisterPage } from '../Register/Register';
 import { MainPage } from '../Main/Main';
+import { LegalPage } from '../Legal/Legal';
 
 import { Storage } from '@ionic/storage';
 
@@ -32,7 +32,7 @@ export class LoginPage {
   }
 
   public createAccount() {
-    this.navCtrl.push(RegisterPage);
+    this.navCtrl.push(LegalPage);
   }
 
 

@@ -24,6 +24,7 @@ import { RegisterPage } from '../pages/Register/Register';
 import { ShareMoodPage } from '../pages/ShareMood/ShareMood';
 import { DeleteFriendPage } from '../pages/DeleteFriend/DeleteFriend';
 import { SpeechPage } from '../pages/Speech/Speech';
+import { LegalPage } from '../pages/Legal/Legal';
 
 import { Auth } from '../providers/auth';
 import { GlobalVariables } from '../providers/globalVariables';
@@ -65,7 +66,8 @@ import { IonicStorageModule } from '@ionic/storage';
     RegisterPage,
     ShareMoodPage,
     DeleteFriendPage,
-    SpeechPage
+    SpeechPage,
+    LegalPage
 
   ],
   imports: [
@@ -98,7 +100,8 @@ import { IonicStorageModule } from '@ionic/storage';
     RegisterPage,
     ShareMoodPage,
     DeleteFriendPage,
-    SpeechPage
+    SpeechPage,
+    LegalPage
   ],
   providers: [
     StatusBar,
