@@ -54,6 +54,8 @@ export class StatisticsPage {
     predMoodOccurence8: any;
     predMoodOccurence9: any;
 
+    errormsg: any;
+
     constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, public auth: Auth) { }
 
     ionViewDidLoad() {
@@ -64,6 +66,12 @@ export class StatisticsPage {
         headers.append("Authorization", "Bearer " + this.auth.token);
 
         this.http.get(url + "/statistics/mood_distribution", { "headers": headers }).map(res => res.json()).subscribe(res => {
+
+            if (res.mood_distribution.length == 0) {
+                this.errormsg = "We haven't received any sensor data yet =( In order to collect data you need to have a Pebble watch and download the happimeter app at the pebble appstore"
+                return;
+            }
+
             var moodChart = [0, 0, 0, 0, 0, 0, 0, 0, 0]
             var totalCount = 0;
 

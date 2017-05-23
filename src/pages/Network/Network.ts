@@ -21,6 +21,8 @@ export class NetworkPage implements AfterViewInit {
 
   public friendsList: any = [];
 
+  errormsg: any;
+
   @ViewChild('network') network_element: ElementRef;
 
 
@@ -28,7 +30,7 @@ export class NetworkPage implements AfterViewInit {
 
   }
 
-toggleUser() {
+  toggleUser() {
     if (this.contains_user) {
       this.cy.remove("node[id = 'user']");
       this.contains_user = false;
@@ -39,14 +41,14 @@ toggleUser() {
         "group": "nodes",
         "data": {
           "id": "user",
-          "label":" You"
+          "label": " You"
         }
       });
       this.cy.add(this.edges);
       this.button_text = "Hide yourself";
       this.contains_user = true;
-    }  
-    
+    }
+
     var layout = this.cy.layout({
       name: "cose",
       anmiate: true,
@@ -79,6 +81,13 @@ toggleUser() {
     this.cy.style("node { content: data(label); text-margin-y: -5px; color: #ffffff; font-size:7px; background-color: #0D47A1; border-color: #fff; border-width: 1px;} edge {line-color: #ffffff; opacity: 0.5;}");
 
     this.http.get(url + "/friends", { "headers": headers }).map(fri => fri.json()).subscribe(fri => {
+
+      if (fri.status == 200) {
+        this.errormsg = "You have no friends yet. Check out the friends page and send some requests ;) "
+        return;
+      }
+
+
 
       for (var i = 0; i < fri.friends.length; ++i) {
         var user = fri.friends[i].user;

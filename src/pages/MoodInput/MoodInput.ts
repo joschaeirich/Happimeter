@@ -36,6 +36,10 @@ export class MoodInputPage {
   moodIcon: any;
   lat: any;
   long: any;
+
+  path:any = "assets/MoodSmilies/";
+  format:any = ".png";
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, public auth: Auth, public geolocation: Geolocation) {
 
     this.headers.append("Authorization", "Bearer " + this.auth.token);
@@ -47,32 +51,31 @@ export class MoodInputPage {
       counter = Number.parseInt(raw_counter);
     }
 
-
-
   }
   ionViewDidLoad(pleasance, activation) {
-    this.moodIcon = 'assets/TransparentSmileys/transparent_mood5.svg'
+    this.moodIcon = this.path + 'transparent_mood5' + this.format
   }
 
-  onChange(pleasance, activation) {
+  onChange(pleasance, activation) {  
+
     if (this.pleasance == 2 && this.activation == 2) {
-      this.moodIcon = 'assets/TransparentSmileys/transparent_mood1.svg'
+      this.moodIcon = this.path + 'transparent_mood1' + this.format
     } else if (this.pleasance == 1 && this.activation == 2) {
-      this.moodIcon = 'assets/TransparentSmileys/transparent_mood2.svg'
+      this.moodIcon = this.path + 'transparent_mood2' + this.format
     } else if (this.pleasance == 0 && this.activation == 2) {
-      this.moodIcon = 'assets/TransparentSmileys/transparent_mood3.svg'
+      this.moodIcon = this.path + 'transparent_mood3' + this.format
     } else if (this.pleasance == 2 && this.activation == 1) {
-      this.moodIcon = 'assets/TransparentSmileys/transparent_mood4.svg'
+      this.moodIcon = this.path + 'transparent_mood4' + this.format
     } else if (this.pleasance == 1 && this.activation == 1) {
-      this.moodIcon = 'assets/TransparentSmileys/transparent_mood5.svg'
+      this.moodIcon = this.path + 'transparent_mood5' + this.format
     } else if (this.pleasance == 0 && this.activation == 1) {
-      this.moodIcon = 'assets/TransparentSmileys/transparent_mood6.svg'
+      this.moodIcon = this.path + 'transparent_mood6' + this.format
     } else if (this.pleasance == 2 && this.activation == 0) {
-      this.moodIcon = 'assets/TransparentSmileys/transparent_mood7.svg'
+      this.moodIcon = this.path + 'transparent_mood7' + this.format
     } else if (this.pleasance == 1 && this.activation == 0) {
-      this.moodIcon = 'assets/TransparentSmileys/transparent_mood8.svg'
+      this.moodIcon = this.path + 'transparent_mood8' + this.format
     } else if (this.pleasance == 0 && this.activation == 0) {
-      this.moodIcon = 'assets/TransparentSmileys/transparent_mood9.svg'
+      this.moodIcon = this.path + 'transparent_mood9' + this.format
     }
 
   }
@@ -115,10 +118,6 @@ export class MoodInputPage {
         lat: position.coords.latitude,
         lon: position.coords.longitude
       }
-
-
-
-      console.log(moodData)
 
       this.http.post(this.url + "/moods", moodData, { "headers": this.headers }).map(res => res.json()).subscribe(res => { });
     })

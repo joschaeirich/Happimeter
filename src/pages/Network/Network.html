@@ -8,16 +8,13 @@
 
 
 <ion-content padding class="page-Network" style="text-align: center">
-
-  <!--<img src= "assets/Construction.svg">
-  We are still working on this side =)-->
-
-  <div class="row justify-content-center">
+ <div style= "text-align: center !important; margin: auto; max-width: 80%" >{{errormsg}} </div>
+  <div [hidden]="errormsg" class="row justify-content-center">
     <div class="col text-center">
       <button ion-button class="btn btn-primary" (click)="toggleUser()" outline>{{button_text}}</button>
     </div>
   </div>
-  <div #network style="display: block; width: 100%; height: calc(100vh - 130px);">
+  <div [hidden]="errormsg" #network style="display: block; width: 100%; height: calc(100vh - 130px);">
   </div>
 
 </ion-content>

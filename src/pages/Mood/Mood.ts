@@ -52,25 +52,28 @@ export class MoodPage {
 
       this.pleasance = res.happiness;
       this.activation = res.activation;;
+      
+      var path = "assets/MoodSmilies/"
+      var format = ".png"
 
       if (this.pleasance == 2 && this.activation == 2) {
-        this.mood = 'assets/TransparentSmileys/transparent_mood1.svg'
+        this.mood = path + 'transparent_mood1' + format
       } else if (this.pleasance == 1 && this.activation == 2) {
-        this.mood = 'assets/TransparentSmileys/transparent_mood2.svg'
+        this.mood = path + 'transparent_mood2' + format
       } else if (this.pleasance == 0 && this.activation == 2) {
-        this.mood = 'assets/TransparentSmileys/transparent_mood3.svg'
+        this.mood = path + 'transparent_mood3' + format
       } else if (this.pleasance == 2 && this.activation == 1) {
-        this.mood = 'assets/TransparentSmileys/transparent_mood4.svg'
+        this.mood = path +'transparent_mood4' + format
       } else if (this.pleasance == 1 && this.activation == 1) {
-        this.mood = 'assets/TransparentSmileys/transparent_mood5.svg'
+        this.mood = path +'transparent_mood5' + format
       } else if (this.pleasance == 0 && this.activation == 1) {
-        this.mood = 'assets/TransparentSmileys/transparent_mood6.svg'
+        this.mood = path +'transparent_mood6' + format
       } else if (this.pleasance == 2 && this.activation == 0) {
-        this.mood = 'assets/TransparentSmileys/transparent_mood7.svg'
+        this.mood = path +'transparent_mood7' + format
       } else if (this.pleasance == 1 && this.activation == 0) {
-        this.mood = 'assets/TransparentSmileys/transparent_mood8.svg'
+        this.mood = path +'transparent_mood8' + format
       } else if (this.pleasance == 0 && this.activation == 0) {
-        this.mood = 'assets/TransparentSmileys/transparent_mood9.svg'
+        this.mood = path +'transparent_mood9' + format
       }
     });
     console.log(this.pleasance)

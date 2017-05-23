@@ -1,7 +1,7 @@
 <ion-header class="toolbar-background-ios-moodmap toolbar-background-md-moodmap">
 
   <ion-navbar>
-    <ion-title [hidden]="errormsg">Moodmap</ion-title>
+    <ion-title>Moodmap</ion-title>
     <br>
   </ion-navbar>
   <div [hidden]="errormsg" class="row">
@@ -21,8 +21,11 @@
   <br>
 </ion-header>
 <ion-content padding class="page-Moodmap">
+
+     <div style= "text-align: center !important; margin: auto; max-width: 80%" >{{errormsg}} </div>
+
   <div [hidden]="errormsg" #map id="map"></div>
-   {{errormsg}} 
+
   <div [hidden]="errormsg" class="legend-position">
     <div class="row">
       <div> <img src="assets/LegendMoodMap/greenCircle.png"> </div>

@@ -14,15 +14,16 @@
       Pleasance: {{pleasance}}
     </div>
   </div>
+
   <br>
   <br>
 
   <div class="mood_image">
-    <img *ngIf="!errormsg" [src]="mood"> {{errormsg}}
+    <img *ngIf="!errormsg" [src]="mood">
   </div>
   <br>
   <br>
-
+  <div style="text-align: center !important; margin: auto; max-width: 80%">{{errormsg}} </div>
   <div class="row">
     <div class="col">
       <img [hidden]="errormsg" src="assets/confirm_notConfirm/hacken.svg" style="width: 40px" (click)="confirm()">
