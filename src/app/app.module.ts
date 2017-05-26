@@ -26,6 +26,7 @@ import { DeleteFriendPage } from '../pages/DeleteFriend/DeleteFriend';
 import { SpeechPage } from '../pages/Speech/Speech';
 import { LegalPage } from '../pages/Legal/Legal';
 
+
 import { Auth } from '../providers/auth';
 import { GlobalVariables } from '../providers/globalVariables';
 

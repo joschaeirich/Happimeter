@@ -2,7 +2,6 @@
     <br>
     <br>
     <br>
-    <br>
     <img class="Logo-center" src="assets/Logo.png">
     <div>
         <form (ngSubmit)="login()" #registerForm="ngForm">
@@ -29,5 +28,8 @@
             </ion-row>
         </form>
         <button ion-button class="register-btn" block clear (click)="createAccount()">Create New Account</button>
+        <br>
+
+        <button ion-button style="color: #9FA1A4; font-size:14px" class="register-btn" block clear (click)="forgotPassword()">Forgot password?</button>
     </div>
 </ion-content>

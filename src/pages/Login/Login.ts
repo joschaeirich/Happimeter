@@ -5,6 +5,7 @@ import { MainPage } from '../Main/Main';
 import { LegalPage } from '../Legal/Legal';
 
 import { Storage } from '@ionic/storage';
+import { Http, Headers } from '@angular/http';
 
 
 @Component({
@@ -16,7 +17,7 @@ export class LoginPage {
   registerCredentials = { email: '', password: '' };
 
 
-  constructor(private navCtrl: NavController, private auth: Auth, private alertCtrl: AlertController, private loadingCtrl: LoadingController, public storage: Storage) {
+  constructor(private navCtrl: NavController, public http: Http, private auth: Auth, private alertCtrl: AlertController, private loadingCtrl: LoadingController, public storage: Storage) {
 
 
     storage.ready().then(() => {
@@ -72,6 +73,53 @@ export class LoginPage {
     alert.present(prompt);
   }
 
+
+
+
+  forgotPassword() {
+
+    var url = "https://www.pascalbudner.de:8080/v1";
+
+    var headers: Headers = new Headers();
+    headers.append("Authorization", "Bearer " + this.auth.token);
+
+
+    let alert = this.alertCtrl.create({
+      title: 'Forgot Password?',
+      message: 'Please enter your email below and we will send you an email with a new password',
+      inputs: [
+        {
+          name: 'email',
+          placeholder: 'email'
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: data => {
+            return;
+          }
+        },
+        {
+          text: 'Send',
+          handler: data => {
+            if(data.email){
+          
+            this.http.post(url + "/users/lost_password", {
+              "mail": data.email,
+            }
+              , { "headers": headers }).map(pas => pas.json()).subscribe(pas => {
+                console.log(pas)
+              })
+            ;}
+          }
+        }
+
+      ]
+    });
+    alert.present();
+  }
 
 
 }

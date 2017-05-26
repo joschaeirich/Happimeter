@@ -47,6 +47,8 @@ export class MoodmapPage {
 
   Allclusters: any = [];
 
+  currentPosition: any;
+
   errormsg: any;
 
   @ViewChild('map') mapElement: ElementRef;
@@ -111,25 +113,28 @@ export class MoodmapPage {
         var avgAct = this.Allclusters[i].avgAct;
         var avgPls = this.Allclusters[i].avgPls;
 
+
+
+
         if (avgAct <= 2 && avgAct > 1.3) {
-          this.Allclusters[i].fillcolorAct = "green"
+          this.Allclusters[i].circlePleasence = 'assets/Circles/green.png'
           this.Allclusters[i].activation = 2;
         } else if (avgAct <= 1.3 && avgAct > 0.7) {
-          this.Allclusters[i].fillcolorAct = "orange"
+          this.Allclusters[i].circlePleasence = 'assets/Circles/orange.png'
           this.Allclusters[i].activation = 1;
         } else if (avgAct <= 0.7) {
-          this.Allclusters[i].fillcolorAct = "red"
+          this.Allclusters[i].circlePleasence = 'assets/Circles/red.png'
           this.Allclusters[i].activation = 0;
         }
 
         if (avgPls <= 2 && avgPls > 1.3) {
-          this.Allclusters[i].fillcolorPls = "green"
+          this.Allclusters[i].circleActivation = 'assets/Circles/green.png'
           this.Allclusters[i].pleasance = 2;
         } else if (avgPls <= 1.3 && avgPls > 0.7) {
-          this.Allclusters[i].fillcolorPls = "orange"
+          this.Allclusters[i].circleActivation = 'assets/Circles/orange.png'
           this.Allclusters[i].pleasance = 1;
         } else if (avgPls <= 0.7) {
-          this.Allclusters[i].fillcolorPls = "red"
+          this.Allclusters[i].circleActivation = 'assets/Circles/red.png'
           this.Allclusters[i].pleasance = 0;
         }
 
@@ -159,6 +164,9 @@ export class MoodmapPage {
       }
       this.loadMap();
     });
+
+
+
   }
 
 
@@ -166,10 +174,11 @@ export class MoodmapPage {
   loadMap() {
     this.geolocation.getCurrentPosition().then((position) => {
 
+
       let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
       let mapOptions = {
         center: latLng,
-        zoom: 15,
+        zoom: 18,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         fullscreenControl: true,
 
@@ -336,6 +345,7 @@ export class MoodmapPage {
       }
 
       this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+      this.currentPosition = this.map.getCenter();
 
       this.addMarker();
 
@@ -376,6 +386,9 @@ export class MoodmapPage {
         image = 'assets/Markers/marker_mood9.png'
       }
 
+
+
+
       var icon = {
         url: image,
         scaledSize: new google.maps.Size(40, 40), // scaled size    
@@ -384,9 +397,17 @@ export class MoodmapPage {
       this.markerCurrentMood = new google.maps.Marker({
         map: this.map,
         animation: google.maps.Animation.DROP,
-        position: this.map.getCenter(),
+        position: this.currentPosition,
         icon: icon
       });
+
+
+
+
+
+
+
+
       /*
             for (var i = 0; i < this.moodData_act.length; i++) {
               if (this.moodData_act[i].locationLat == null) {
@@ -418,9 +439,32 @@ export class MoodmapPage {
 
   activationMarkers() {
 
+    var zoom = this.map.getZoom();
+    var relativePixelSize = 40;
+    if (zoom == 14) {
+      relativePixelSize = 30;
+    } else if (zoom == 13) {
+      relativePixelSize = 20;
+    } else if (zoom == 12) {
+      relativePixelSize = 15;
+    } else if (zoom == 11) {
+      relativePixelSize = 10;
+    } else if (zoom <= 10) {
+      relativePixelSize = 8;
+    }
+
     if (this.clicked_activation == true) {
 
       this.markersActivity = [];
+
+      for (var i = 0; i < this.markersMood.length; i++) {
+        this.markersMood[i].setMap(null);
+      }
+
+      for (var i = 0; i < this.markersPleasance.length; i++) {
+        this.markersPleasance[i].setMap(null);
+      }
+
       for (var i = 0; i < this.Allclusters.length; i++) {
 
         var location = [this.Allclusters[i].latitude, this.Allclusters[i].longitude];
@@ -429,11 +473,8 @@ export class MoodmapPage {
 
         var marker = new google.maps.Marker({
           icon: {
-            path: google.maps.SymbolPath.CIRCLE,
-            scale: 20,
-            fillColor: this.Allclusters[i].fillcolorAct,
-            fillOpacity: 0.5,
-            strokeWeight: 0.4
+            url: this.Allclusters[i].circleActivation,
+            scaledSize: new google.maps.Size(relativePixelSize, relativePixelSize), // scaled size    
           },
           map: this.map,
           position: latLng,
@@ -443,21 +484,49 @@ export class MoodmapPage {
         this.markersActivity.push(marker);
       }
       this.clicked_activation = false;
+      this.clicked_pleasance = true;
+      this.clicked_mood = true;
+      this.markerCurrentMood.setMap(null);
 
     } else if (this.clicked_activation == false) {
       for (var i = 0; i < this.markersActivity.length; i++) {
         this.markersActivity[i].setMap(null);
       }
       this.clicked_activation = true;
+      this.addMarker();
     }
+    this.changeCircleSize(this.markersActivity)
 
   }
 
   pleasanceMarkers() {
 
+    var zoom = this.map.getZoom();
+    var relativePixelSize = 40;
+    if (zoom == 14) {
+      relativePixelSize = 30;
+    } else if (zoom == 13) {
+      relativePixelSize = 20;
+    } else if (zoom == 12) {
+      relativePixelSize = 15;
+    } else if (zoom == 11) {
+      relativePixelSize = 10;
+    } else if (zoom <= 10) {
+      relativePixelSize = 8;
+    }
+
     if (this.clicked_pleasance == true) {
 
       this.markersPleasance = [];
+
+      for (var i = 0; i < this.markersMood.length; i++) {
+        this.markersMood[i].setMap(null);
+      }
+
+      for (var i = 0; i < this.markersActivity.length; i++) {
+        this.markersActivity[i].setMap(null);
+      }
+
       for (var i = 0; i < this.Allclusters.length; i++) {
 
         var location = [this.Allclusters[i].latitude, this.Allclusters[i].longitude];
@@ -466,11 +535,8 @@ export class MoodmapPage {
 
         var marker = new google.maps.Marker({
           icon: {
-            path: google.maps.SymbolPath.CIRCLE,
-            scale: 20,
-            fillColor: this.Allclusters[i].fillcolorPls,
-            fillOpacity: 0.5,
-            strokeWeight: 0.4
+            url: this.Allclusters[i].circlePleasence,
+            scaledSize: new google.maps.Size(relativePixelSize, relativePixelSize), // scaled size    
           },
           map: this.map,
           position: latLng,
@@ -479,20 +545,50 @@ export class MoodmapPage {
 
         this.markersPleasance.push(marker);
       }
+      this.clicked_activation = true;
       this.clicked_pleasance = false;
+      this.clicked_mood = true;
+      this.markerCurrentMood.setMap(null);
 
     } else if (this.clicked_pleasance == false) {
       for (var i = 0; i < this.markersPleasance.length; i++) {
         this.markersPleasance[i].setMap(null);
       }
       this.clicked_pleasance = true;
+      this.addMarker();
     }
+    this.changeCircleSize(this.markersPleasance)
   }
 
   moodMarkers() {
 
+
+    var zoom = this.map.getZoom();
+    var relativePixelSize = 40;
+    if (zoom == 14) {
+      relativePixelSize = 30;
+    } else if (zoom == 13) {
+      relativePixelSize = 26;
+    } else if (zoom == 12) {
+      relativePixelSize = 24;
+    } else if (zoom == 11) {
+      relativePixelSize = 22;
+    } else if (zoom <= 10) {
+      relativePixelSize = 18;
+    }
+
+
+    console.log(this.map.getZoom())
     if (this.clicked_mood == true) {
       this.markersMood = [];
+      for (var i = 0; i < this.markersPleasance.length; i++) {
+        this.markersPleasance[i].setMap(null);
+      }
+
+      for (var i = 0; i < this.markersActivity.length; i++) {
+        this.markersActivity[i].setMap(null);
+      }
+
       for (var i = 0; i < this.Allclusters.length; i++) {
 
         var location = [this.Allclusters[i].latitude, this.Allclusters[i].longitude];
@@ -500,7 +596,7 @@ export class MoodmapPage {
 
         var icon = {
           url: this.Allclusters[i].image,
-          scaledSize: new google.maps.Size(40, 40), // scaled size    
+          scaledSize: new google.maps.Size(relativePixelSize, relativePixelSize), // scaled size    
         };
 
         var marker = new google.maps.Marker({
@@ -510,19 +606,101 @@ export class MoodmapPage {
           icon: icon
         });
 
+
         this.markersMood.push(marker);
       }
+      this.clicked_activation = true;
+      this.clicked_pleasance = true;
       this.clicked_mood = false;
+      this.markerCurrentMood.setMap(null);
 
     } else if (this.clicked_mood == false) {
       for (var i = 0; i < this.markersMood.length; i++) {
         this.markersMood[i].setMap(null);
 
       }
+
       this.clicked_mood = true;
+      this.addMarker();
+
     }
+    this.changeMarkerSize(this.markersMood)
+
+  }
+
+
+
+  changeCircleSize(marker) {
+    var that = this;
+    google.maps.event.addListener(this.map, 'zoom_changed', function () {
+
+      var zoom = that.map.getZoom();
+      var relativePixelSize = 40;
+      if (zoom == 14) {
+        relativePixelSize = 30;
+      } else if (zoom == 13) {
+        relativePixelSize = 20;
+      } else if (zoom == 12) {
+        relativePixelSize = 15;
+      } else if (zoom == 11) {
+        relativePixelSize = 10;
+      } else if (zoom <= 10) {
+        relativePixelSize = 8;
+      }
+
+
+      for (var i = 0; i < marker.length; i++) {
+        //change the size of the icon
+        marker[i].setIcon(
+          new google.maps.MarkerImage(
+            marker[i].getIcon().url, //marker's same icon graphic
+            null,//size
+            null,//origin
+            null, //anchor
+            new google.maps.Size(relativePixelSize, relativePixelSize) //changes the scale
+          )
+        );
+      }
+    });
+  }
+
+  changeMarkerSize(marker) {
+    var that = this;
+    google.maps.event.addListener(this.map, 'zoom_changed', function () {
+
+      var zoom = that.map.getZoom();
+      var relativePixelSize = 40;
+      if (zoom == 14) {
+        relativePixelSize = 36;
+      } else if (zoom == 13) {
+        relativePixelSize = 32;
+      } else if (zoom == 12) {
+        relativePixelSize = 28;
+      } else if (zoom == 11) {
+        relativePixelSize = 24;
+      } else if (zoom <= 10) {
+        relativePixelSize = 20;
+      }
+
+
+      for (var i = 0; i < marker.length; i++) {
+        //change the size of the icon
+        marker[i].setIcon(
+          new google.maps.MarkerImage(
+            marker[i].getIcon().url, //marker's same icon graphic
+            null,//size
+            null,//origin
+            null, //anchor
+            new google.maps.Size(relativePixelSize, relativePixelSize) //changes the scale
+          )
+        );
+      }
+    });
   }
 }
+
+
+
 
 /*
  if (this.clicked_activation == true) {
