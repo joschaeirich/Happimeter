@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
 import { Auth } from '../../providers/auth';
+import { GlobalVariables } from '../../providers/globalVariables';
 import { Http, Headers } from '@angular/http';
 
 import * as moment from 'moment';
@@ -16,7 +17,7 @@ export class MoodTablePage {
 
   moodData = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, public auth: Auth) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, public auth: Auth,private api: GlobalVariables) {
     this.headers.append("Authorization", "Bearer " + this.auth.token);
   }
 

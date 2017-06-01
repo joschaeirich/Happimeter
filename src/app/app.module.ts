@@ -6,7 +6,6 @@ import { MoodmapPage } from '../pages/Moodmap/Moodmap';
 import { StatisticsPage } from '../pages/Statistics/Statistics';
 import { NetworkPage } from '../pages/Network/Network';
 import { SettingsPage } from '../pages/Settings/Settings';
-import { TabsPage } from '../pages/tabs/tabs';
 import { MoodInputPage } from '../pages/MoodInput/MoodInput';
 import { Tree1Page } from '../pages/Tree1/Tree1';
 import { Tree2Page } from '../pages/Tree2/Tree2';
@@ -50,7 +49,6 @@ import { IonicStorageModule } from '@ionic/storage';
     StatisticsPage,
     NetworkPage,
     SettingsPage,
-    TabsPage,
     MoodInputPage,
     Tree1Page,
     Tree2Page,
@@ -84,7 +82,6 @@ import { IonicStorageModule } from '@ionic/storage';
     StatisticsPage,
     NetworkPage,
     SettingsPage,
-    TabsPage,
     MoodInputPage,
     Tree1Page,
     Tree2Page,

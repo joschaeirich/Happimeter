@@ -4,8 +4,9 @@ import { NavController, NavParams } from 'ionic-angular';
 import { MoodDiagramsPage } from '../MoodDiagrams/MoodDiagrams';
 import { MoodTablePage } from '../MoodTable/MoodTable';
 import { Auth } from '../../providers/auth';
+import { GlobalVariables } from '../../providers/globalVariables';
 
-import { Http, Headers } from '@angular/http';
+import { Http } from '@angular/http';
 
 import * as $ from 'jquery';
 
@@ -56,16 +57,12 @@ export class StatisticsPage {
 
     errormsg: any;
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, public auth: Auth) { }
+    constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, public auth: Auth,private api: GlobalVariables) { }
 
     ionViewDidLoad() {
 
-        var url = "https://www.pascalbudner.de:8080/v1";
-
-        var headers: Headers = new Headers();
-        headers.append("Authorization", "Bearer " + this.auth.token);
-
-        this.http.get(url + "/statistics/mood_distribution", { "headers": headers }).map(res => res.json()).subscribe(res => {
+       
+        this.api.getMoodDistribution().subscribe(res => {
 
             if (res.mood_distribution.length == 0) {
                 this.errormsg = "We haven't received any sensor data yet =( In order to collect data you need to have a Pebble watch and download the happimeter app at the pebble appstore"
@@ -143,7 +140,7 @@ export class StatisticsPage {
 
 
 
-            this.http.get(url + "/statistics/predicted_mood_distribution", { "headers": headers }).map(res => res.json()).subscribe(res => {
+            this.api.getPredictedMoodDistribution().subscribe(res => {
                 var moodChartPrediction = [0, 0, 0, 0, 0, 0, 0, 0, 0]
                 var totalCountPrediction = 0;
 

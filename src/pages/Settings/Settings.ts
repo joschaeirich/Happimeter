@@ -6,6 +6,7 @@ import { LoginPage } from '../Login/Login';
 
 
 import { Auth } from '../../providers/auth';
+import { GlobalVariables } from '../../providers/globalVariables';
 
 import { Http, Headers } from '@angular/http';
 
@@ -19,7 +20,7 @@ export class SettingsPage {
 
   account: any;
 
-  constructor(public navCtrl: NavController, public http: Http, public auth: Auth, private alertCtrl: AlertController, public storage: Storage) {
+  constructor(public navCtrl: NavController, public http: Http, public auth: Auth, private alertCtrl: AlertController, public storage: Storage, private api: GlobalVariables) {
 
 
 
@@ -32,9 +33,6 @@ export class SettingsPage {
 
 
   logOut() {
-    var url = "https://www.pascalbudner.de:8080/v1";
-    var headers: Headers = new Headers();
-    headers.append("Authorization", "Bearer " + this.auth.token);
 
     let alert = this.alertCtrl.create({
       title: 'Log Out',
@@ -50,12 +48,11 @@ export class SettingsPage {
         {
           text: 'Yes',
           handler: () => {
-
-            this.http.delete(url + "/auth", { "headers": headers }).map(res => res.json()).subscribe(res => {
+            this.api.logout().subscribe(res => {
               // console.log(res) 
               this.storage.set('login_token', null);
               this.navCtrl.push(LoginPage);
-            
+
             });
           }
         }
@@ -65,9 +62,8 @@ export class SettingsPage {
   }
 
   deleteAccount() {
-    var url = "https://www.pascalbudner.de:8080/v1";
-    var headers: Headers = new Headers();
-    headers.append("Authorization", "Bearer " + this.auth.token);
+
+
 
     let alert = this.alertCtrl.create({
       title: 'Delete Account',
@@ -83,13 +79,12 @@ export class SettingsPage {
         {
           text: 'Yes',
           handler: () => {
-
-            this.http.delete(url + "/me", { "headers": headers }).map(del => del.json()).subscribe(del => {
-              console.log(del) 
+            this.api.deleteAccount().subscribe(del => {
+              console.log(del)
               this.storage.set('login_token', null);
               this.navCtrl.push(LoginPage);
             });
-            
+
           }
         }
       ]

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { Auth } from '../../providers/auth';
+import { GlobalVariables } from '../../providers/globalVariables';
 import { Http, Headers } from '@angular/http';
 
 import { FriendsPage } from '../Friends/Friends';
@@ -15,7 +16,7 @@ export class SearchFriendsPage {
   headers: Headers = new Headers();
   friendRequest: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, public auth: Auth, private alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, public auth: Auth, private alertCtrl: AlertController,private api: GlobalVariables) {
     this.headers.append("Authorization", "Bearer " + this.auth.token);
 
   }
@@ -65,7 +66,7 @@ export class SearchFriendsPage {
         {
           text: 'Yes',
           handler: () => {
-            this.http.post(this.url + "/friends/" + addUser.id, null, { "headers": this.headers }).map(fri => fri.json()).subscribe(fri => {
+            this.api.searchFriend(addUser.id).subscribe(fri => {
               this.navCtrl.push(FriendsPage);
             });
           }

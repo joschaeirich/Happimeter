@@ -12,7 +12,7 @@ import { GlobalVariables } from '../../providers/globalVariables';
 import { SpeechPage } from '../Speech/Speech';
 
 
-import { Http, Headers } from '@angular/http';
+import { Http } from '@angular/http';
 
 
 @Component({
@@ -26,13 +26,13 @@ export class MainPage {
   pageVisited: any = false; 
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, public auth: Auth, public global:GlobalVariables
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, public auth: Auth, public api:GlobalVariables
   ,private alertCtrl: AlertController) {
    }
 
    ionViewWillEnter() {
-    this.pageVisited = this.global.pageVisited;
-    this.global.pageVisited = true;
+    this.pageVisited = this.api.pageVisited;
+    this.api.pageVisited = true;
 
    }
 
@@ -68,13 +68,8 @@ export class MainPage {
   }
 
   ionViewDidEnter() {
-    var url = "https://www.pascalbudner.de:8080/v1";
 
-    var headers: Headers = new Headers();
-    headers.append("Authorization", "Bearer " + this.auth.token);
-
-
-    this.http.get(url + "/friends/requests", { "headers": headers }).map(fri => fri.json()).subscribe(fri => {
+    this.api.getFriendRequest().subscribe(fri => {
       if (fri.friend_requests.length > 0) {
         this.friendRequest = 'assets/MenuIcons/AddFriendsIconOpenRequest.svg';
       } else {

@@ -9,9 +9,11 @@ import { Tree3Page } from '../Tree3/Tree3';
 import { Tree4Page } from '../Tree4/Tree4';
 
 import { Auth } from '../../providers/auth';
-import { Http, Headers } from '@angular/http';
+import { Http } from '@angular/http';
 import * as moment from 'moment';
 import { Geolocation } from '@ionic-native/geolocation';
+
+import {GlobalVariables} from '../../providers/globalVariables'
 
 
 var counter: number = 0;
@@ -32,19 +34,18 @@ export class MoodPage {
 
   mood: any;
   errormsg: any;
-  url: any = "https://www.pascalbudner.de:8080/v1";
-  headers: Headers = new Headers();
+
   pleasance: any = 1;
   activation: any = 1;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, public auth: Auth, public geolocation: Geolocation) {
-    this.headers.append("Authorization", "Bearer " + this.auth.token);
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, public auth: Auth, public geolocation: Geolocation,private api: GlobalVariables) {
+    
   }
 
   ionViewDidLoad() {
 
-    this.http.get(this.url + "/classifier/prediction", { "headers": this.headers }).map(res => res.json()).subscribe(res => {
+    this.api.GetPrediction().subscribe(res => {
       if (res.status == 400) {
         this.errormsg = "We haven't received any sensor data yet =( In order to collect data you need to have a Pebble watch and download the happimeter app at the pebble appstore"
         return;
@@ -76,8 +77,6 @@ export class MoodPage {
         this.mood = path +'transparent_mood9' + format
       }
     });
-    console.log(this.pleasance)
-    console.log(this.activation)
   }
 
   confirm() {
@@ -99,7 +98,7 @@ export class MoodPage {
         lon: position.coords.longitude
       }
 
-      this.http.post(this.url + "/moods", moodData, { "headers": this.headers }).map(res => res.json()).subscribe(res => { });
+      this.api.postMood(moodData).subscribe(res => { });
     })
 
     this.treePage();

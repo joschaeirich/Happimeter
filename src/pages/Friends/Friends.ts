@@ -9,7 +9,7 @@ import { MainPage } from '../Main/Main'
 
 
 import { Auth } from '../../providers/auth';
-
+import { GlobalVariables } from '../../providers/globalVariables'
 import { Http, Headers } from '@angular/http';
 
 
@@ -19,46 +19,42 @@ import { Http, Headers } from '@angular/http';
 })
 export class FriendsPage {
 
-  url = "https://www.pascalbudner.de:8080/v1";
-
   headerText: any;
-  headers: Headers = new Headers();
 
   currentFriendList: any = [];
   friendRequest: any = 'assets/Friends/Icons/friendRequests.svg';
 
   moodData: any;
-  
-  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, public auth: Auth) {
-    this.headers.append("Authorization", "Bearer " + this.auth.token);
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, public auth: Auth, private api: GlobalVariables) {
   }
 
   ionViewDidEnter() {
     this.currentFriendList = [];
     this.moodData = [];
-    this.http.get(this.url + "/friends", { "headers": this.headers }).map(fri => fri.json()).subscribe(fri => {
-    
+    this.api.getFriendsList().subscribe(fri => {
+
       for (var i = 0; i < fri.friends.length; ++i) {
         var obj = fri.friends[i].user;
-        if(fri.friends[i].user.mood.pleasance==2 && fri.friends[i].user.mood.activation==2){
+        if (fri.friends[i].user.mood.pleasance == 2 && fri.friends[i].user.mood.activation == 2) {
           obj.icon = "assets/BoltSmilieys/transparent_mood1.svg"
-        }else if(fri.friends[i].user.mood.pleasance==1 && fri.friends[i].user.mood.activation==2){
+        } else if (fri.friends[i].user.mood.pleasance == 1 && fri.friends[i].user.mood.activation == 2) {
           obj.icon = "assets/BoltSmilieys/transparent_mood2.svg"
-        }else if(fri.friends[i].user.mood.pleasance==0 && fri.friends[i].user.mood.activation==2){
+        } else if (fri.friends[i].user.mood.pleasance == 0 && fri.friends[i].user.mood.activation == 2) {
           obj.icon = "assets/BoltSmilieys/transparent_mood3.svg"
-        }else if(fri.friends[i].user.mood.pleasance==2 && fri.friends[i].user.mood.activation==1){
+        } else if (fri.friends[i].user.mood.pleasance == 2 && fri.friends[i].user.mood.activation == 1) {
           obj.icon = "assets/BoltSmilieys/transparent_mood4.svg"
-        }else if(fri.friends[i].user.mood.pleasance==1 && fri.friends[i].user.mood.activation==1){
+        } else if (fri.friends[i].user.mood.pleasance == 1 && fri.friends[i].user.mood.activation == 1) {
           obj.icon = "assets/BoltSmilieys/transparent_mood5.svg"
-        }else if(fri.friends[i].user.mood.pleasance==0 && fri.friends[i].user.mood.activation==1){
+        } else if (fri.friends[i].user.mood.pleasance == 0 && fri.friends[i].user.mood.activation == 1) {
           obj.icon = "assets/BoltSmilieys/transparent_mood6.svg"
-        }else if(fri.friends[i].user.mood.pleasance==2 && fri.friends[i].user.mood.activation==0){
+        } else if (fri.friends[i].user.mood.pleasance == 2 && fri.friends[i].user.mood.activation == 0) {
           obj.icon = "assets/BoltSmilieys/transparent_mood7.svg"
-        }else if(fri.friends[i].user.mood.pleasance==1 && fri.friends[i].user.mood.activation==0){
+        } else if (fri.friends[i].user.mood.pleasance == 1 && fri.friends[i].user.mood.activation == 0) {
           obj.icon = "assets/BoltSmilieys/transparent_mood8.svg"
-        }else if(fri.friends[i].user.mood.pleasance==0 && fri.friends[i].user.mood.activation==0){
+        } else if (fri.friends[i].user.mood.pleasance == 0 && fri.friends[i].user.mood.activation == 0) {
           obj.icon = "assets/BoltSmilieys/transparent_mood9.svg"
-        }else{
+        } else {
           obj.icon = "assets/BoltSmilieys/questionmark.svg"
         }
         this.currentFriendList.push(obj);
@@ -66,9 +62,11 @@ export class FriendsPage {
       }
     }
     );
-  
-    this.http.get(this.url + "/friends/requests", { "headers": this.headers }).map(fri => fri.json()).subscribe(fri => {
+
+    this.api.getFriendRequest().subscribe(fri => {
+
       if (fri.friend_requests.length > 0) {
+        console.log(fri.friend_request.length)
         this.headerText = "Open Request";
         this.friendRequest = 'assets/Friends/Icons/openFriendRequest.svg';
       } else {
@@ -89,7 +87,7 @@ export class FriendsPage {
     this.navCtrl.push(DeleteFriendPage);
   }
   FriendRequest() {
-    this.http.get(this.url + "/friends/requests", { "headers": this.headers }).map(fri => fri.json()).subscribe(fri => {
+    this.api.getFriendRequest().subscribe(fri => {
       if (fri.friend_requests.length > 0) {
         this.navCtrl.push(FriendRequestPage);
       } else {
@@ -98,7 +96,7 @@ export class FriendsPage {
     });
   }
 
-  mainPage(){
+  mainPage() {
     this.navCtrl.push(MainPage);
   }
 

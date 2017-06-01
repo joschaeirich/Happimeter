@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Auth } from '../../providers/auth';
+import { GlobalVariables } from '../../providers/globalVariables';
 import { MainPage } from '../Main/Main';
 
 import * as $ from 'jquery';
 import * as moment from 'moment';
 //import 'moment/locale/pt-br';
 
-import { Http, Headers } from '@angular/http';
+import { Http } from '@angular/http';
+
 
 
 @Component({
@@ -45,7 +47,7 @@ export class MoodDiagramsPage {
             false
         );
     }
-    constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, public auth: Auth) { }
+    constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, public auth: Auth, private api: GlobalVariables) { }
 
 
 
@@ -55,15 +57,11 @@ export class MoodDiagramsPage {
         var opacity = 0.5;
 
 
-        var url = "https://www.pascalbudner.de:8080/v1";
-
-        var headers: Headers = new Headers();
-        headers.append("Authorization", "Bearer " + this.auth.token);
 
 
 
-        this.http.get(url + "/statistics/movement/24hours", { "headers": headers }).map(res => res.json()).subscribe(res => {
-            this.http.get(url + "/moods/predictions", { "headers": headers }).map(pre => pre.json()).subscribe(pre => {
+        this.api.getMovement24Hours().subscribe(res => {
+            this.api.getAllMoodPredictions().subscribe(pre => {
 
                 if (pre.moods.length == 0) {
                     this.errormsg = "No mood entries so far =("
@@ -461,8 +459,8 @@ export class MoodDiagramsPage {
 
 
 
+                this.api.getHeartrate().subscribe(res => {
 
-                this.http.get(url + "/statistics/raw_heartrate", { "headers": headers }).map(res => res.json()).subscribe(res => {
 
 
 
@@ -756,10 +754,10 @@ export class MoodDiagramsPage {
                     };
 
 
-                    this.http.get(url + "/statistics/happiness/7days", { "headers": headers }).map(hap => hap.json()).subscribe(hap => {
+                    this.api.getHappiness7Days().subscribe(hap => {
 
 
-                        this.http.get(url + "/statistics/activation/7days", { "headers": headers }).map(act => act.json()).subscribe(act => {
+                        this.api.getActivation7Days().subscribe(act => {
 
                             var activation_array = [];
                             for (var i = 0; i < act.entries.length; ++i) {
@@ -819,7 +817,7 @@ export class MoodDiagramsPage {
                                     alternateGridColor: null,
                                     plotBands: [{
                                         from: 0,
-                                        to: 1,
+                                        to: 0.7,
                                         color: 'transparent',
                                         label: {
                                             text: 'Low',
@@ -830,8 +828,8 @@ export class MoodDiagramsPage {
                                             }
                                         }
                                     }, {
-                                        from: 1.01,
-                                        to: 2,
+                                        from: 0.71,
+                                        to: 1.3,
                                         color: 'transparent',
                                         label: {
                                             text: 'Medium',
@@ -842,8 +840,8 @@ export class MoodDiagramsPage {
                                             }
                                         }
                                     }, {
-                                        from: 2.01,
-                                        to: 3,
+                                        from: 1.31,
+                                        to: 2,
                                         color: 'transparent',
                                         label: {
                                             text: 'High',
@@ -858,19 +856,19 @@ export class MoodDiagramsPage {
                                         color: 'rgba(255, 255, 255, 0.5)',
                                         width: 2,
                                         dashStyle: 'ShortDot',
-                                        value: 1,
+                                        value: 0.7,
+                                    },
+                                    {
+                                        color: 'rgba(255, 255, 255, 0.5)',
+                                        width: 2,
+                                        dashStyle: 'ShortDot',
+                                        value: 1.3,
                                     },
                                     {
                                         color: 'rgba(255, 255, 255, 0.5)',
                                         width: 2,
                                         dashStyle: 'ShortDot',
                                         value: 2,
-                                    },
-                                    {
-                                        color: 'rgba(255, 255, 255, 0.5)',
-                                        width: 2,
-                                        dashStyle: 'ShortDot',
-                                        value: 3,
                                     }]
                                 },
                                 tooltip: {
@@ -940,7 +938,7 @@ export class MoodDiagramsPage {
                                     alternateGridColor: null,
                                     plotBands: [{
                                         from: 0,
-                                        to: 1,
+                                        to: 0.7,
                                         color: 'transparent',
                                         label: {
                                             text: 'Low',
@@ -951,8 +949,8 @@ export class MoodDiagramsPage {
                                             }
                                         }
                                     }, {
-                                        from: 1.01,
-                                        to: 2,
+                                        from: 0.71,
+                                        to: 1.31,
                                         color: 'transparent',
                                         label: {
                                             text: 'Medium',
@@ -963,8 +961,8 @@ export class MoodDiagramsPage {
                                             }
                                         }
                                     }, {
-                                        from: 2.01,
-                                        to: 3,
+                                        from: 1.32,
+                                        to: 2,
                                         color: 'transparent',
                                         label: {
                                             text: 'High',
@@ -979,19 +977,19 @@ export class MoodDiagramsPage {
                                         color: 'rgba(255, 255, 255, 0.5)',
                                         width: 2,
                                         dashStyle: 'ShortDot',
-                                        value: 1,
+                                        value: 0.7,
+                                    },
+                                    {
+                                        color: 'rgba(255, 255, 255, 0.5)',
+                                        width: 2,
+                                        dashStyle: 'ShortDot',
+                                        value: 1.31,
                                     },
                                     {
                                         color: 'rgba(255, 255, 255, 0.5)',
                                         width: 2,
                                         dashStyle: 'ShortDot',
                                         value: 2,
-                                    },
-                                    {
-                                        color: 'rgba(255, 255, 255, 0.5)',
-                                        width: 2,
-                                        dashStyle: 'ShortDot',
-                                        value: 3,
                                     }]
                                 },
                                 tooltip: {

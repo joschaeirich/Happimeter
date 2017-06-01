@@ -1,11 +1,14 @@
 import { Component } from '@angular/core';
 import { NavController, AlertController, LoadingController, Loading } from 'ionic-angular';
-import { Auth } from '../../providers/auth';
+
 import { MainPage } from '../Main/Main';
 import { LegalPage } from '../Legal/Legal';
 
 import { Storage } from '@ionic/storage';
-import { Http, Headers } from '@angular/http';
+import { Http } from '@angular/http';
+
+import { Auth } from '../../providers/auth';
+import { GlobalVariables } from '../../providers/globalVariables';
 
 
 @Component({
@@ -17,7 +20,8 @@ export class LoginPage {
   registerCredentials = { email: '', password: '' };
 
 
-  constructor(private navCtrl: NavController, public http: Http, private auth: Auth, private alertCtrl: AlertController, private loadingCtrl: LoadingController, public storage: Storage) {
+  constructor(private navCtrl: NavController, public http: Http, private auth: Auth, private alertCtrl: AlertController, private loadingCtrl: LoadingController, public storage: Storage
+    , private api: GlobalVariables) {
 
 
     storage.ready().then(() => {
@@ -43,6 +47,7 @@ export class LoginPage {
       //console.log(response);
       if (response.status == 200) {
         this.auth.token = response.token;
+        this.api.token = response.token;
         this.loading.dismiss().catch(x => { });
         this.navCtrl.setRoot(MainPage);
         this.storage.set('login_token', response.token);
@@ -78,12 +83,6 @@ export class LoginPage {
 
   forgotPassword() {
 
-    var url = "https://www.pascalbudner.de:8080/v1";
-
-    var headers: Headers = new Headers();
-    headers.append("Authorization", "Bearer " + this.auth.token);
-
-
     let alert = this.alertCtrl.create({
       title: 'Forgot Password?',
       message: 'Please enter your email below and we will send you an email with a new password',
@@ -104,15 +103,13 @@ export class LoginPage {
         {
           text: 'Send',
           handler: data => {
-            if(data.email){
-          
-            this.http.post(url + "/users/lost_password", {
-              "mail": data.email,
+            if (data.email) {
+
+              this.api.lostPassword(data.email).subscribe(pas => {
+     
+                })
+                ;
             }
-              , { "headers": headers }).map(pas => pas.json()).subscribe(pas => {
-                console.log(pas)
-              })
-            ;}
           }
         }
 

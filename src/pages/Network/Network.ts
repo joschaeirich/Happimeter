@@ -2,7 +2,8 @@ import { Component, ViewChild, AfterViewInit, ElementRef } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
 import { Auth } from '../../providers/auth';
-import { Http, Headers } from '@angular/http';
+import { GlobalVariables } from '../../providers/globalVariables';
+import { Http } from '@angular/http';
 
 
 
@@ -26,7 +27,7 @@ export class NetworkPage implements AfterViewInit {
   @ViewChild('network') network_element: ElementRef;
 
 
-  constructor(public navCtrl: NavController, public http: Http, public auth: Auth) {
+  constructor(public navCtrl: NavController, public http: Http, public auth: Auth, private api: GlobalVariables) {
 
   }
 
@@ -61,9 +62,6 @@ export class NetworkPage implements AfterViewInit {
 
   ngAfterViewInit() {
 
-    var url = "https://www.pascalbudner.de:8080/v1";
-    var headers: Headers = new Headers();
-    headers.append("Authorization", "Bearer " + this.auth.token);
 
 
     this.cy = cytoscape({ "container": this.network_element.nativeElement, "minZoom": 0.5, "maxZoom": 2 });
@@ -80,7 +78,7 @@ export class NetworkPage implements AfterViewInit {
     this.cy.center();
     this.cy.style("node { content: data(label); text-margin-y: -5px; color: #ffffff; font-size:7px; background-color: #0D47A1; border-color: #fff; border-width: 1px;} edge {line-color: #ffffff; opacity: 0.5;}");
 
-    this.http.get(url + "/friends", { "headers": headers }).map(fri => fri.json()).subscribe(fri => {
+    this.api.getFriendsList().subscribe(fri => {
 
       if (fri.friends.length == 0) {
         this.errormsg = "You have no friends yet. Check out the friends page and send some requests ;) "

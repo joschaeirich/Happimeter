@@ -4,7 +4,9 @@ import { NavController } from 'ionic-angular';
 import { MainPage } from '../Main/Main';
 import { Auth } from '../../providers/auth';
 
-import { Http, Headers } from '@angular/http';
+import { Http } from '@angular/http';
+
+import { GlobalVariables } from '../../providers/globalVariables'
 
 @Component({
   selector: 'page-Achievement',
@@ -14,18 +16,17 @@ export class AchievementPage {
 
   treeImage:any;
 
-  constructor(public navCtrl: NavController, public http: Http, public auth: Auth) { }
+  constructor(public navCtrl: NavController, public http: Http, public auth: Auth,private api: GlobalVariables) { }
 
 
   ionViewDidLoad() {
-    var url = "https://www.pascalbudner.de:8080/v1";
-
-    var headers: Headers = new Headers();
-    headers.append("Authorization", "Bearer " + this.auth.token);
+  
+  
+  
 
     
 
-    this.http.get(url + "/statistics/trees", { "headers": headers }).map(tre => tre.json()).subscribe(tre => {
+    this.api.getNumberOfTrees().subscribe(tre => {
       
     var treeNumber = tre.number_of_trees;
       console.log(treeNumber);

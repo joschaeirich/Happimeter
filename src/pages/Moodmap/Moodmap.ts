@@ -1,11 +1,12 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
 
 import { Auth } from '../../providers/auth';
 
-import { Http, Headers } from '@angular/http';
+import { Http } from '@angular/http';
+import { GlobalVariables } from '../../providers/globalVariables'
 
 import { Haversine } from 'haversine-position';
 //import * as MarkerClusterer from 'node-js-marker-clusterer';
@@ -26,8 +27,7 @@ declare var google;
 
 export class MoodmapPage {
 
-  url = "https://www.pascalbudner.de:8080/v1";
-  headers: Headers = new Headers();
+
 
   location: any = [];
 
@@ -55,15 +55,13 @@ export class MoodmapPage {
   map: any;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public geolocation: Geolocation, public http: Http, public auth: Auth) {
-    this.headers.append("Authorization", "Bearer " + this.auth.token);
-
-  }
+  constructor(public navCtrl: NavController, public navParams: NavParams, public geolocation: Geolocation, public http: Http, public auth: Auth, private alertCtrl: AlertController,
+    private api: GlobalVariables) { }
 
 
   ionViewDidLoad() {
 
-    this.http.get(this.url + "/moods", { "headers": this.headers }).map(res => res.json()).subscribe(res => {
+    this.api.getMood().subscribe(res => {
 
       if (res.moods.length == 0) {
         this.errormsg = "We haven't received any sensor data yet =( In order to collect data you need to have a Pebble watch and download the happimeter app at the pebble appstore"
@@ -117,24 +115,26 @@ export class MoodmapPage {
 
 
         if (avgAct <= 2 && avgAct > 1.3) {
-          this.Allclusters[i].circlePleasence = 'assets/Circles/green.png'
+          this.Allclusters[i].circleActivation = 'assets/Circles/green.png'
           this.Allclusters[i].activation = 2;
         } else if (avgAct <= 1.3 && avgAct > 0.7) {
-          this.Allclusters[i].circlePleasence = 'assets/Circles/orange.png'
+          this.Allclusters[i].circleActivation = 'assets/Circles/orange.png'
           this.Allclusters[i].activation = 1;
         } else if (avgAct <= 0.7) {
-          this.Allclusters[i].circlePleasence = 'assets/Circles/red.png'
+          this.Allclusters[i].circleActivation = 'assets/Circles/red.png'
           this.Allclusters[i].activation = 0;
         }
 
+
+
         if (avgPls <= 2 && avgPls > 1.3) {
-          this.Allclusters[i].circleActivation = 'assets/Circles/green.png'
+          this.Allclusters[i].circlePleasence = 'assets/Circles/green.png'
           this.Allclusters[i].pleasance = 2;
         } else if (avgPls <= 1.3 && avgPls > 0.7) {
-          this.Allclusters[i].circleActivation = 'assets/Circles/orange.png'
+          this.Allclusters[i].circlePleasence = 'assets/Circles/orange.png'
           this.Allclusters[i].pleasance = 1;
         } else if (avgPls <= 0.7) {
-          this.Allclusters[i].circleActivation = 'assets/Circles/red.png'
+          this.Allclusters[i].circlePleasence = 'assets/Circles/red.png'
           this.Allclusters[i].pleasance = 0;
         }
 
@@ -164,10 +164,8 @@ export class MoodmapPage {
       }
       this.loadMap();
     });
-
-
-
   }
+
 
 
 
@@ -352,14 +350,20 @@ export class MoodmapPage {
 
 
     }, (err) => {
-      console.log(err);
+      let alert = this.alertCtrl.create({
+        title: 'Geolocation disabled',
+        subTitle: 'Please activate your location services',
+        buttons: ['Dismiss']
+      });
+      alert.present();
+
     });
 
   }
 
   addMarker() {
 
-    this.http.get(this.url + "/moods", { "headers": this.headers }).map(res => res.json()).subscribe(res => {
+    this.api.getMood().subscribe(res => {
 
 
       var pleasance = res.moods[0].pleasance,
@@ -578,7 +582,7 @@ export class MoodmapPage {
     }
 
 
-    console.log(this.map.getZoom())
+
     if (this.clicked_mood == true) {
       this.markersMood = [];
       for (var i = 0; i < this.markersPleasance.length; i++) {

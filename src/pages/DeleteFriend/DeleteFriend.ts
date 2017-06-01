@@ -3,7 +3,8 @@ import { NavController, NavParams, AlertController } from 'ionic-angular';
 
 import { Auth } from '../../providers/auth';
 
-import { Http, Headers } from '@angular/http';
+import { Http } from '@angular/http';
+import { GlobalVariables } from '../../providers/globalVariables'
 
 
 @Component({
@@ -12,20 +13,16 @@ import { Http, Headers } from '@angular/http';
 })
 export class DeleteFriendPage {
 
-  url = "https://www.pascalbudner.de:8080/v1";
-
-  headers: Headers = new Headers();
   currentFriendList: any = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, public auth: Auth, private alertCtrl: AlertController) {
-    this.headers.append("Authorization", "Bearer " + this.auth.token);
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, public auth: Auth, private alertCtrl: AlertController,private api: GlobalVariables) {
   }
 
 
 
   ionViewDidLoad() {
 
-    this.http.get(this.url + "/friends", { "headers": this.headers }).map(fri => fri.json()).subscribe(fri => {
+    this.api.getFriendsList().subscribe(fri => {
       for (var i = 0; i < fri.friends.length; ++i) {
         this.currentFriendList.push(fri.friends[i].user)
       }
@@ -48,8 +45,7 @@ export class DeleteFriendPage {
         {
           text: 'Yes',
           handler: () => {
-            
-            this.http.delete(this.url + "/friends/" + addUser.id, { "headers": this.headers }).map(fri => fri.json()).subscribe(fri => {
+            this.api.deleteFriend(addUser.id).subscribe(fri => {
                 addUser.deleted = true;
             });
           }

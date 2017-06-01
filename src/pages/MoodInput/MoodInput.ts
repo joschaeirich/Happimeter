@@ -7,7 +7,8 @@ import { Tree4Page } from '../Tree4/Tree4';
 import { Geolocation } from '@ionic-native/geolocation';
 
 import { Auth } from '../../providers/auth';
-import { Http, Headers } from '@angular/http';
+import { GlobalVariables } from '../../providers/globalVariables';
+import { Http} from '@angular/http';
 import * as moment from 'moment';
 
 var counter: number = 0;
@@ -25,8 +26,6 @@ function count() {
   templateUrl: 'MoodInput.html'
 })
 export class MoodInputPage {
-  url = "https://www.pascalbudner.de:8080/v1";
-  headers: Headers = new Headers();
 
   pleasance: number = 1;
   activation: number = 1;
@@ -37,12 +36,11 @@ export class MoodInputPage {
   lat: any;
   long: any;
 
-  path:any = "assets/MoodSmilies/";
-  format:any = ".png";
+  path: any = "assets/MoodSmilies/";
+  format: any = ".png";
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, public auth: Auth, public geolocation: Geolocation) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, public auth: Auth, public geolocation: Geolocation, private api: GlobalVariables) {
 
-    this.headers.append("Authorization", "Bearer " + this.auth.token);
 
     var raw_counter = localStorage.getItem("treeCounter");
     if (raw_counter == null || raw_counter == "NaN") {
@@ -56,7 +54,7 @@ export class MoodInputPage {
     this.moodIcon = this.path + 'transparent_mood5' + this.format
   }
 
-  onChange(pleasance, activation) {  
+  onChange(pleasance, activation) {
 
     if (this.pleasance == 2 && this.activation == 2) {
       this.moodIcon = this.path + 'transparent_mood1' + this.format
@@ -118,8 +116,8 @@ export class MoodInputPage {
         lat: position.coords.latitude,
         lon: position.coords.longitude
       }
+      this.api.postMood(moodData).subscribe(res => { });
 
-      this.http.post(this.url + "/moods", moodData, { "headers": this.headers }).map(res => res.json()).subscribe(res => { });
     })
 
     this.TreePage();
