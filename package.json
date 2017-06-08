@@ -48,7 +48,8 @@
         "node-js-marker-clusterer": "^1.0.0",
         "rxjs": "5.0.1",
         "sw-toolbox": "3.4.0",
-        "zone.js": "0.7.2"
+        "zone.js": "0.7.2",
+        "cordova-plugin-geolocation": "~2.4.3-dev"
     },
     "devDependencies": {
         "@ionic/app-scripts": "1.1.4",

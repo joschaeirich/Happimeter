@@ -10,7 +10,7 @@ import { MainPage } from '../Main/Main'
 
 import { Auth } from '../../providers/auth';
 import { GlobalVariables } from '../../providers/globalVariables'
-import { Http, Headers } from '@angular/http';
+import { Http } from '@angular/http';
 
 
 @Component({

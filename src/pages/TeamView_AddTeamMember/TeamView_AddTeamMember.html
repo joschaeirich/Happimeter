@@ -1,0 +1,40 @@
+<ion-header class="toolbar-background-ios-TeamView toolbar-background-md-TeamView">
+
+  <ion-navbar>
+    <ion-title>Add Members</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content class="page-TeamView">
+
+  <ion-card class="memberListBackground">
+    <ion-card-content>
+      <ion-searchbar class="serchbarTeamViewIos" (ionInput)="getItems($event)"></ion-searchbar>
+      <ion-list>
+        <ion-item *ngFor="let item of items" (click)="presentConfirm(item)">
+          {{ item.mail }}
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="memberListBackground">
+    <ion-card-content>
+      <ion-list class="memberListBackground">
+
+        <ion-list-header>Team Members</ion-list-header>
+        <ion-item class="memberListBackground" *ngFor="let member of memberList" (click)="removeName(member)">
+          <ion-avatar class="paddingListName" item-left>
+            {{ member.name }}
+          </ion-avatar>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+  <br>
+  <br>
+<div class="invite-button-postition">
+  <button ion-button outline> Invite Teammembers</button>
+</div>
+</ion-content>

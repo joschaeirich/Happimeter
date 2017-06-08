@@ -8,7 +8,7 @@ import { LoginPage } from '../Login/Login';
 import { Auth } from '../../providers/auth';
 import { GlobalVariables } from '../../providers/globalVariables';
 
-import { Http, Headers } from '@angular/http';
+import { Http } from '@angular/http';
 
 import { Storage } from '@ionic/storage';
 
@@ -48,12 +48,8 @@ export class SettingsPage {
         {
           text: 'Yes',
           handler: () => {
-            this.api.logout().subscribe(res => {
-              // console.log(res) 
-              this.storage.set('login_token', null);
-              this.navCtrl.push(LoginPage);
-
-            });
+            this.api.logout();
+            this.navCtrl.setRoot(LoginPage);
           }
         }
       ]

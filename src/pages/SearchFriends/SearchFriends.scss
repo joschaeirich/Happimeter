@@ -8,13 +8,11 @@ background: color($colors, friends);
   }
 }
 
-ion-searchbar.searchbar-ios {
+ion-searchbar.searchbar-ios .searchbar-ios {
     background-color: color($colors, friends);
 }
 
-ion-searchbar.searchbar-md {
-    background-color: color($colors, friends);
-}
+
 
 .list-background {
     background-color: transparent;

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { Auth } from '../../providers/auth';
 import { GlobalVariables } from '../../providers/globalVariables';
-import { Http, Headers } from '@angular/http';
+import { Http } from '@angular/http';
 
 import { FriendsPage } from '../Friends/Friends';
 
@@ -12,12 +12,11 @@ import { FriendsPage } from '../Friends/Friends';
 })
 export class SearchFriendsPage {
   items: any = [];
-  url: any = "https://www.pascalbudner.de:8080/v1";
-  headers: Headers = new Headers();
+
+
   friendRequest: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, public auth: Auth, private alertCtrl: AlertController,private api: GlobalVariables) {
-    this.headers.append("Authorization", "Bearer " + this.auth.token);
 
   }
 
@@ -27,26 +26,21 @@ export class SearchFriendsPage {
   }
 
   getItems(ev) {
-    // Reset items back to all of the items
     this.initializeItems();
     var val = ev.target.value;
-
-
-
-    console.log(ev);
 
     if (val.length < 3) {
       return;
     }
 
-    this.http.get(this.url + "/friends/search/" + ev.target.value, { "headers": this.headers }).map(fri => fri.json()).subscribe(fri => {
-
+this.api.searchFriend(ev.target.value).subscribe(fri => {;
+  
       this.items = [];
 
       for (var i = 0; i < fri.results.length; ++i) {
         this.items.push(fri.results[i].user);
       }
-      //console.log(this.items);
+
     });
 
   }
@@ -66,7 +60,7 @@ export class SearchFriendsPage {
         {
           text: 'Yes',
           handler: () => {
-            this.api.searchFriend(addUser.id).subscribe(fri => {
+            this.api.postFriend(addUser.id).subscribe(fri => {
               this.navCtrl.push(FriendsPage);
             });
           }

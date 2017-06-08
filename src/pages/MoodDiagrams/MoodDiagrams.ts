@@ -199,7 +199,7 @@ export class MoodDiagramsPage {
                 } else {
                     for (var i = 0; i < activity_array.length; ++i) {
                         activity_array_1[i] = {
-                            "y": activity_array[i].y + 20000,
+                            "y": activity_array[i].y + 1500,
                             "timestamp": activity_array[i].timestamp,
 
                         }
@@ -256,7 +256,7 @@ export class MoodDiagramsPage {
                     }
 
                 }
-                console.log(activity_array_1)
+
 
                 var counterActivtiy = 0;
                 for (var i = 0; i < activity_array.length; i++) {
@@ -264,13 +264,13 @@ export class MoodDiagramsPage {
                     this.meanActivity += activity_array[i].y
                 }
                 this.meanActivity = Math.round(this.meanActivity / counterActivtiy);
-                if (this.meanActivity > 80000) {
+                if (this.meanActivity > 12000) {
                     this.meanActivityString = "Very High"
-                } else if (this.meanActivity <= 80000 && this.meanActivity > 40000) {
+                } else if (this.meanActivity <= 12000 && this.meanActivity > 8000) {
                     this.meanActivityString = "High"
-                } else if (this.meanActivity <= 40000 && this.meanActivity > 10000) {
+                } else if (this.meanActivity <= 8000 && this.meanActivity > 1000) {
                     this.meanActivityString = "Medium"
-                } else if (this.meanActivity <= 10000 && this.meanActivity > 100) {
+                } else if (this.meanActivity <= 1000 && this.meanActivity > 50) {
                     this.meanActivityString = "Low"
                 }
 
@@ -278,7 +278,7 @@ export class MoodDiagramsPage {
                 /* 
                 Maximum of the y Axis in the activity chart
                 */
-                var maxYaxis = 140000;
+                var maxYaxis = (14000);
 
                 /*
                 Activity chart
@@ -327,7 +327,7 @@ export class MoodDiagramsPage {
                         },
 
                         labels: {
-                            enabled: false//default is true            
+                            enabled: false
                         },
 
                         minorGridLineWidth: 0,
@@ -337,7 +337,7 @@ export class MoodDiagramsPage {
 
                         plotBands: [{
                             from: 0,
-                            to: 10000,
+                            to: 1000,
                             color: 'transparent',
                             label: {
                                 text: 'Low Acitvity',
@@ -348,8 +348,8 @@ export class MoodDiagramsPage {
                                 }
                             }
                         }, {
-                            from: 10000,
-                            to: 40000,
+                            from: 1000,
+                            to: 4000,
                             color: 'transparent',
                             label: {
                                 text: 'Moderate Acitvity',
@@ -360,8 +360,8 @@ export class MoodDiagramsPage {
                                 }
                             }
                         }, {
-                            from: 40000,
-                            to: 80000,
+                            from: 4000,
+                            to: 8000,
                             color: 'transparent',
                             label: {
                                 text: 'High Acitvity',
@@ -372,8 +372,8 @@ export class MoodDiagramsPage {
                                 }
                             }
                         }, {
-                            from: 80000,
-                            to: maxYaxis - 20000,
+                            from: 8000,
+                            to: maxYaxis ,
                             color: 'transparent',
                             label: {
                                 text: 'Very high Acitvity',
@@ -388,25 +388,25 @@ export class MoodDiagramsPage {
                             color: 'rgba(255, 255, 255, 0.5)',
                             width: 2,
                             dashStyle: 'ShortDot',
-                            value: 10000,
+                            value: 1000,
                         },
                         {
                             color: 'rgba(255, 255, 255, 0.5)',
                             width: 2,
                             dashStyle: 'ShortDot',
-                            value: 40000,
+                            value: 4000,
                         },
                         {
                             color: 'rgba(255, 255, 255, 0.5)',
                             width: 2,
                             dashStyle: 'ShortDot',
-                            value: 80000,
+                            value: 8000,
                         },
                         {
                             color: 'rgba(255, 255, 255, 0.5)',
                             width: 2,
                             dashStyle: 'ShortDot',
-                            value: 120000
+                            value: 12000
                         }]
                     },
 
@@ -421,7 +421,6 @@ export class MoodDiagramsPage {
                             marker: {
                                 radius: 2,
                                 lineWidth: 2,
-                                //enabled: false,
 
                             }
                         }

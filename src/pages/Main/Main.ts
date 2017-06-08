@@ -9,7 +9,7 @@ import { StatisticsPage } from '../Statistics/Statistics';
 import { FriendsPage } from '../Friends/Friends';
 import { Auth } from '../../providers/auth';
 import { GlobalVariables } from '../../providers/globalVariables';
-import { SpeechPage } from '../Speech/Speech';
+import { TeamViewPage } from '../TeamView/TeamView';
 
 
 import { Http } from '@angular/http';
@@ -63,8 +63,8 @@ export class MainPage {
     this.navCtrl.push(FriendsPage);
   }
 
-  speechPage() {
-    this.navCtrl.push(SpeechPage);
+  teamViewPage() {
+    this.navCtrl.push(TeamViewPage);
   }
 
   ionViewDidEnter() {
