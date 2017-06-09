@@ -33,7 +33,7 @@ export class SearchFriendsPage {
       return;
     }
 
-this.api.searchFriend(ev.target.value).subscribe(fri => {;
+this.api.searchFriend(ev.target.value).subscribe(fri => {
   
       this.items = [];
 

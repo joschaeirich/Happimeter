@@ -1,0 +1,52 @@
+<ion-header class="toolbar-background-ios-TeamView toolbar-background-md-TeamView">
+
+  <ion-navbar>
+
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding class="page-TeamView">
+
+  <ion-card [hidden]="errormsg" class="list-background-team" style="width: 100% ; margin-left: 0%">
+    <ion-card-header style="font-weight: 100">
+      Team Mood
+    </ion-card-header>
+    <ion-card-content>
+      <img style="height: 80px; width: 80px; margin: auto; display: block" [src]="team.icon">
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card [hidden]="errormsg" class="list-background-team" style="width: 100% ; margin-left: 0%">
+    <ion-card-header style="font-weight: 100">
+      Team Pleasance
+    </ion-card-header>
+    <ion-card-content>
+      <div id="highcharts-9osgvf6-90" style="position: relative; overflow: hidden; width: 110%; height: 192.667px; 
+     text-align: left; line-height: normal; z-index: 0; font-family: roboto; left: -13px; top: 0.333313px;">
+        <chart class="chartPosition" [options]="pleasanceChart" (load)="saveInstance($event.context)" style="display: block" tpye="chart">
+        </chart>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card [hidden]="errormsg" class="list-background-team" style="width: 100%; margin-left: 0%">
+    <ion-card-header style="font-weight: 100">
+      Team Activation
+    </ion-card-header>
+    <ion-card-content>
+      <div id="highcharts-9osgvf6-90" style="position: relative; overflow: hidden; width: 110%; height: 192.667px; 
+     text-align: left; line-height: normal; z-index: 0; font-family: roboto; left: -13px; top: 0.333313px;">
+        <chart class="chartPosition" [options]="activationChart" (load)="saveInstance($event.context)" style="display: block" tpye="chart">
+        </chart>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <button ion-button outline (click)="delete_leaveGroup()" style="margin: auto; display: block"> {{text}}  </button>
+  <br>
+  <br>
+
+
+</ion-content>

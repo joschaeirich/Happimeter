@@ -8,12 +8,27 @@
 </ion-header>
 
 
-<ion-content padding class="page-TeamView" style="text-align: center">
+<ion-content padding class="page-TeamView" >
 
-  <img class="" src="assets/TeamView/TeamViewIntro.svg" >
+  <ion-card >
+    <ion-card-content class= "list-background-team">
+      <ion-list >
+        <ion-list-header>Your teams</ion-list-header>
+        <ion-item  *ngFor="let team of currentTeams"  (click)="goToTeamChart(team)">
+          <ion-avatar class="paddingListName" item-left>
+            {{ team.name }}
+          </ion-avatar>
+        <ion-avatar *ngIf="team.icon!=null" class="padding-mood-image" item-right>
+            <img [src]="team.icon">
+          </ion-avatar> 
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
 
-    <button ion-button outline full (click)="signInToTeam()">Sign in to another Team  </button>
+    <button ion-button outline (click)="signInToTeam()" style = "margin: auto; display: block">Search Team  </button>
     <br>
-    <button ion-button outline full (click)="createTeam()"> Create a new Team </button>
+    <br>
+    <button ion-button outline (click)="createTeam()" style = "margin: auto; display: block"> Create a new Team </button>
 
 </ion-content>

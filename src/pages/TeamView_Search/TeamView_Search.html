@@ -1,0 +1,40 @@
+<ion-header class="toolbar-background-ios-TeamView toolbar-background-md-TeamView">
+
+  <ion-navbar>
+  </ion-navbar>
+
+
+</ion-header>
+
+<ion-content padding class="page-TeamView">
+  <div *ngIf="page=='search'">
+    <ion-searchbar class="serchbarTeamViewIos" (ionInput)="getItems($event)"></ion-searchbar>
+
+    <ion-list>
+      <ion-item *ngFor="let item of items" (click)="presentConfirm(item)">
+        {{ item.name }}
+      </ion-item>
+    </ion-list>
+  </div>
+
+
+  <ion-card *ngIf="card=='active'" class="memberListBackground animated fadeInRight">
+    <ion-card-content>
+
+
+      <h1 style="text-align: center; font-weight: 300">Group</h1>
+      <ion-item class="memberListBackground" (click)="removeName(member)">
+        <ion-avatar class="paddingListName" style="text-align: center; font-weight: 300">
+          {{ groupItem.name }}
+        </ion-avatar>
+      </ion-item>
+      <ion-item>
+        <ion-input type="password" placeholder="Group Password" name="password" [(ngModel)]="password"></ion-input>
+      </ion-item>
+      <br>
+      <button ion-button outline style="margin: auto; display: block" (click)="joinTeam(password)" >Join Team</button>
+
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

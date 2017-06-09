@@ -24,8 +24,9 @@ import { ShareMoodPage } from '../pages/ShareMood/ShareMood';
 import { DeleteFriendPage } from '../pages/DeleteFriend/DeleteFriend';
 import { TeamViewPage } from '../pages/TeamView/TeamView';
 import { TeamView_CreateTeamPage } from '../pages/TeamView_CreateTeam/TeamView_CreateTeam';
-import { TeamView_SignInPage } from '../pages/TeamView_SignIn/TeamView_SignIn';
+import { TeamView_SearchPage } from '../pages/TeamView_Search/TeamView_Search';
 import { TeamView_AddTeamMemberPage } from '../pages/TeamView_AddTeamMember/TeamView_AddTeamMember';
+import { TeamView_TeamChartPage } from '../pages/TeamView_TeamChart/TeamView_TeamChart';
     
 import { LegalPage } from '../pages/Legal/Legal';
 
@@ -72,8 +73,9 @@ import { IonicStorageModule } from '@ionic/storage';
     TeamViewPage,
     LegalPage,
     TeamView_CreateTeamPage,
-    TeamView_SignInPage,
-    TeamView_AddTeamMemberPage
+    TeamView_SearchPage,
+    TeamView_AddTeamMemberPage,
+    TeamView_TeamChartPage
 
   ],
   imports: [
@@ -108,8 +110,9 @@ import { IonicStorageModule } from '@ionic/storage';
     TeamViewPage,
     LegalPage,
     TeamView_CreateTeamPage,
-    TeamView_SignInPage,
-    TeamView_AddTeamMemberPage
+    TeamView_SearchPage,
+    TeamView_AddTeamMemberPage,
+    TeamView_TeamChartPage
 
   ],
   providers: [

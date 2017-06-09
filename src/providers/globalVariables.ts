@@ -134,6 +134,12 @@ public postFriend(user) {
     }).map(res => res.json());
   }
 
+   public searchTeam(teamName) {
+    return this.http.get(this.url + 'teams/' +teamName, {
+      headers: this.GetHeaders()
+    }).map(res => res.json());
+  }
+
   public createTeam(team) {
     return this.http.post(this.url + 'teams', team, {
       headers: this.GetHeaders()

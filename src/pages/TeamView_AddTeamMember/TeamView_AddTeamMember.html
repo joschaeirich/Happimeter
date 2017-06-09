@@ -8,16 +8,14 @@
 
 <ion-content class="page-TeamView">
 
-  <ion-card class="memberListBackground">
-    <ion-card-content>
+
       <ion-searchbar class="serchbarTeamViewIos" (ionInput)="getItems($event)"></ion-searchbar>
       <ion-list>
         <ion-item *ngFor="let item of items" (click)="presentConfirm(item)">
           {{ item.mail }}
         </ion-item>
       </ion-list>
-    </ion-card-content>
-  </ion-card>
+
 
   <ion-card class="memberListBackground">
     <ion-card-content>
@@ -35,6 +33,6 @@
   <br>
   <br>
 <div class="invite-button-postition">
-  <button ion-button outline> Invite Teammembers</button>
+  <button ion-button outline (click)="inviteTeamMembers(member)"> Invite Teammembers</button>
 </div>
 </ion-content>

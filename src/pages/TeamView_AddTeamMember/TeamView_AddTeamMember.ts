@@ -9,12 +9,16 @@ import { GlobalVariables } from '../../providers/globalVariables';
 export class TeamView_AddTeamMemberPage {
   items: any = [];
   memberList: any = [];
+  member: any = { id: '' };
+  team:any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private api: GlobalVariables, private alertCtrl: AlertController) { }
+  constructor(public navCtrl: NavController, public navParams: NavParams, private api: GlobalVariables, private alertCtrl: AlertController) { 
+      this.team = this.navParams.get("team")
+  }
 
 
   initializeItems() {
-
+console.log(this.team)
   }
 
   getItems(ev) {
@@ -26,7 +30,6 @@ export class TeamView_AddTeamMemberPage {
     }
 
     this.api.searchFriend(ev.target.value).subscribe(fri => {
-      ;
 
       this.items = [];
 
@@ -39,20 +42,44 @@ export class TeamView_AddTeamMemberPage {
   }
 
   presentConfirm(addUser) {
-            this.memberList.push(addUser)
+    this.memberList.push(addUser)
   }
 
-  removeName(user){
+  removeName(user) {
     var index = 0;
-    for(var i = 0; i < this.memberList.length; i++) {
-      if(this.memberList[i].id == user.id) {
+    for (var i = 0; i < this.memberList.length; i++) {
+      if (this.memberList[i].id == user.id) {
         index = i;
         break;
       }
     }
 
-    this.memberList.splice(i,1);
+    this.memberList.splice(i, 1);
   }
 
+
+  inviteMembers() {
+   let alert = this.alertCtrl.create({
+      title: 'Add Team Members',
+      message: 'Do you want add these persons to your team?',
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          handler: () => {
+            return;
+          }
+        },
+        {
+          text: 'Yes',
+          handler: () => {
+            this.api.inviteUserToTeam(this.memberList, this.items).subscribe(fri => {
+            });
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
 
 }
