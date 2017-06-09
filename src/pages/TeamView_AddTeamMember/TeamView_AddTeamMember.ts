@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { GlobalVariables } from '../../providers/globalVariables';
+import { TeamViewPage } from '../TeamView/TeamView';
 
 @Component({
   selector: 'page-TeamView_AddTeamMember',
@@ -10,15 +11,19 @@ export class TeamView_AddTeamMemberPage {
   items: any = [];
   memberList: any = [];
   member: any = { id: '' };
-  team:any;
+  team: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private api: GlobalVariables, private alertCtrl: AlertController) { 
-      this.team = this.navParams.get("team")
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private api: GlobalVariables, private alertCtrl: AlertController) {
+    this.team = this.navParams.get("team")
+    console.log(this.team)
+
   }
 
 
+
   initializeItems() {
-console.log(this.team)
+
   }
 
   getItems(ev) {
@@ -58,10 +63,25 @@ console.log(this.team)
   }
 
 
-  inviteMembers() {
-   let alert = this.alertCtrl.create({
+
+
+  inviteTeamMembers() {
+    console.log(this.memberList)
+    for (var i = 0; i < this.memberList.length; i++) {
+      var text = "";
+      if (this.memberList.length == 0) {
+        text = "Don't you want to invite someone to your team?"
+      } else if (this.memberList.length == 1) {
+        text = "Do you want to add " + this.memberList[i].name + " to your team?"
+      } else {
+        text = "Do you want add these persons to your team?"
+      }
+    }
+
+    let alert = this.alertCtrl.create({
       title: 'Add Team Members',
-      message: 'Do you want add these persons to your team?',
+
+      message: text,
       buttons: [
         {
           text: 'No',
@@ -73,8 +93,11 @@ console.log(this.team)
         {
           text: 'Yes',
           handler: () => {
-            this.api.inviteUserToTeam(this.memberList, this.items).subscribe(fri => {
+            for (var i = 0; i < this.memberList.length; i++) {
+            this.api.inviteUserToTeam(this.memberList[i], this.team).subscribe(fri => {
             });
+            }
+            this.navCtrl.push(TeamViewPage);
           }
         }
       ]

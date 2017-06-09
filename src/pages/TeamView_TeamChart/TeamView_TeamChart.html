@@ -11,24 +11,52 @@
 
   <ion-card [hidden]="errormsg" class="list-background-team" style="width: 100% ; margin-left: 0%">
     <ion-card-header style="font-weight: 100">
-      Team Mood
+      {{team.name}}
+      <br>Team Mood
     </ion-card-header>
     <ion-card-content>
-      <img style="height: 80px; width: 80px; margin: auto; display: block" [src]="team.icon">
+      <br>
+      <img style="height: 100px; width: 100px; margin: auto; display: block" [src]="team.icon_chart">
     </ion-card-content>
+    <br>
+    <div class="row">
+      <div class="col">
+        <div class="text-center" style="font-weight: 100">
+          Mean pleasance:
+          <br> {{meanPleasance}}
+        </div>
+      </div>
+      <div class="col">
+        <div class="text-center" style="font-weight: 100">
+          Mean activity:
+          <br> {{meanActivation}}
+        </div>
+      </div>
+    </div>
+    <br>
+    <br>
+    <div style="text-align: center">
+      Mean Heartrate:
+      <br>{{mean_heartRate}}
+    </div>
+    <br>
   </ion-card>
 
   <ion-card [hidden]="errormsg" class="list-background-team" style="width: 100% ; margin-left: 0%">
     <ion-card-header style="font-weight: 100">
       Team Pleasance
     </ion-card-header>
+
     <ion-card-content>
-      <div id="highcharts-9osgvf6-90" style="position: relative; overflow: hidden; width: 110%; height: 192.667px; 
-     text-align: left; line-height: normal; z-index: 0; font-family: roboto; left: -13px; top: 0.333313px;">
-        <chart class="chartPosition" [options]="pleasanceChart" (load)="saveInstance($event.context)" style="display: block" tpye="chart">
-        </chart>
-      </div>
+
+      <chart class="chartPosition" [options]="pleasanceChart" (load)="saveInstance($event.context)" style="display: block; margin-left: -5%; margin-top: -40px"
+        tpye="chart">
+      </chart>
+
     </ion-card-content>
+
+
+
   </ion-card>
 
   <ion-card [hidden]="errormsg" class="list-background-team" style="width: 100%; margin-left: 0%">
@@ -36,16 +64,17 @@
       Team Activation
     </ion-card-header>
     <ion-card-content>
-      <div id="highcharts-9osgvf6-90" style="position: relative; overflow: hidden; width: 110%; height: 192.667px; 
-     text-align: left; line-height: normal; z-index: 0; font-family: roboto; left: -13px; top: 0.333313px;">
-        <chart class="chartPosition" [options]="activationChart" (load)="saveInstance($event.context)" style="display: block" tpye="chart">
-        </chart>
-      </div>
+
+      <chart class="chartPosition" [options]="activationChart" (load)="saveInstance($event.context)" style="display: block; margin-left: -5%; margin-top: -40px"
+        tpye="chart">
+      </chart>
+
     </ion-card-content>
   </ion-card>
 
   <button ion-button outline (click)="delete_leaveGroup()" style="margin: auto; display: block"> {{text}}  </button>
   <br>
+  <button ion-button outline  *ngIf="admin=='true'" (click)="inviteMembers()" style="margin: auto; display: block"> Invite Team Members </button>
   <br>
 
 

@@ -30,10 +30,14 @@ export class TeamView_CreateTeamPage {
       this.showError("Without a password there can't be a groupd")
       return;
     }
-    this.api.createTeam(this.team).subscribe(res => { });
+    this.api.createTeam(this.team).subscribe(res => {
+      console.log(res)
+      this.navCtrl.push(TeamView_AddTeamMemberPage, {
+        "team": res.team
 
-  this.navCtrl.push(TeamView_AddTeamMemberPage, {
-      "team": this.team
+
+
+      });
 
     });
   }

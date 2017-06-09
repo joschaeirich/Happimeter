@@ -45,25 +45,27 @@ export class TeamViewPage {
         }
 
         if (obj.happy == 2 && obj.active == 2) {
-          obj.icon = "assets/TransparentMoodThin/TransparentMood_1.png";
+          obj.icon = "assets/BoltSmilieys/transparent_mood1.png";
         } else if (obj.happy == 1 && obj.active == 2) {
-          obj.icon = "assets/TransparentMoodThin/TransparentMood_2.png";
+          obj.icon = "assets/BoltSmilieys/transparent_mood2.png";
         } else if (obj.happy == 0 && obj.active == 2) {
-          obj.icon = "assets/TransparentMoodThin/TransparentMood_3.png";
+          obj.icon = "assets/BoltSmilieys/transparent_mood3.png";
         } else if (obj.happy == 2 && obj.active == 1) {
-          obj.icon = "assets/TransparentMoodThin/TransparentMood_4.png";
+          obj.icon = "assets/BoltSmilieys/transparent_mood4.png";
         } else if (obj.happy == 1 && obj.active == 1) {
-          obj.icon = "assets/TransparentMoodThin/TransparentMood_5.png";
+          obj.icon = "assets/BoltSmilieys/transparent_mood5.png";
         } else if (obj.happy == 0 && obj.active == 1) {
-          obj.icon = "assets/TransparentMoodThin/TransparentMood_6.png";
+          obj.icon = "assets/BoltSmilieys/transparent_mood6.png";
         } else if (obj.happy == 2 && obj.active == 0) {
-          obj.icon = "assets/TransparentMoodThin/TransparentMood_7.png";
+          obj.icon = "assets/BoltSmilieys/transparent_mood7.png";
         } else if (obj.happy == 1 && obj.active == 0) {
-          obj.icon = "assets/TransparentMoodThin/TransparentMood_8.png";
+          obj.icon = "assets/BoltSmilieys/transparent_mood8.png";
         } else if (obj.happy == 0 && obj.active == 0) {
-          obj.icon = "assets/TransparentMoodThin/TransparentMood_9.png";
+          obj.icon = "assets/BoltSmilieys/transparent_mood9.png";
         }
 
+
+      
 
 
 
@@ -72,7 +74,7 @@ export class TeamViewPage {
 
       }
 
-        console.log(this.createTeam)
+      console.log(this.createTeam)
     });
 
   }

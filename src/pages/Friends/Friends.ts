@@ -64,15 +64,14 @@ export class FriendsPage {
     );
 
     this.api.getFriendRequest().subscribe(fri => {
-
       if (fri.friend_requests.length > 0) {
-        console.log(fri.friend_request.length)
-        this.headerText = "Open Request";
+          this.headerText = "Open Request";
         this.friendRequest = 'assets/Friends/Icons/openFriendRequest.svg';
       } else {
-        this.headerText = "No Requests";
-        this.friendRequest = 'assets/Friends/Icons/friendRequests.svg';
+            this.headerText = "No Requests";
+        this.friendRequest =  'assets/Friends/Icons/friendRequests.svg';
       }
+  
 
     });
   }

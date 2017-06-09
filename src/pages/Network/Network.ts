@@ -76,7 +76,7 @@ export class NetworkPage implements AfterViewInit {
 
     this.cy.zoom(1);
     this.cy.center();
-    this.cy.style("node { content: data(label); text-margin-y: -5px; color: #ffffff; font-size:7px; background-color: #0D47A1; border-color: #fff; border-width: 1px;} edge {line-color: #ffffff; opacity: 0.5;}");
+    this.cy.style("node { content: data(label); text-margin-y: -5px; color: #ffffff; font-size:7px; background-color: #0D47A1; border-color: #fff; border-width: 1px;} edge {width: 1px; line-color: #ffffff; opacity: 0.5;}");
 
     this.api.getFriendsList().subscribe(fri => {
 

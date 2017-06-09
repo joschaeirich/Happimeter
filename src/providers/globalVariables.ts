@@ -106,8 +106,8 @@ export class GlobalVariables {
     }).map(res => res.json());
   }
 
-public postFriend(user) {
-    return this.http.post(this.url + 'friends/search/' + user,null, {
+public postFriend(User) {
+    return this.http.post(this.url + 'friends/' + User, null, {
       headers: this.GetHeaders()
     }).map(res => res.json());
   }

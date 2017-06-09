@@ -60,8 +60,8 @@ this.api.searchFriend(ev.target.value).subscribe(fri => {
         {
           text: 'Yes',
           handler: () => {
-            this.api.postFriend(addUser.id).subscribe(fri => {
-              this.navCtrl.push(FriendsPage);
+           this.api.postFriend(addUser.id).subscribe(() => {
+              this.navCtrl.push(FriendsPage); 
             });
           }
         }
