@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { GlobalVariables } from '../../providers/globalVariables';
 import { TeamViewPage } from '../TeamView/TeamView';
+import { TeamView_TeamMemberPage } from '../TeamView_TeamMember/TeamView_TeamMember';
 import { TeamView_AddTeamMemberPage } from '../TeamView_AddTeamMember/TeamView_AddTeamMember';
 import * as $ from 'jquery';
 import * as moment from 'moment';
@@ -80,7 +81,7 @@ export class TeamView_TeamChartPage {
                 }
             }
 
-            console.log(moodtimestamp_array);
+            // console.log(moodtimestamp_array);
 
 
 
@@ -459,5 +460,11 @@ export class TeamView_TeamChartPage {
             "team": this.team
         })
 
+    }
+
+    reviewMembers() {
+        this.navCtrl.push(TeamView_TeamMemberPage, {
+            "team": this.team
+        })
     }
 }

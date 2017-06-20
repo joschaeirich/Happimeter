@@ -59,8 +59,6 @@ export class SettingsPage {
 
   deleteAccount() {
 
-
-
     let alert = this.alertCtrl.create({
       title: 'Delete Account',
       message: 'Do you want to delete your account?',

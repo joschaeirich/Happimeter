@@ -34,9 +34,6 @@ export class TeamView_CreateTeamPage {
       console.log(res)
       this.navCtrl.push(TeamView_AddTeamMemberPage, {
         "team": res.team
-
-
-
       });
 
     });

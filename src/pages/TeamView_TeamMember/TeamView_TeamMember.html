@@ -1,0 +1,28 @@
+<ion-header class="toolbar-background-ios-TeamView toolbar-background-md-TeamView">
+
+  <ion-navbar>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding class="page-TeamView">
+
+  <ion-card style="width: 100% ; margin-left: 0%" *ngFor="let member of members">
+    <ion-card-content class="list-background-team">
+      <ion-list class="list-background">
+
+        <ion-list-header> {{ member.name }} </ion-list-header>
+        <ion-item class="list-background">
+          <ion-avatar class="paddingListName" style="width:70%" item-left>
+            Last mood input: {{ member.last_mood_input }}
+            <br>
+            <br>
+            Last sensor input: {{ member.last_sensor_input }}
+          </ion-avatar>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+
+</ion-content>

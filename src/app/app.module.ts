@@ -27,7 +27,10 @@ import { TeamView_CreateTeamPage } from '../pages/TeamView_CreateTeam/TeamView_C
 import { TeamView_SearchPage } from '../pages/TeamView_Search/TeamView_Search';
 import { TeamView_AddTeamMemberPage } from '../pages/TeamView_AddTeamMember/TeamView_AddTeamMember';
 import { TeamView_TeamChartPage } from '../pages/TeamView_TeamChart/TeamView_TeamChart';
+import { TeamView_TeamMemberPage } from '../pages/TeamView_TeamMember/TeamView_TeamMember';
     
+
+
 import { LegalPage } from '../pages/Legal/Legal';
 
 
@@ -75,7 +78,8 @@ import { IonicStorageModule } from '@ionic/storage';
     TeamView_CreateTeamPage,
     TeamView_SearchPage,
     TeamView_AddTeamMemberPage,
-    TeamView_TeamChartPage
+    TeamView_TeamChartPage,
+    TeamView_TeamMemberPage
 
   ],
   imports: [
@@ -112,7 +116,8 @@ import { IonicStorageModule } from '@ionic/storage';
     TeamView_CreateTeamPage,
     TeamView_SearchPage,
     TeamView_AddTeamMemberPage,
-    TeamView_TeamChartPage
+    TeamView_TeamChartPage,
+    TeamView_TeamMemberPage
 
   ],
   providers: [

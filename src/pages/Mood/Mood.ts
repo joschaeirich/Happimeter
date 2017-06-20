@@ -13,10 +13,11 @@ import { Http } from '@angular/http';
 import * as moment from 'moment';
 import { Geolocation } from '@ionic-native/geolocation';
 
-import {GlobalVariables} from '../../providers/globalVariables'
+import { GlobalVariables } from '../../providers/globalVariables'
 
 
 var counter: number = 0;
+
 function count() {
   if (counter == 3) {
     counter = -1;
@@ -38,9 +39,11 @@ export class MoodPage {
   pleasance: any = 1;
   activation: any = 1;
 
+  card: any = ""
+  page: any = "active"
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, public auth: Auth, public geolocation: Geolocation,private api: GlobalVariables) {
-    
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, public auth: Auth, public geolocation: Geolocation, private api: GlobalVariables) {
+
   }
 
   ionViewDidLoad() {
@@ -53,7 +56,7 @@ export class MoodPage {
 
       this.pleasance = res.happiness;
       this.activation = res.activation;;
-      
+
       var path = "assets/MoodSmilies/"
       var format = ".png"
 
@@ -64,17 +67,17 @@ export class MoodPage {
       } else if (this.pleasance == 0 && this.activation == 2) {
         this.mood = path + 'transparent_mood3' + format
       } else if (this.pleasance == 2 && this.activation == 1) {
-        this.mood = path +'transparent_mood4' + format
+        this.mood = path + 'transparent_mood4' + format
       } else if (this.pleasance == 1 && this.activation == 1) {
-        this.mood = path +'transparent_mood5' + format
+        this.mood = path + 'transparent_mood5' + format
       } else if (this.pleasance == 0 && this.activation == 1) {
-        this.mood = path +'transparent_mood6' + format
+        this.mood = path + 'transparent_mood6' + format
       } else if (this.pleasance == 2 && this.activation == 0) {
-        this.mood = path +'transparent_mood7' + format
+        this.mood = path + 'transparent_mood7' + format
       } else if (this.pleasance == 1 && this.activation == 0) {
-        this.mood = path +'transparent_mood8' + format
+        this.mood = path + 'transparent_mood8' + format
       } else if (this.pleasance == 0 && this.activation == 0) {
-        this.mood = path +'transparent_mood9' + format
+        this.mood = path + 'transparent_mood9' + format
       }
     });
   }
@@ -93,7 +96,7 @@ export class MoodPage {
         moodData.local_timestamp = moodData.timestamp + timeDifference,
         moodData.account_id = "Smartphone",
         moodData.device_id = "Smartphone";
-        moodData.position = {
+      moodData.position = {
         lat: position.coords.latitude,
         lon: position.coords.longitude
       }
@@ -127,5 +130,16 @@ export class MoodPage {
 
   NOTconfirm() {
     this.navCtrl.push(MoodInputPage);
+  }
+
+  seeInsights() {
+    //classifiers/insights
+    this.card = "active"
+    this.page = "not_active"
+  }
+
+  return() {
+    this.card = "not_active"
+    this.page = "active"
   }
 }

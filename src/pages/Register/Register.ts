@@ -10,8 +10,9 @@ import { GlobalVariables } from '../../providers/globalVariables';
 export class RegisterPage {
   createSuccess = false;
   registerCredentials = { email: '', password: '', name: '' };
+  buttonDisabled = false;
 
-  constructor(private nav: NavController, private auth: Auth, private alertCtrl: AlertController, public navParams: NavParams,private api: GlobalVariables) { }
+  constructor(private nav: NavController, private auth: Auth, private alertCtrl: AlertController, public navParams: NavParams, private api: GlobalVariables) { }
 
   public register() {
     this.auth.register(this.registerCredentials).map(res => res.json()).subscribe(response => {
@@ -20,14 +21,20 @@ export class RegisterPage {
         this.api.token = response.token;
         this.createSuccess = true;
         this.showPopup("Success", "Account created.");
-      } else {
-        this.showPopup("Error", "Problem creating account.");
+        this.buttonDisabled = true;
+      } else if (this.registerCredentials.email == "") {
+        this.showPopup("Error", "Please type in your email");
+      } else if (this.registerCredentials.name == "") {
+        this.showPopup("Error", "Please type in your name");
+      } else if (this.registerCredentials.password == "") {
+        this.showPopup("Error", "Please type in your password");
       }
     },
       error => {
         this.showPopup("Error", error);
       });
   }
+
 
   showPopup(title, text) {
     let alert = this.alertCtrl.create({

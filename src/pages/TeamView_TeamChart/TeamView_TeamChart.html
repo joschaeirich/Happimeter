@@ -72,10 +72,12 @@
     </ion-card-content>
   </ion-card>
 
+
   <button ion-button outline (click)="delete_leaveGroup()" style="margin: auto; display: block"> {{text}}  </button>
   <br>
-  <button ion-button outline  *ngIf="admin=='true'" (click)="inviteMembers()" style="margin: auto; display: block"> Invite Team Members </button>
+  <button ion-button outline *ngIf="admin=='true'" (click)="inviteMembers()" style="margin: auto; display: block"> Invite Team Members </button>
   <br>
-
+  <button ion-button outline (click)="reviewMembers()" style="margin: auto; display: block"> See Team members </button>
+  <br>
 
 </ion-content>

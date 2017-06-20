@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { Tree1Page } from '../Tree1/Tree1';
 import { Tree2Page } from '../Tree2/Tree2';
 import { Tree3Page } from '../Tree3/Tree3';
@@ -8,7 +8,7 @@ import { Geolocation } from '@ionic-native/geolocation';
 
 import { Auth } from '../../providers/auth';
 import { GlobalVariables } from '../../providers/globalVariables';
-import { Http} from '@angular/http';
+import { Http } from '@angular/http';
 import * as moment from 'moment';
 
 var counter: number = 0;
@@ -38,8 +38,9 @@ export class MoodInputPage {
 
   path: any = "assets/MoodSmilies/";
   format: any = ".png";
+  geolocationerror: any = "false";
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, public auth: Auth, public geolocation: Geolocation, private api: GlobalVariables) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, public auth: Auth, public geolocation: Geolocation, private api: GlobalVariables, private alertCtrl: AlertController) {
 
 
     var raw_counter = localStorage.getItem("treeCounter");
@@ -51,6 +52,20 @@ export class MoodInputPage {
 
   }
   ionViewDidLoad(pleasance, activation) {
+
+    this.geolocation.getCurrentPosition().then(() => { }, (err) => {
+      this.geolocationerror = "true";
+      let alert = this.alertCtrl.create({
+        title: 'Geolocation disabled',
+        subTitle: 'Please activate your location services to send mood data',
+        buttons: ['Dismiss']
+
+      });
+      alert.present();
+
+    });
+
+
     this.moodIcon = this.path + 'transparent_mood5' + this.format
   }
 
@@ -99,28 +114,43 @@ export class MoodInputPage {
   }
 
   MoodUpload(pleasance, activation) {
+    if (this.geolocationerror = "true") {
+      let alert = this.alertCtrl.create({
+        title: 'Geolocation disabled',
+        subTitle: 'You cannot send data while geolocation services are disabled',
+        buttons: ['Ok']
 
-    this.geolocation.getCurrentPosition().then((position) => {
+      });
+      alert.present();
+      return;
+    } else {
 
-      var timeDifference = moment().utcOffset();
-      timeDifference = timeDifference * 60;
 
-      var moodData: any = {}
-      moodData.pleasance = pleasance,
-        moodData.activation = activation,
-        moodData.timestamp = moment().utc().unix(),
-        moodData.local_timestamp = moodData.timestamp + timeDifference,
-        moodData.account_id = "Smartphone",
-        moodData.device_id = "Smartphone";
-      moodData.position = {
-        lat: position.coords.latitude,
-        lon: position.coords.longitude
-      }
-      this.api.postMood(moodData).subscribe(res => { });
 
-    })
+      this.geolocation.getCurrentPosition().then((position) => {
 
-    this.TreePage();
+        var timeDifference = moment().utcOffset();
+        timeDifference = timeDifference * 60;
+
+        var moodData: any = {}
+        moodData.pleasance = pleasance,
+          moodData.activation = activation,
+          moodData.timestamp = moment().utc().unix(),
+          moodData.local_timestamp = moodData.timestamp + timeDifference,
+          moodData.account_id = "Smartphone",
+          moodData.device_id = "Smartphone";
+        moodData.position = {
+          lat: position.coords.latitude,
+          lon: position.coords.longitude
+        }
+        this.api.postMood(moodData).subscribe(res => { });
+
+      })
+
+      this.TreePage();
+    }
   }
+
+
 
 }

@@ -5,31 +5,54 @@
 </ion-header>
 
 <ion-content class="page-Mood" style="text-align: center">
-  <h3 [hidden]="errormsg"> Is this your current mood?</h3>
-  <div [hidden]="errormsg" class="row">
-    <div class="col">
-      Activation: {{activation}}
+  <div *ngIf="page=='active'">
+    <h3 [hidden]="errormsg"> Is this your current mood?</h3>
+    <div [hidden]="errormsg" class="row">
+      <div class="col">
+        Activation: {{activation}}
+      </div>
+      <div class="col">
+        Pleasance: {{pleasance}}
+      </div>
     </div>
-    <div class="col">
-      Pleasance: {{pleasance}}
+
+    <br>
+    <br>
+
+    <div class="mood_image">
+      <img *ngIf="!errormsg" [src]="mood">
     </div>
+    <br>
+    <br>
+    <div style="text-align: center !important; margin: auto; max-width: 80%">{{errormsg}} </div>
+    <div class="row">
+      <div class="col">
+        <img [hidden]="errormsg" src="assets/confirm_notConfirm/confrim.png" style="width: 80px" (click)="confirm()">
+      </div>
+      <div class="col">
+        <img [hidden]="errormsg" src="assets/confirm_notConfirm/notconfirm.png" style="width: 80px" (click)="NOTconfirm()">
+      </div>
+    </div>
+    <br>
+    <br>
+<!--    <button ion-button outline style="margin: auto; display: block" (click)="seeInsights()">What affects your mood</button>-->
   </div>
 
-  <br>
-  <br>
 
-  <div class="mood_image">
-    <img *ngIf="!errormsg" [src]="mood">
-  </div>
-  <br>
-  <br>
-  <div style="text-align: center !important; margin: auto; max-width: 80%">{{errormsg}} </div>
-  <div class="row">
-    <div class="col">
-      <img [hidden]="errormsg" src="assets/confirm_notConfirm/hacken.svg" style="width: 40px" (click)="confirm()">
-    </div>
-    <div class="col">
-      <img [hidden]="errormsg" src="assets/confirm_notConfirm/cross.svg" style="width: 40px" (click)="NOTconfirm()">
-    </div>
-  </div>
+  <ion-card *ngIf="card=='active'" class="moodCard animated fadeInRight">
+    <ion-card-content>
+
+
+      <h1 style="text-align: center; font-weight: 300">Insights</h1>
+      <ion-item class="moodCard" (click)="removeName(member)">
+        <ion-avatar class="paddingListName" style="text-align: center; font-weight: 300">
+        </ion-avatar>
+      </ion-item>
+      <br>
+
+      <button ion-button outline style="margin: auto; display: block" (click)="return()">Return</button>
+
+    </ion-card-content>
+  </ion-card>
+
 </ion-content>

@@ -78,7 +78,7 @@ export class MoodDiagramsPage {
                     prediction.push(obj);
 
                 };
-                console.log(prediction)
+               // console.log(prediction)
 
                 /*  
                     Calculate Mood
@@ -148,7 +148,7 @@ export class MoodDiagramsPage {
                     obj.moodValue = mood_array[i];
                     moodData.push(obj);
                 };
-                console.log(moodData)
+                //console.log(moodData)
 
 
                 /*  
@@ -776,6 +776,8 @@ export class MoodDiagramsPage {
                             for (var i = 0; i < timestamp.length; i++) {
                                 weekdays_array[i] = moment(timestamp[i], 'DD/MM/YYYY HH:mm').format('dddd');
                             };
+
+                     //       console.log(activation_array)
 
                             this.activationChart = {
                                 marginLeft: 40,

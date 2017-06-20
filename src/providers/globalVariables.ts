@@ -9,7 +9,7 @@ declare var Connection;
 @Injectable()
 export class GlobalVariables {
 
-  private url: string = "http://91.250.82.104:8080/v1/";
+  private url: string = "https://api.happimeter.org/v1/";
   public token: string;
 
 
@@ -106,7 +106,7 @@ export class GlobalVariables {
     }).map(res => res.json());
   }
 
-public postFriend(User) {
+  public postFriend(User) {
     return this.http.post(this.url + 'friends/' + User, null, {
       headers: this.GetHeaders()
     }).map(res => res.json());
@@ -128,14 +128,14 @@ public postFriend(User) {
     }).map(res => res.json());
   }
 
-   public getTeams() {
+  public getTeams() {
     return this.http.get(this.url + 'teams', {
       headers: this.GetHeaders()
     }).map(res => res.json());
   }
 
-   public searchTeam(teamName) {
-    return this.http.get(this.url + 'teams/' +teamName, {
+  public searchTeam(teamName) {
+    return this.http.get(this.url + 'teams/' + teamName, {
       headers: this.GetHeaders()
     }).map(res => res.json());
   }
@@ -150,8 +150,8 @@ public postFriend(User) {
     return this.http.post(this.url + 'teams/' + team_id, {
       "password": password
     }, {
-      headers: this.GetHeaders()
-    }).map(res => res.json());
+        headers: this.GetHeaders()
+      }).map(res => res.json());
   }
 
   public leaveTeam(team_id: number) {
@@ -161,7 +161,7 @@ public postFriend(User) {
   }
 
   public updateTeam(team) {
-    return this.http.put(this.url + 'teams/'+team.id, team, {
+    return this.http.put(this.url + 'teams/' + team.id, team, {
       headers: this.GetHeaders()
     }).map(res => res.json());
   }
@@ -178,10 +178,10 @@ public postFriend(User) {
         headers: this.GetHeaders()
       }).map(res => res.json());
     } else {
-      return this.http.get(this.url + 'teams/' + team.id + '/predictions/since/'+since, {
+      return this.http.get(this.url + 'teams/' + team.id + '/predictions/since/' + since, {
         headers: this.GetHeaders()
       }).map(res => res.json());
-    }  
+    }
   }
 
   public getTeamHeartrate(team) {
@@ -190,6 +190,11 @@ public postFriend(User) {
     }).map(res => res.json());
   }
 
+  public getTeamMembers(team) {
+    return this.http.get(this.url + 'teams/' + team.id + '/members', {
+      headers: this.GetHeaders()
+    }).map(res => res.json());
+  }
 
   public lostPassword(mail: string) {
     return this.http.post(this.url + 'users/lost_password', {

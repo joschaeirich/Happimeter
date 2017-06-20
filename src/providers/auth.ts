@@ -3,8 +3,8 @@ import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
-var url = "http://91.250.82.104:8080/v1/";
-
+var url = "https://api.happimeter.org/v1/";
+// Old api "http://91.250.82.104:8080/v1/";
 export class User {
   name: string;
   email: string;
