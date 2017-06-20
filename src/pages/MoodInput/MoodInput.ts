@@ -114,7 +114,8 @@ export class MoodInputPage {
   }
 
   MoodUpload(pleasance, activation) {
-    if (this.geolocationerror = "true") {
+
+    if (this.geolocationerror == "true") {
       let alert = this.alertCtrl.create({
         title: 'Geolocation disabled',
         subTitle: 'You cannot send data while geolocation services are disabled',
