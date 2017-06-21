@@ -84,7 +84,10 @@ import { IonicStorageModule } from '@ionic/storage';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp), ChartModule.forRoot(highcharts),
+    IonicModule.forRoot(MyApp, {
+      backButtonText: '',
+      tabsPlacement: 'bottom'
+    }), ChartModule.forRoot(highcharts),
     IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],

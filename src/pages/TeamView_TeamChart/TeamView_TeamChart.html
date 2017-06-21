@@ -16,7 +16,7 @@
     </ion-card-header>
     <ion-card-content>
       <br>
-      <img style="height: 100px; width: 100px; margin: auto; display: block" [src]="team.icon_chart">
+      <img *ngIf="team && team.icon_chart" style="height: 100px; width: 100px; margin: auto; display: block" [src]="team.icon_chart">
     </ion-card-content>
     <br>
     <div class="row">
