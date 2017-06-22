@@ -115,7 +115,7 @@ export class GlobalVariables {
   public shareMood(user) {
     return this.http.put(this.url + 'friends/' + user, {
 
-      "share_mood": user.share_mood == true ? 0 : 1
+      "share_mood": user.share_mood == true ? 1 : 0
     }, {
         headers: this.GetHeaders()
       }).map(res => res.json());

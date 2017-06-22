@@ -3,6 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { TeamView_CreateTeamPage } from '../TeamView_CreateTeam/TeamView_CreateTeam';
 import { TeamView_SearchPage } from '../TeamView_Search/TeamView_Search';
 import { TeamView_TeamChartPage } from '../TeamView_TeamChart/TeamView_TeamChart';
+import { MainPage } from '../Main/Main'
 
 import { GlobalVariables } from '../../providers/globalVariables'
 
@@ -94,6 +95,9 @@ export class TeamViewPage {
 
     });
 
+  }
+   mainPage() {
+    this.navCtrl.push(MainPage);
   }
 
 }

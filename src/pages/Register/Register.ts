@@ -29,9 +29,18 @@ export class RegisterPage {
       } else if (this.registerCredentials.password == "") {
         this.showPopup("Error", "Please type in your password");
       }
+
+      if (response.status == 409) {
+        this.showPopup("Error", "A user with this mail already exists")
+      }
     },
+
       error => {
         this.showPopup("Error", error);
+
+
+
+
       });
   }
 
