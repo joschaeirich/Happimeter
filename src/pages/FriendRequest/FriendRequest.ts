@@ -15,9 +15,9 @@ export class FriendRequestPage {
   friendRequest: any = [];
 
 
-  decline: any = 'assets/confirm_notConfirm/cross.svg';
+  decline: any = 'assets/Friends/notConfirm_Friend.png';
   text: any;
-  confirm: any = 'assets/confirm_notConfirm/hacken.svg';
+  confirm: any = 'assets/Friends/confirm_Friend.png';
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, public auth: Auth, private alertCtrl: AlertController,private api: GlobalVariables) {

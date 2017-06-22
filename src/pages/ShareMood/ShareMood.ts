@@ -34,7 +34,7 @@ export class ShareMoodPage {
   }
 
   shareMood(addUser) {
-    this.api.shareMood(addUser.id).subscribe(fri => {
+    this.api.shareMood(addUser).subscribe(fri => {
     });
   }
 }

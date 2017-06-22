@@ -21,6 +21,7 @@ export class TeamView_CreateTeamPage {
 
 
   createTeam() {
+
     console.log(this.team)
     if (this.team.name == "") {
       this.showError("Your group needs a name")
@@ -30,7 +31,13 @@ export class TeamView_CreateTeamPage {
       this.showError("Without a password there can't be a groupd")
       return;
     }
+
+     
     this.api.createTeam(this.team).subscribe(res => {
+       if(res.status == 409) {
+        this.showError("This team already exists")
+        return;
+      }
       console.log(res)
       this.navCtrl.push(TeamView_AddTeamMemberPage, {
         "team": res.team
@@ -43,7 +50,7 @@ export class TeamView_CreateTeamPage {
   showError(text) {
 
     let alert = this.alertCtrl.create({
-      title: 'Error 125130932',
+      title: 'Error',
       subTitle: text,
       buttons: ['OK']
     });

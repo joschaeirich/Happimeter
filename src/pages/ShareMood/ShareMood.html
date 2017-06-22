@@ -8,12 +8,12 @@
 
 
 <ion-content class="page-Friends">
-  <ion-card>
-    <ion-card-content>
+  <ion-card >
+    <ion-card-content class="friends-card-background">
       <ion-list>
         <ion-list-header>With whom would you
           <br>like to share your mood?</ion-list-header>
-        <ion-item class="list-background" *ngFor="let friend of currentFriendList">
+        <ion-item class="friends-card-background" *ngFor="let friend of currentFriendList">
           <ion-label> {{ friend.name }}</ion-label>
           <ion-checkbox (click)="shareMood(friend)" [(ngModel)]="friend.share_mood"></ion-checkbox>
         </ion-item>

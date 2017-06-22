@@ -12,6 +12,10 @@ background: color($colors, friends);
     background-color: transparent;   
 }
 
+.friends-card-background{
+     background: #9BAC00;
+}
+
 .note-ios-color{
    color: white !important;
 }
@@ -40,11 +44,11 @@ background: color($colors, friends);
 }
 
 .toolbar-background-ios-friends .toolbar-background-ios {
-    background: #AFBD2B;
+    background: #9BAC00;
 }
 
 .toolbar-background-md-friends .toolbar-background-md {
-    background: #AFBD2B;
+    background: #9BAC00;
 }
 
 .headerSearchFriendIcon{
@@ -52,6 +56,7 @@ background: color($colors, friends);
     font-size: 16px;
     margin-top: 20px !important;
     margin-bottom: -40px !important;
+    background: #9BAC00;
 }
 
 .padding-mood-image{

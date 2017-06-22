@@ -21,11 +21,11 @@
 
 
   <ion-card >
-    <ion-card-content>
-      <ion-list class="list-background">
+    <ion-card-content class="friends-card-background">
+      <ion-list >
 
         <ion-list-header>Your friends</ion-list-header>
-        <ion-item class="list-background" *ngFor="let friend of currentFriendList">
+        <ion-item class="friends-card-background" *ngFor="let friend of currentFriendList">
           <ion-avatar class="paddingListName" item-left>
             {{ friend.name }}
           </ion-avatar>
@@ -45,13 +45,13 @@
       <ion-col width-50>
         <ion-card>
           <div class="headerSearchFriendIcon" id="headerText"> Search </div>
-          <img class="ion-img" style="width:100%" src="assets/Friends/Icons/searchFriends.svg" (click)="SearchFriends()">
+          <img class="friends-card-background" style="width:100%" src="assets/Friends/Icons/searchFriends.svg" (click)="SearchFriends()">
         </ion-card>
       </ion-col>
       <ion-col width-50>
         <ion-card>
           <div class="headerSearchFriendIcon" id="headerText"> {{headerText}} </div>
-          <img class="scroll" [src]="friendRequest" (click)="FriendRequest()">
+          <img class="friends-card-background" [src]="friendRequest" (click)="FriendRequest()">
         </ion-card>
       </ion-col>
     </ion-row>
@@ -59,13 +59,13 @@
       <ion-col width-50>
         <ion-card>
           <div class="headerSearchFriendIcon" id="headerText"> Share Mood </div>
-          <img class="ion-img" style="width:100%" src="assets/Friends/Icons/shareMood.svg" (click)="ShareMood()">
+          <img class="friends-card-background" style="width:100%" src="assets/Friends/Icons/shareMood.svg" (click)="ShareMood()">
         </ion-card>
       </ion-col>
       <ion-col width-50>
         <ion-card>
           <div class="headerSearchFriendIcon" id="headerText"> Delete Friend </div>
-          <img class="scroll" src="assets/Friends/Icons/deleteFriend.svg" (click)="DeleteFriend()">
+          <img class="friends-card-background" src="assets/Friends/Icons/deleteFriend.svg" (click)="DeleteFriend()">
         </ion-card>
       </ion-col>
     </ion-row>
