@@ -20,14 +20,15 @@
 
 
 
-  <ion-card >
+  <ion-card>
     <ion-card-content class="friends-card-background">
-      <ion-list >
+      <ion-list>
 
         <ion-list-header>Your friends</ion-list-header>
         <ion-item class="friends-card-background" *ngFor="let friend of currentFriendList">
           <ion-avatar class="paddingListName" item-left>
-            {{ friend.name }}
+            <span *ngIf="friend.name">{{ friend.name }}</span>
+            <span *ngIf="!friend.name">{{ friend.mail }}</span>
           </ion-avatar>
           <ion-avatar *ngIf="friend.icon!=null" class="padding-mood-image" item-right>
             <img [src]="friend.icon">
@@ -43,29 +44,29 @@
   <ion-grid>
     <ion-row>
       <ion-col width-50>
-        <ion-card>
+        <ion-card class="friends-card-background">
           <div class="headerSearchFriendIcon" id="headerText"> Search </div>
-          <img class="friends-card-background" style="width:100%" src="assets/Friends/Icons/searchFriends.svg" (click)="SearchFriends()">
+          <img style="width:100%" src="assets/Friends/Icons/searchFriends.svg" (click)="SearchFriends()">
         </ion-card>
       </ion-col>
       <ion-col width-50>
-        <ion-card>
+        <ion-card class="friends-card-background">
           <div class="headerSearchFriendIcon" id="headerText"> {{headerText}} </div>
-          <img class="friends-card-background" [src]="friendRequest" (click)="FriendRequest()">
+          <img [src]="friendRequest" (click)="FriendRequest()">
         </ion-card>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col width-50>
-        <ion-card>
+        <ion-card class="friends-card-background">
           <div class="headerSearchFriendIcon" id="headerText"> Share Mood </div>
-          <img class="friends-card-background" style="width:100%" src="assets/Friends/Icons/shareMood.svg" (click)="ShareMood()">
+          <img style="width:100%" src="assets/Friends/Icons/shareMood.svg" (click)="ShareMood()">
         </ion-card>
       </ion-col>
       <ion-col width-50>
-        <ion-card>
+        <ion-card class="friends-card-background">
           <div class="headerSearchFriendIcon" id="headerText"> Delete Friend </div>
-          <img class="friends-card-background" src="assets/Friends/Icons/deleteFriend.svg" (click)="DeleteFriend()">
+          <img src="assets/Friends/Icons/deleteFriend.svg" (click)="DeleteFriend()">
         </ion-card>
       </ion-col>
     </ion-row>

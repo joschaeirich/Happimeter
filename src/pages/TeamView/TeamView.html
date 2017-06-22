@@ -1,8 +1,7 @@
-
 <ion-header class="toolbar-background-ios-TeamView toolbar-background-md-TeamView">
 
   <ion-navbar hideBackButton>
-     <ion-buttons left>
+    <ion-buttons left>
       <button ion-button (click)="mainPage()">
             <ion-icon name="arrow-back"></ion-icon>
         </button>
@@ -13,27 +12,28 @@
 </ion-header>
 
 
-<ion-content padding class="page-TeamView" >
+<ion-content padding class="page-TeamView">
 
   <ion-card style="width: 100% ; margin-left: 0%">
-    <ion-card-content class= "list-background-team">
+    <ion-card-content class="list-background-team">
       <ion-list class="list-background">
 
         <ion-list-header>Your teams</ion-list-header>
-        <ion-item class="list-background" *ngFor="let team of currentTeams"  (click)="goToTeamChart(team)">
+        <ion-item class="list-background" *ngFor="let team of currentTeams" (click)="goToTeamChart(team)">
           <ion-avatar class="paddingListName" style="width:70%" item-left>
-            {{ team.name }}
+            <span *ngIf="team.name">{{ team.name }}</span>
+            <span *ngIf="!team.name">{{ team.mail }}</span>
           </ion-avatar>
-        <ion-avatar class="padding-mood-image"style="width:10%" item-right>
+          <ion-avatar class="padding-mood-image" style="width:10%" item-right>
             <img [src]="team.icon">
-          </ion-avatar> 
+          </ion-avatar>
         </ion-item>
       </ion-list>
     </ion-card-content>
   </ion-card>
 
-    <button ion-button outline (click)="signInToTeam()" style = "margin: auto; display: block">Search Team  </button>
-    <br>
-    <button ion-button outline (click)="createTeam()" style = "margin: auto; display: block"> Create a new Team </button>
+  <button ion-button outline (click)="signInToTeam()" style="margin: auto; display: block">Search Team  </button>
+  <br>
+  <button ion-button outline (click)="createTeam()" style="margin: auto; display: block"> Create a new Team </button>
 
 </ion-content>

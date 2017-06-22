@@ -9,12 +9,12 @@
 <ion-content class="page-TeamView">
 
 
-      <ion-searchbar class="serchbarTeamViewIos" (ionInput)="getItems($event)"></ion-searchbar>
-      <ion-list>
-        <ion-item *ngFor="let item of items" (click)="presentConfirm(item)">
-          {{ item.mail }}
-        </ion-item>
-      </ion-list>
+  <ion-searchbar class="serchbarTeamViewIos" (ionInput)="getItems($event)"></ion-searchbar>
+  <ion-list>
+    <ion-item *ngFor="let item of items" (click)="presentConfirm(item)">
+      {{ item.mail }}
+    </ion-item>
+  </ion-list>
 
 
   <ion-card class="memberListBackground">
@@ -24,7 +24,8 @@
         <ion-list-header>Team Members</ion-list-header>
         <ion-item class="memberListBackground" *ngFor="let member of memberList" (click)="removeName(member)">
           <ion-avatar class="paddingListName" item-left>
-            {{ member.name }}
+            <span *ngIf="member.name">{{ member.name }}</span>
+            <span *ngIf="!member.name">{{ member.mail }}</span>
           </ion-avatar>
         </ion-item>
       </ion-list>
@@ -32,7 +33,7 @@
   </ion-card>
   <br>
   <br>
-<div class="invite-button-postition">
-  <button ion-button outline (click)="inviteTeamMembers()"> Create Team</button>
-</div>
+  <div class="invite-button-postition">
+    <button ion-button outline (click)="inviteTeamMembers()"> Create Team</button>
+  </div>
 </ion-content>

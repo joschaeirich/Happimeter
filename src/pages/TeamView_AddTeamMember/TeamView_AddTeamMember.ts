@@ -66,7 +66,11 @@ export class TeamView_AddTeamMemberPage {
 
   inviteTeamMembers() {
     console.log(this.memberList)
-  
+    if(this.memberList[0].name==""){
+      var name = this.memberList[0].mail
+    }else{
+      name = this.memberList[0].name
+    }
       var text = "";
       var title = "";
       var confirm_yes = ""; 
@@ -80,7 +84,7 @@ export class TeamView_AddTeamMemberPage {
         confirm_yes= "Yes"
         confirm_no = "No"
         title = "Invite Team Member"
-        text = "Do you want to add " + this.memberList[0].name + " to your team?"
+        text = "Do you want to add " + name + " to your team?"
       } else {
         confirm_yes= "Yes"
         confirm_no = "No"

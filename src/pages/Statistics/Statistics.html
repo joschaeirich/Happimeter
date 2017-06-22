@@ -6,7 +6,7 @@
 
 <ion-content padding class="page-Statistics">
 
-  <ion-card [hidden]="errormsg">
+  <ion-card class="card-ios-statistics" [hidden]="errormsg">
     <ion-card-header class="headersize-statistics">
       <b>Mood occurrences</b>
     </ion-card-header>
@@ -21,7 +21,7 @@
   <ion-grid [hidden]="errormsg">
     <ion-row>
       <ion-col width-50>
-        <ion-card >
+        <ion-card class= "card-ios-statistics card-md-statistics">
           <img class="img" src="assets/Statistics/MoodDiagrams.png" (click)="MoodDiagrams()">
           <ion-card-header class="card-text">
             <b> Diagrams </b>

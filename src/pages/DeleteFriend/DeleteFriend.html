@@ -16,7 +16,10 @@
         </ion-list-header >
         <div  *ngFor="let friend of currentFriendList">
         <ion-item class="friends-card-background" *ngIf ="!friend.deleted" >
-          <ion-label (click)="deleteFriend(friend)"> {{ friend.name }}</ion-label>
+          <ion-label (click)="deleteFriend(friend)"> 
+            <span *ngIf="friend.name">{{ friend.name }}</span>
+            <span *ngIf="!friend.name">{{ friend.mail }}</span>
+            </ion-label>
         </ion-item>
         </div>
       </ion-list>
