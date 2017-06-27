@@ -37,23 +37,23 @@ export class FriendsPage {
       for (var i = 0; i < fri.friends.length; ++i) {
         var obj = fri.friends[i].user;
         if (fri.friends[i].user.mood.pleasance == 2 && fri.friends[i].user.mood.activation == 2) {
-          obj.icon = "assets/BoltSmilieys/transparent_mood1.svg"
+          obj.icon = "assets/BoltSmilieys/transparent_mood1.png"
         } else if (fri.friends[i].user.mood.pleasance == 1 && fri.friends[i].user.mood.activation == 2) {
-          obj.icon = "assets/BoltSmilieys/transparent_mood2.svg"
+          obj.icon = "assets/BoltSmilieys/transparent_mood2.png"
         } else if (fri.friends[i].user.mood.pleasance == 0 && fri.friends[i].user.mood.activation == 2) {
-          obj.icon = "assets/BoltSmilieys/transparent_mood3.svg"
+          obj.icon = "assets/BoltSmilieys/transparent_mood3.png"
         } else if (fri.friends[i].user.mood.pleasance == 2 && fri.friends[i].user.mood.activation == 1) {
-          obj.icon = "assets/BoltSmilieys/transparent_mood4.svg"
+          obj.icon = "assets/BoltSmilieys/transparent_mood4.png"
         } else if (fri.friends[i].user.mood.pleasance == 1 && fri.friends[i].user.mood.activation == 1) {
-          obj.icon = "assets/BoltSmilieys/transparent_mood5.svg"
+          obj.icon = "assets/BoltSmilieys/transparent_mood5.png"
         } else if (fri.friends[i].user.mood.pleasance == 0 && fri.friends[i].user.mood.activation == 1) {
-          obj.icon = "assets/BoltSmilieys/transparent_mood6.svg"
+          obj.icon = "assets/BoltSmilieys/transparent_mood6.png"
         } else if (fri.friends[i].user.mood.pleasance == 2 && fri.friends[i].user.mood.activation == 0) {
-          obj.icon = "assets/BoltSmilieys/transparent_mood7.svg"
+          obj.icon = "assets/BoltSmilieys/transparent_mood7.png"
         } else if (fri.friends[i].user.mood.pleasance == 1 && fri.friends[i].user.mood.activation == 0) {
-          obj.icon = "assets/BoltSmilieys/transparent_mood8.svg"
+          obj.icon = "assets/BoltSmilieys/transparent_mood8.png"
         } else if (fri.friends[i].user.mood.pleasance == 0 && fri.friends[i].user.mood.activation == 0) {
-          obj.icon = "assets/BoltSmilieys/transparent_mood9.svg"
+          obj.icon = "assets/BoltSmilieys/transparent_mood9.png"
         } else {
           obj.icon = "assets/BoltSmilieys/questionmark.svg"
         }
