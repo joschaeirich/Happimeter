@@ -6,6 +6,16 @@
 
 <ion-content padding class="page-Statistics">
 
+ <ion-card class="card-ios-statistics" [hidden]="errormsg">
+    <ion-card-header class="headersize-statistics">
+      <b>Are you a positive or negative thinker?</b>
+    </ion-card-header>
+    <ion-card-content>
+      <chart class="" [options]="positive_negative_chart" (load)="negativeHappy($event.context)" style="display: block; margin-left: -45px" tpye="chart">
+      </chart>
+    </ion-card-content>
+  </ion-card>
+
   <ion-card class="card-ios-statistics" [hidden]="errormsg">
     <ion-card-header class="headersize-statistics">
       <b>Mood occurrences</b>

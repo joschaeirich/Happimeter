@@ -19,6 +19,9 @@ import { Storage } from '@ionic/storage';
 export class SettingsPage {
 
   account: any;
+  profileEddit: any = "false";
+  card: any = "notActive"
+  public me: any = {};
 
   constructor(public navCtrl: NavController, public http: Http, public auth: Auth, private alertCtrl: AlertController, public storage: Storage, private api: GlobalVariables) {
 
@@ -31,6 +34,26 @@ export class SettingsPage {
 
 
 
+  editProfile() {
+    this.profileEddit = "true"
+    this.card = "active"
+    this.api.GetMe().subscribe(me => {
+      this.me = me;
+      console.log(this.me);
+    });
+  }
+  back(){
+    this.card = "notActive"
+    this.profileEddit = "false"
+  }
+
+  save(){
+    this.api.UpdateMe(this.me).subscribe(x => {
+
+    });
+      this.card = "notActive"
+    this.profileEddit = "false"
+  }
 
   logOut() {
 

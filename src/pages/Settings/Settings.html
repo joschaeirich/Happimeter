@@ -5,23 +5,116 @@
 </ion-header>
 
 <ion-content class="page-Settings">
-  <ion-list class="list-background">
-    <ion-item class="list-background" (click)="logOut()">
-      <ion-avatar class="paddingListName" style="vertical-align: center" item-left>
-        Log Out
-      </ion-avatar>
-      <ion-avatar class="padding-mood-image" item-right>
-        <img src="assets/SettingsIcons/logout.png">
-      </ion-avatar>
-    </ion-item>
+  <div *ngIf="profileEddit=='false'">
+    <ion-list class="list-background">
 
-    <ion-item class="list-background" (click)="deleteAccount()" style="border-bottom: 0px solid white">
-      <ion-avatar class="paddingListName" item-left>
-        Delete Account
-      </ion-avatar>
-      <ion-avatar class="padding-mood-image" item-right>
-        <img src="assets/SettingsIcons/garbage.png">
-      </ion-avatar>
-    </ion-item>
-  </ion-list>
+      <ion-item class="list-background" (click)="editProfile()">
+        <ion-avatar class="paddingListName" style="vertical-align: center" item-left>
+          Edit Profile
+        </ion-avatar>
+        <ion-avatar class="padding-mood-image" item-right>
+          <img src="assets/SettingsIcons/editProfile.png">
+        </ion-avatar>
+      </ion-item>
+
+
+      <ion-item class="list-background" (click)="logOut()">
+        <ion-avatar class="paddingListName" style="vertical-align: center" item-left>
+          Log Out
+        </ion-avatar>
+        <ion-avatar class="padding-mood-image" item-right>
+          <img src="assets/SettingsIcons/logout.png">
+        </ion-avatar>
+      </ion-item>
+
+      <ion-item class="list-background" (click)="deleteAccount()" style="border-bottom: 0px solid white">
+        <ion-avatar class="paddingListName" item-left>
+          Delete Account
+        </ion-avatar>
+        <ion-avatar class="padding-mood-image" item-right>
+          <img src="assets/SettingsIcons/garbage.png">
+        </ion-avatar>
+      </ion-item>
+    </ion-list>
+  </div>
+
+
+
+
+  <ion-card *ngIf="card=='active'" class="animated fadeInRight settings-card">
+    <ion-card-content>
+      <div class="row">
+        <div class="col columnStyle">
+          Name:
+        </div>
+        <div class="col columnStyle">
+          <ion-item>
+            <ion-input type="text" placeholder="Enter your name" name="name" [(ngModel)]="me.name"></ion-input>
+          </ion-item>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col columnStyle">
+          Age:
+        </div>
+        <div class="col columnStyle">
+          <ion-item>
+            <ion-input type="number" placeholder="Age" name="age" [(ngModel)]="me.age"></ion-input>
+          </ion-item>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col columnStyle">
+          Weight:
+        </div>
+        <div class="col columnStyle">
+          <ion-item>
+            <ion-input type="number" placeholder="Please enter your weight in kg" name="weight" [(ngModel)]="me.weight"></ion-input>
+          </ion-item>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col columnStyle">
+          Height:
+        </div>
+        <div class="col columnStyle">
+          <ion-item>
+            <ion-input type="number" placeholder="Please enter your height in cm" name="height" [(ngModel)]="me.height"></ion-input>
+          </ion-item>
+        </div>
+      </div>
+       <div class="row">
+        <div class="col columnStyle">
+          <button ion-button outline style="margin: auto; display: block" (click)="back()" >Back</button>
+        </div>
+        <div class="col columnStyle">
+          <ion-item>
+            <button ion-button outline style="margin: auto; display: block" (click)="save()">Save</button>
+          </ion-item>
+        </div>
+      </div>
+      
+
+
+    </ion-card-content>
+  </ion-card>
+
+  <!--
+
+      <input type="text" name="name" class="form-control" id="inputName" placeholder="Enter your name" [(ngModel)]="me.name" />
+      <h1 style="text-align: center; font-weight: 300">Group</h1>
+      <ion-item class="memberListBackground" (click)="removeName(member)">
+        <ion-avatar class="paddingListName" style="text-align: center; font-weight: 300">
+          {{ groupItem.name }}
+        </ion-avatar>
+      </ion-item>
+      <ion-item>
+        <ion-input type="password" placeholder="Group Password" name="password" [(ngModel)]="password"></ion-input>
+      </ion-item>
+      <br>
+      <button ion-button outline style="margin: auto; display: block" (click)="joinTeam(password)" >Join Team</button>
+
+ 
+-->
+
 </ion-content>

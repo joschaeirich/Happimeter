@@ -23,6 +23,7 @@ export class StatisticsPage {
 
 
     chartOptions: any;
+    positive_negative_chart: any;
 
     saveInstance(chart) {
         chart.setSize(
@@ -31,6 +32,16 @@ export class StatisticsPage {
             false
         );
     }
+
+    negativeHappy(chart) {
+        chart.setSize(
+            $(document).width(),
+            $(document).height() / 3,
+            false
+        );
+    }
+
+
 
     barChartRealMood: any;
     moodOccurence1: any;
@@ -57,11 +68,11 @@ export class StatisticsPage {
 
     errormsg: any;
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, public auth: Auth,private api: GlobalVariables) { }
+    constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, public auth: Auth, private api: GlobalVariables) { }
 
     ionViewDidLoad() {
 
-       
+
         this.api.getMoodDistribution().subscribe(res => {
 
             if (res.mood_distribution.length == 0) {
@@ -71,6 +82,7 @@ export class StatisticsPage {
 
             var moodChart = [0, 0, 0, 0, 0, 0, 0, 0, 0]
             var totalCount = 0;
+
 
             for (var i = 0; i < res.mood_distribution.length; ++i) {
 
@@ -135,9 +147,25 @@ export class StatisticsPage {
                 + this.moodOccurence6 + this.moodOccurence7 + this.moodOccurence8 + this.moodOccurence9) > 100) {
                 this.moodOccurence1 = this.moodOccurence1 - 1
             }
-            // console.log("moodChart")
-            // console.log(moodChart)
 
+            var positivethinker = 0;
+            var positivePercentage = 0;
+            var negativePercentage = 0;
+
+            for (var i = 0; i < res.mood_distribution.length; ++i) {
+                if (res.mood_distribution[i].happiness == 2 || res.mood_distribution[i].happiness == 1) {
+                    positivethinker += res.mood_distribution[i].count;
+                }
+            }
+
+            positivePercentage = Math.round((positivethinker / totalCount) * 100);
+            negativePercentage = 100 - positivePercentage;
+
+            console.log(totalCount)
+            console.log(positivethinker)
+
+            console.log(positivePercentage)
+            console.log(negativePercentage)
 
 
             this.api.getPredictedMoodDistribution().subscribe(res => {
@@ -315,15 +343,69 @@ export class StatisticsPage {
 
                     },
 
-                        /*
-                        [ {y: 26.5,marker: {
-                                        symbol: 'url(https://www.highcharts.com/samples/graphics/sun.png)'
-                                    }
-                                }, 23.3, 18.3, 13.9, 9.6]
-                        */
-
                     ],
                 }
+
+
+
+                this.positive_negative_chart = {
+                    chart: {
+                        backgroundColor: 'transparent',
+                        plotBorderWidth: null,
+                        plotShadow: false,
+                        type: 'pie'
+
+
+                    },
+                    legend: {
+
+                        itemStyle: {
+                            color: 'white',
+                            format: '{y} %'
+                        },
+
+                        itemHoverStyle: {
+                            color: '#00BCD4'
+                        },
+                    },
+
+                    title: {
+                        text: null
+                    },
+
+
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: false,
+                                color: 'white',
+                               
+                            },
+
+                            showInLegend: true
+                        },
+
+
+                    },
+                    credits: {
+                        enabled: false
+                    },
+                    series: [{
+                        data: [
+                            {
+                                name: 'Postivie: ' + positivePercentage + '%' , y: positivePercentage/100, color: 'white', borderColor: 'white', sliced: true,
+
+                            },
+                            { name: 'Negative: ' + negativePercentage + '%', y: negativePercentage/100, color: '#00BCD4', borderColor: '#00BCD4', sliced: true },
+
+                        ],
+                    },]
+                }
+
+
+
             });
         });
 

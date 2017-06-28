@@ -38,6 +38,18 @@ export class GlobalVariables {
     this.token = null;
   }
 
+   public UpdateMe(me) {
+    return this.http.put(this.url + 'users', me, {
+      headers: this.GetHeaders()
+    }).map(res => res.json());
+  }
+
+  public GetMe() {
+    return this.http.get(this.url + 'me', {
+      headers: this.GetHeaders()
+    }).map(res => res.json());
+  }
+
   public postMood(mood) {
     return this.http.post(this.url + 'moods', mood, {
       headers: this.GetHeaders()
