@@ -12,8 +12,8 @@ import { Http } from '@angular/http';
   selector: 'page-Network',
   templateUrl: 'Network.html'
 })
-export class NetworkPage implements AfterViewInit {
-
+export class NetworkPage {
+  /*
   public title: string = "Network";
   public cy: Cy.Instance;
   public button_text: string = "Hide yourself";
@@ -154,7 +154,7 @@ export class NetworkPage implements AfterViewInit {
       this.cy.center();
     });
 
-  }
+  }           */
 
 
 }
